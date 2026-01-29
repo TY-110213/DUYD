@@ -1,7 +1,16 @@
-﻿  PlayScene.cpp
-  Player.cpp
-D:\yuga\DUYD\Source\Player.cpp(52,18): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\yuga\DUYD\Source\Player.cpp(52,16): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+﻿  Player.cpp
+D:\yuga\DUYD\Source\Player.h(15,28): warning C4244: 'return': 'const float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Source/Player.cpp' をコンパイルしています)
+  
+D:\yuga\DUYD\Source\Player.h(16,28): warning C4244: 'return': 'const float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Source/Player.cpp' をコンパイルしています)
+  
   TUT.cpp
+D:\yuga\DUYD\Source\Player.h(15,28): warning C4244: 'return': 'const float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Source/TUT.cpp' をコンパイルしています)
+  
+D:\yuga\DUYD\Source\Player.h(16,28): warning C4244: 'return': 'const float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Source/TUT.cpp' をコンパイルしています)
+  
   コードを生成中...
   project.vcxproj -> D:\yuga\DUYD\x64\Debug\project.exe

@@ -4,7 +4,7 @@
 
 PlayScene::PlayScene()
 {
-	new Player();
+	//new Player();
 }
 
 PlayScene::~PlayScene()
@@ -13,13 +13,7 @@ PlayScene::~PlayScene()
 
 void PlayScene::Update()
 {
-	if (CheckHitKey(KEY_INPUT_SPACE)) {
-		new Player();
-	}
-
-	if (CheckHitKey(KEY_INPUT_T)) {
-		SceneManager::ChangeScene("TITLE");
-	}
+	
 
 }
 
