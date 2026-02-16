@@ -1,6 +1,8 @@
 #include "Player.h"
 #include "TUT.h"
 #include "status.h"
+#include "Stone.h"
+
 Player::Player(TUT* map) : tutMap(map)
 {
 	// 初期位置
@@ -11,10 +13,13 @@ Player::Player(TUT* map) : tutMap(map)
 	animFrame = 0;
 	animCounter = 0;
 	prevMouseLeft = false;
+	prevMouseRight = false;
 	velocity = 0.0f;
 	onGround = false;
 	prevPush = false;
 	prevHKey = false;
+	stoneCount = INITIAL_STONES;
+
 	hImage = LoadGraph("data/chara.png");
 	// 画像読み込み
 	for (int dir = 0; dir < 4; dir++) {
@@ -30,6 +35,7 @@ Player::Player(TUT* map) : tutMap(map)
 	}
 	statusRef = nullptr;
 }
+
 Player::~Player()
 {
 	for (int dir = 0; dir < 4; dir++) {
@@ -38,11 +44,19 @@ Player::~Player()
 		}
 	}
 	DeleteGraph(hImage);
+
+	// 石のメモリを解放
+	for (Stone* stone : stones) {
+		delete stone;
+	}
+	stones.clear();
 }
+
 void Player::SetStatusReference(status* statusPtr)
 {
 	statusRef = statusPtr;
 }
+
 void Player::Update()
 {
 	bool currentHKEY = CheckHitKey(KEY_INPUT_H) != 0;
@@ -50,6 +64,23 @@ void Player::Update()
 	if (currentHKEY && !prevHKey && statusRef != nullptr) {
 		statusRef->ToggleUpgradeScreen();
 	}
+
+	prevHKey = currentHKEY;
+	if (statusRef != nullptr && statusRef->IsUpgradeScreenOpen()) {
+		// アップグレード画面が開いているときは移動処理をスキップ
+		return;
+	}
+
+	// 石の更新処理
+	for (int i = stones.size() - 1; i >= 0; i--) {
+		stones[i]->Update();
+		// 非アクティブな石を削除
+		if (!stones[i]->IsActive()) {
+			delete stones[i];
+			stones.erase(stones.begin() + i);
+		}
+	}
+
 	// 次の移動先座標を計算
 	float nextX = x;
 	float nextY = y;
@@ -88,7 +119,7 @@ void Player::Update()
 	// アニメーション更新
 	if (moved) {
 		animCounter++;
-		if (animCounter >= 8) {  // 8フレームごとにアニメーション変更
+		if (animCounter >= 10) {  // 10フレームごとにアニメーション変更
 			animCounter = 0;
 			animFrame = (animFrame + 1) % 4;
 		}
@@ -109,10 +140,10 @@ void Player::Update()
 		// 方向ごとのオフセット
 		int dx = 0, dy = 0;
 		switch (direction) {
-		case 0: dy = DREACH; break;   // 下 (TILE_SIZE = 64)
-		case 1: dx = -DREACH; break;   // 左（Aキー）
-		case 2: dy = -DREACH; break;  // 右（Dキー）
-		case 3: dx = DREACH; break;  // 上
+		case 0: dy = DREACH; break;   // 下
+		case 1: dx = -DREACH; break;  // 左
+		case 2: dy = -DREACH; break;  // 上
+		case 3: dx = DREACH; break;   // 右
 		}
 
 		int checkX = centerX + dx;
@@ -126,17 +157,49 @@ void Player::Update()
 		// タイル2,3,4が隣接していれば掘る
 		if (tileType == 2 || tileType == 3 || tileType == 4) {
 			tutMap->DigTile(checkX, checkY);
-		}
-	}
-	if (CheckHitKey(KEY_INPUT_H))
-	{
 
-	}
+			// 石を1個追加（最大数まで）
+			if (stoneCount < MAX_STONES) {
+				AddStone();
+				printfDx("石を入手！ 残り: %d\n", stoneCount);
+			}
+		}
+	} // 左クリック処理の終了
+
+	// 右クリックで石を投げる
+	bool currentMouseRight = (GetMouseInput() & MOUSE_INPUT_RIGHT) != 0;
+
+	if (currentMouseRight && !prevMouseRight) {
+		// 石が残っている場合のみ投げる
+		if (stoneCount > 0) {
+			// プレイヤーの中心座標から石を投げる
+			float stoneStartX = x + SPRITE_WIDTH / 2;
+			float stoneStartY = y + SPRITE_HEIGHT / 2;
+
+			// 方向に応じて石の初期位置を少し前にずらす
+			switch (direction) {
+			case 0: stoneStartY += 20; break;  // 下
+			case 1: stoneStartX -= 20; break;  // 左
+			case 2: stoneStartY -= 20; break;  // 上
+			case 3: stoneStartX += 20; break;  // 右
+			}
+
+			// 新しい石を生成
+			Stone* newStone = new Stone(stoneStartX, stoneStartY, direction, tutMap);
+			stones.push_back(newStone);
+
+			// 石の数を減らす
+			stoneCount--;
+			printfDx("石を投げた！ 残り: %d\n", stoneCount);
+		}
+		else {
+			printfDx("石が足りない！\n");
+		}
+	} // 右クリック処理の終了
 
 	prevMouseLeft = currentMouseLeft;
-}
-
-
+	prevMouseRight = currentMouseRight;
+} // Update関数の終了
 
 void Player::Draw(int cameraX, int cameraY)
 {
@@ -145,11 +208,13 @@ void Player::Draw(int cameraX, int cameraY)
 		int screenX = (int)x - cameraX;
 		int screenY = (int)y - cameraY;
 		DrawGraph(screenX, screenY, characterImage[direction][animFrame], TRUE);
-
-
-
 	}
 
+	// 石を描画
+	for (Stone* stone : stones) {
+		stone->Draw(cameraX, cameraY);
+	}
 
-
+	// 画面左上に石の残数を表示
+	DrawFormatString(10, 10, GetColor(255, 255, 255), "石の残数: %d", stoneCount);
 }

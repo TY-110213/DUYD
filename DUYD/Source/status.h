@@ -27,6 +27,9 @@ private:
 	int upgradePoints = 10;
 	bool showUpgradeScreen = false;
 
+	int normalFont;
+	int titleFont;
+	int valueFont;
 	void DrawUpgradeScreen();
 	void DrawNormalStatus();
 };

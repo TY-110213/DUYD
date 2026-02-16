@@ -2,7 +2,7 @@
 #include "../Library/SceneBase.h"
 
 class Player;  // ‘O•ûéŒ¾
-
+class status;
 class TUT : public SceneBase
 {
 public:
@@ -34,6 +34,7 @@ private:
     int kyoukaImage;
     int mapData[MAP_HEIGHT][MAP_WIDTH];
     Player* player;
+    status* statusUI;
     int cameraX;
     int cameraY;
     void LoadMapFromCSV(const char* filename);

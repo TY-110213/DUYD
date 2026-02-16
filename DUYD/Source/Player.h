@@ -1,8 +1,10 @@
 #pragma once
 #include "../Library/GameObject.h"
+#include <vector>
 
 class TUT;  // 前方宣言
 class status;
+class Stone;
 // プレイヤーのことをやる処理を書くところ
 class Player : public GameObject
 {
@@ -17,6 +19,8 @@ public:
 
 	void SetStatusReference(status* statusPtr);
 
+	int GetStoneCount() const { return stoneCount; }
+	void AddStone() { stoneCount++; }
 private:
 	// メンバー変数（プレイヤーを処理するのに必要な変数）
 	int hImage;
@@ -29,6 +33,13 @@ private:
 	int animCounter;  // アニメーション用カウンター
 	bool prevMouseLeft;
 	int characterImage[4][4];  // [方向][アニメーションフレーム]
+	//石
+	int stoneCount;//残りの石の数
+	static constexpr int MAX_STONES = 99;//最大所持数
+	static constexpr int INITIAL_STONES = 5;//初期の石の数
+	std::vector<Stone*>stones;
+
+	
 	// マップとの連携用
 	TUT* tutMap;  // TUTマップへのポインタ
 	status* statusRef;
@@ -45,4 +56,5 @@ private:
 	int offsetY = (SPRITE_HEIGHT - PLAYER_HEIGHT) / 2; // (64-32)/2 = 16
 	const int DREACH = 64;//掘る距離
 	bool prevHKey;
+	bool prevMouseRight;
 };

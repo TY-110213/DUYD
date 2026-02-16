@@ -38,7 +38,9 @@ int TUT::GetTileType(int pixelX, int pixelY)
 
 TUT::TUT()
 {
-    player = new Player(this);  // thisポインタを渡してマップへのアクセスを可能に
+    player = new Player(this); // thisポインタを渡してマップへのアクセスを可能に
+    statusUI = new status();
+    player->SetStatusReference(statusUI);
     tileImage = LoadGraph("data/jimenn.png");
     wallImage = LoadGraph("data/wall.png");
     caveImage = LoadGraph("data/cave_tile.png");
@@ -65,6 +67,7 @@ TUT::TUT()
 TUT::~TUT()
 {
     delete player;
+    delete statusUI;
     DeleteGraph(tileImage);
     DeleteGraph(wallImage);
     DeleteGraph(caveImage);  
@@ -107,6 +110,7 @@ void TUT::LoadMapFromCSV(const char* filename)
 void TUT::Update()
 {
     player->Update();
+    statusUI->Update();
 
     cameraX = player->GetX() - 1920 / 2 + 16;  // プレイヤー中心 (32/2=16)
     cameraY = player->GetY() - 1080 / 2 + 16;
@@ -171,6 +175,7 @@ void TUT::Draw()
 
    
     player->Draw(cameraX, cameraY);
+    statusUI->Draw();
 }
 
 // タイル座標が壁かどうかをチェック
