@@ -19,8 +19,7 @@ public:
 
 	void SetStatusReference(status* statusPtr);
 
-	int GetStoneCount() const { return stoneCount; }
-	void AddStone() { stoneCount++; }
+	
 private:
 	// メンバー変数（プレイヤーを処理するのに必要な変数）
 	int hImage;
@@ -33,8 +32,7 @@ private:
 	int animCounter;  // アニメーション用カウンター
 	bool prevMouseLeft;
 	int characterImage[4][4];  // [方向][アニメーションフレーム]
-	//石
-	int stoneCount;//残りの石の数
+	
 	static constexpr int MAX_STONES = 99;//最大所持数
 	static constexpr int INITIAL_STONES = 5;//初期の石の数
 	std::vector<Stone*>stones;

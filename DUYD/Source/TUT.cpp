@@ -55,11 +55,7 @@ TUT::TUT()
     cameraX = 0;
     cameraY = 0;
 
-    for (int y = 0; y < MAP_HEIGHT; y++) {
-        for (int x = 0; x < MAP_WIDTH; x++) {
-            mapData[y][x]= -1;
-        }
-    }
+    
 
     LoadMapFromCSV("data/TUTmap.csv");
 }
@@ -123,9 +119,7 @@ void TUT::Update()
     if (cameraY < 0) cameraY = 0;
     if (maxCameraX > 0 && cameraX > maxCameraX) cameraX = maxCameraX;
     if (maxCameraY > 0 && cameraY > maxCameraY) cameraY = maxCameraY;
-    if (CheckHitKey(KEY_INPUT_ESCAPE)) {
-        SceneManager::ChangeScene("TITLE");
-    }
+    
 
     if (CheckHitKey(KEY_INPUT_ESCAPE)) {
         SceneManager::ChangeScene("TITLE");

@@ -18,7 +18,7 @@ Player::Player(TUT* map) : tutMap(map)
 	onGround = false;
 	prevPush = false;
 	prevHKey = false;
-	stoneCount = INITIAL_STONES;
+	statusRef = nullptr;
 
 	hImage = LoadGraph("data/chara.png");
 	// 画像読み込み
@@ -45,7 +45,7 @@ Player::~Player()
 	}
 	DeleteGraph(hImage);
 
-	// 石のメモリを解放
+	
 	for (Stone* stone : stones) {
 		delete stone;
 	}
@@ -55,6 +55,10 @@ Player::~Player()
 void Player::SetStatusReference(status* statusPtr)
 {
 	statusRef = statusPtr;
+
+	if (statusRef != nullptr) {
+		statusRef->AddStone(INITIAL_STONES);
+	}
 }
 
 void Player::Update()
@@ -150,18 +154,22 @@ void Player::Update()
 		int checkY = centerY + dy;
 		int tileType = tutMap->GetTileType(checkX, checkY);
 
-		// デバッグ情報
-		printfDx("Direction: %d, CenterX: %d, CenterY: %d, CheckX: %d, CheckY: %d, TileType: %d\n",
-			direction, centerX, centerY, checkX, checkY, tileType);
+		
 
 		// タイル2,3,4が隣接していれば掘る
 		if (tileType == 2 || tileType == 3 || tileType == 4) {
 			tutMap->DigTile(checkX, checkY);
 
-			// 石を1個追加（最大数まで）
-			if (stoneCount < MAX_STONES) {
-				AddStone();
-				printfDx("石を入手！ 残り: %d\n", stoneCount);
+
+			if (statusRef != nullptr) {
+				if (tileType == 4) {
+					// タイル4（強化鉱石）→ 鉱石を増やす
+					statusRef->AddOre(1);
+				}
+				else if (statusRef->GetStone() < MAX_STONES) {
+					// タイル2,3（通常の岩）→ 石を増やす
+					statusRef->AddStone(1);
+				}
 			}
 		}
 	} // 左クリック処理の終了
@@ -171,7 +179,7 @@ void Player::Update()
 
 	if (currentMouseRight && !prevMouseRight) {
 		// 石が残っている場合のみ投げる
-		if (stoneCount > 0) {
+		if (statusRef != nullptr && statusRef ->UseStone()) {
 			// プレイヤーの中心座標から石を投げる
 			float stoneStartX = x + SPRITE_WIDTH / 2;
 			float stoneStartY = y + SPRITE_HEIGHT / 2;
@@ -189,8 +197,8 @@ void Player::Update()
 			stones.push_back(newStone);
 
 			// 石の数を減らす
-			stoneCount--;
-			printfDx("石を投げた！ 残り: %d\n", stoneCount);
+			
+			
 		}
 		else {
 			printfDx("石が足りない！\n");
@@ -215,6 +223,4 @@ void Player::Draw(int cameraX, int cameraY)
 		stone->Draw(cameraX, cameraY);
 	}
 
-	// 画面左上に石の残数を表示
-	DrawFormatString(10, 10, GetColor(255, 255, 255), "石の残数: %d", stoneCount);
 }
