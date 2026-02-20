@@ -23,9 +23,9 @@ private:
 	using shape_t = std::uint_fast8_t;
 	std::array<std::array<shape_t, WIDTH>, HEIGHT> matrix{ {} };
 
-	int Rcount = 0;
-	int Rcount2 = 0;
-	int Rnum = 0;
+	int Scount = 0;
+	int Scount2 = 0;
+	int Snum = 0;
 
 	int Cnum = 0;
 	int Ccount = 0;
@@ -34,6 +34,6 @@ private:
 
 	bool isMap = false;
 	
-	int hImage[4];
+	int hImage[7];
 
 };

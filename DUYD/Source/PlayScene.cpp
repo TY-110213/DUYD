@@ -12,6 +12,9 @@ PlayScene::PlayScene()
 	hImage[1] = LoadGraph("data/‰æ‘œ1.png");
 	hImage[2] = LoadGraph("data/wall.png");
 	hImage[3] = LoadGraph("data/stairs.png");
+	hImage[4] = LoadGraph("data/iwa.png.png");
+	hImage[5] = LoadGraph("data/sanso.png");
+	hImage[6] = LoadGraph("data/kyouka.png");
 
 
 	dtl::shape::RogueLike<shape_t>(0, 1, 2, 3, 4, 70,
@@ -21,12 +24,12 @@ PlayScene::PlayScene()
 	for (int i = 0; i < HEIGHT; i += 1) {
 		for (int j = 0; j < WIDTH; j += 1) {
 			if (matrix[i][j] == 2) {
-				Rcount += 1;
+				Scount += 1;
 			}
 		}
 	}
-	Rnum = Random(1, Rcount);
-	Cnum = Random(1, Rcount);
+	Snum = Random(1, Scount);
+	Cnum = Random(1, Scount);
 
 	for (int i = 0; i < HEIGHT; i += 1) {
 		for (int j = 0; j < WIDTH; j += 1) {
@@ -71,18 +74,21 @@ void PlayScene::Update()
 		for (int j = 0; j < WIDTH; j += 1) {
 			if (matrix[i][j] == 2) {
 				if (!isSteps) {
-					Rcount2 += 1;
+					Scount2 += 1;
 				}
-				if (Rcount2 == Rnum) {
+				if (Scount2 == Snum) {
 					DrawExtendGraph(i * size, j * size, (i * size) + size, (j * size) + size, hImage[3], 0);
 					isSteps = true;
-					Rcount2 = 0;
+					Scount2 = 0;
 				}
 			}
 
 		}
 	}
 	isSteps = false;
+
+	
+
 }
 
 void PlayScene::Draw()
