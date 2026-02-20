@@ -2,7 +2,7 @@
 
 status::status()
 {// フォントハンドルの作成（サイズ24、太さ6、アンチエイリアス有効）
-	normalFont = CreateFontToHandle(NULL, 24, 6, DX_FONTTYPE_ANTIALIASING);
+	normalFont = CreateFontToHandle(NULL, 44, 8, DX_FONTTYPE_ANTIALIASING);
 	titleFont = CreateFontToHandle(NULL,48,8, DX_FONTTYPE_ANTIALIASING);
 	valueFont = CreateFontToHandle(NULL, 28, 6, DX_FONTTYPE_ANTIALIASING);
 
@@ -90,56 +90,43 @@ void status::Update()
 		GetMousePoint(&mouseX, &mouseY);
 
 		
-		const int screenWidth = 1920;
-		const int screenHeight = 1080;
-		const int panW = 900;
-		const int panH = 700;
-		const int panX = (screenWidth - panW) / 2;  // 510
-		const int panY = (screenHeight - panH) / 2;  // 190
+		const int PANEL_X = 510;
+		const int PANEL_Y = 190;
+		const int COL1_X = PANEL_X + 60;   // 570
+		const int COL2_X = PANEL_X + 580;  // 990
+		const int ROW1_Y = PANEL_Y + 80;   // 270
+		const int ROW2_Y = PANEL_Y + 180;  // 370
+		const int BTN_OX = 280;
+		const int BTN_W = 60;
+		const int BTN_H = 60;
 
-		const int statusStartX = panX + 140;
-		const int statusStartY = panY + 200;
-		const int lineH = 70;
-		const int btnW = 50;
-		const int btnH = 50;
-		const int btnOffsetX = 250; // ラベルから右にずらした位置
+		int btnHpX = COL1_X + BTN_OX, btnHpY = ROW1_Y;
+		int btnO2X = COL2_X + BTN_OX, btnO2Y = ROW1_Y;
+		int btnSpX = COL1_X + BTN_OX, btnSpY = ROW2_Y;
+		int btnPpX = COL2_X + BTN_OX, btnPpY = ROW2_Y;
 
-		// 各ステータスの [+] ボタン座標
-		// HP
-		int btnHpX = statusStartX + btnOffsetX;
-		int btnHpY = statusStartY - btnH / 2;
-		// O2
-		int btnO2X = statusStartX + 300 + btnOffsetX;
-		int btnO2Y = statusStartY - btnH / 2;
-		// 筋力
-		int btnSpX = statusStartX + btnOffsetX;
-		int btnSpY = statusStartY + lineH - btnH / 2;
-		// つるはし
-		int btnPpX = statusStartX + 300 + btnOffsetX;
-		int btnPpY = statusStartY + lineH - btnH / 2;
-
-		// 鉱石が残っている場合のみ強化可能（鉱石1個 = 1ポイント）
+		
 		if (ore > 0)
 		{
-			if (IsButtonClicked(btnHpX, btnHpY, btnW, btnH, mouseX, mouseY))
+			if (IsButtonClicked(btnHpX, btnHpY, BTN_W, BTN_H, mouseX, mouseY))
 			{
 				Hp++;
 				ore--;
 				ApplyStats();
 			}
-			else if (IsButtonClicked(btnO2X, btnO2Y, btnW, btnH, mouseX, mouseY))
+			else if (IsButtonClicked(btnO2X, btnO2Y, BTN_W, BTN_H, mouseX, mouseY))
 			{
 				Op++;
 				ore--;
 				ApplyStats();
 			}
-			else if (IsButtonClicked(btnSpX, btnSpY, btnW, btnH, mouseX, mouseY))
+			else if (IsButtonClicked(btnSpX, btnSpY, BTN_W, BTN_H, mouseX, mouseY))
 			{
 				Sp++;
 				ore--;
 				ApplyStats();
 			}
-			else if (IsButtonClicked(btnPpX, btnPpY, btnW, btnH, mouseX, mouseY))
+			else if (IsButtonClicked(btnPpX, btnPpY, BTN_W, BTN_H, mouseX, mouseY))
 			{
 				Pp++;
 				ore--;
@@ -147,6 +134,7 @@ void status::Update()
 			}
 		}
 	}
+
 
 	prevMouseLeft = currentMouseLeft;
 }
@@ -172,16 +160,19 @@ void status::ToggleUpgradeScreen()
 
 void status::DrawUpgradeScreen()
 {
-
+	
 	const int PANEL_X = 510;
 	const int PANEL_Y = 190;
 	const int PANEL_W = 900;
 	const int PANEL_H = 700;
 	const int COL1_X = PANEL_X + 60;   // 570 左列
-	const int COL2_X = PANEL_X + 480;  // 990 右列
+	const int COL2_X = PANEL_X + 580;  // 990 右列
 	const int ROW1_Y = PANEL_Y + 80;   // 270 1行目
 	const int ROW2_Y = PANEL_Y + 180;  // 370 2行目
-	const int VAL_OX = 130;            // ラベルから数値へのXオフセット
+	const int COL1_VAL_OX = 130;  // HP・強さ列（文字が短いのでそのまま）
+	const int COL2_VAL_OX = 320;  // O2・採掘力列（"O2タンク："が長いので大きめに）           // ラベルから数値へのXオフセット
+	const int COL1_VAL_X = COL1_X + 200;
+	const int COL2_VAL_X = COL2_X + 200;
 	const int BTN_OX = 280;            // ラベルから[+]へのXオフセット
 	const int BTN_W = 60;
 	const int BTN_H = 60;
@@ -192,7 +183,7 @@ void status::DrawUpgradeScreen()
 
 	int screenWidth = 1920;
 	int screenHeight = 1080;
-	int upgradePanelWidth = 900;
+	int upgradePanelWidth = 1100;
 	int upgradePanelHeight = 700;
 	int upgradePanelX = (screenWidth - upgradePanelWidth) / 2;
 	int upgradePanelY = (screenHeight - upgradePanelHeight) / 2;
@@ -208,7 +199,7 @@ void status::DrawUpgradeScreen()
 	unsigned int ptColor = (ore > 0)
 		? GetColor(100, 255, 100)
 		: GetColor(200, 100, 100);
-	DrawFormatStringToHandle(upgradePanelX + 30, upgradePanelY + 110, ptColor, valueFont, "鉱石（強化ポイント）残: %d", ore);
+	
 
 	
 	//ステたすの位置
@@ -225,26 +216,26 @@ void status::DrawUpgradeScreen()
 
 
 	// HP
-	DrawStringToHandle(COL1_X, ROW1_Y, "HP：", labelColor, titleFont);
-	DrawFormatStringToHandle(COL1_X + VAL_OX, ROW1_Y, valueColor, titleFont, "%d", HP_MAX);
+	DrawStringToHandle(COL1_X, ROW1_Y, "HP ：", labelColor, titleFont);
+	DrawFormatStringToHandle(COL1_X + COL1_VAL_OX, ROW1_Y, valueColor, titleFont, "%d", HP_MAX);
 	DrawBox(COL1_X + BTN_OX, ROW1_Y, COL1_X + BTN_OX + BTN_W, ROW1_Y + BTN_H, btnColor, TRUE);
 	DrawStringToHandle(COL1_X + BTN_OX + 15, ROW1_Y + 8, "+", btnLabel, titleFont);
 
 	// O2
-	DrawStringToHandle(COL2_X, ROW1_Y, "O2タンク：", labelColor, titleFont);
-	DrawFormatStringToHandle(COL2_X + VAL_OX, ROW1_Y, valueColor, titleFont, "%d", O2_MAX);
+	DrawStringToHandle(1000, ROW1_Y, "O2タンク：", labelColor, titleFont);
+	DrawFormatStringToHandle(1270, ROW1_Y, valueColor, titleFont, "%d", O2_MAX);
 	DrawBox(COL2_X + BTN_OX, ROW1_Y, COL2_X + BTN_OX + BTN_W, ROW1_Y + BTN_H, btnColor, TRUE);
 	DrawStringToHandle(COL2_X + BTN_OX + 15, ROW1_Y + 8, "+", btnLabel, titleFont);
 
 
 	// Strength
 	DrawStringToHandle(COL1_X, ROW2_Y, "筋力：", labelColor, titleFont);
-	DrawFormatStringToHandle(COL1_X + VAL_OX, ROW2_Y, valueColor, titleFont, "%d", strength);
+	DrawFormatStringToHandle(COL1_X + COL1_VAL_OX, ROW2_Y, valueColor, titleFont, "%d", strength);
 	DrawBox(COL1_X + BTN_OX, ROW2_Y, COL1_X + BTN_OX + BTN_W, ROW2_Y + BTN_H, btnColor, TRUE);
 	DrawStringToHandle(COL1_X + BTN_OX + 15, ROW2_Y + 8, "+", btnLabel, titleFont);
 	// Pix
-	DrawStringToHandle(COL2_X, ROW2_Y, "つるはし：", labelColor, titleFont);
-	DrawFormatStringToHandle(COL2_X + VAL_OX, ROW2_Y, valueColor, titleFont, "%d", pix);
+	DrawStringToHandle(1000, ROW2_Y, "つるはし：", labelColor, titleFont);
+	DrawFormatStringToHandle(950 + COL2_VAL_OX, ROW2_Y, valueColor, titleFont, "%d", pix);
 	DrawBox(COL2_X + BTN_OX, ROW2_Y, COL2_X + BTN_OX + BTN_W, ROW2_Y + BTN_H, btnColor, TRUE);
 	DrawStringToHandle(COL2_X + BTN_OX + 15, ROW2_Y + 8, "+", btnLabel, titleFont);
 
