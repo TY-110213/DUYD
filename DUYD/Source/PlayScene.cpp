@@ -1,6 +1,8 @@
 #include "PlayScene.h"
 #include <DxLib.h>
 #include "Player.h"
+#include "DTL/DTL.hpp"
+
 
 PlayScene::PlayScene()
 {
