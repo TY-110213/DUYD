@@ -156,6 +156,8 @@
     <ClInclude Include="Source\Screen.h" />
     <ClInclude Include="Source\PlayScene.h" />
     <ClInclude Include="Source\SceneFactory.h" />
+    <ClInclude Include="Source\status.h" />
+    <ClInclude Include="Source\Stone.h" />
     <ClInclude Include="Source\Tansakunosyo.h" />
     <ClInclude Include="Source\TitleScene.h" />
     <ClInclude Include="Source\TUT.h" />
@@ -178,6 +180,8 @@
     <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\PlayScene.cpp" />
     <ClCompile Include="Source\SceneFactory.cpp" />
+    <ClCompile Include="Source\status.cpp" />
+    <ClCompile Include="Source\Stone.cpp" />
     <ClCompile Include="Source\Tansakunosyo.cpp" />
     <ClCompile Include="Source\TitleScene.cpp" />
     <ClCompile Include="Source\TUT.cpp" />

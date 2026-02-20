@@ -29,6 +29,11 @@ void TitleScene::Update()
 		SceneManager::Exit();
 	}
 	
+
+	if (CheckHitKey(KEY_INPUT_A)) {
+		SceneManager::ChangeScene("PLAY");
+	}
+
 }
 
 
