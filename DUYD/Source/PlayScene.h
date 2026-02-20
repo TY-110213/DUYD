@@ -27,6 +27,9 @@ private:
 	int Rcount2 = 0;
 	int Rnum = 0;
 
+	int Cnum = 0;
+	int Ccount = 0;
+
 	bool isSteps = false;
 
 	bool isMap = false;

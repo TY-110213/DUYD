@@ -4,6 +4,7 @@
 #include <cstdint>
 #include <array>
 #include <random>
+#include "Player.h"
 
 PlayScene::PlayScene()
 {
@@ -25,6 +26,19 @@ PlayScene::PlayScene()
 		}
 	}
 	Rnum = Random(1, Rcount);
+	Cnum = Random(1, Rcount);
+
+	for (int i = 0; i < HEIGHT; i += 1) {
+		for (int j = 0; j < WIDTH; j += 1) {
+			if (matrix[i][j] == 2) {
+				Ccount += 1;
+				if (Ccount == Cnum) {
+
+				}
+			}
+
+		}
+	}
 }
 
 PlayScene::~PlayScene()
