@@ -13,13 +13,14 @@ void AppInit()
 
 void AppUpdate()
 {
+	Time::Refresh();
 	SceneManager::Update();
 	ObjectManager::Update();
 }
 
 void AppDraw()
 {
-	Time::Refresh();
+	
 	ObjectManager::Draw();
 	SceneManager::Draw();
 }
