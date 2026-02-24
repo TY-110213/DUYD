@@ -1,13 +1,13 @@
 #pragma once
 #include "../Library/GameObject.h"
 
-class Backs : public GameObject {
+class Enemy : public GameObject {
 public:
-	Backs(int size);
-	~Backs();
+	Enemy(int size);
+	~Enemy();
 	void Update() override;
 	void Draw() override;
 private:
-	int hImage[7];
-	int size1 = 0;
+	int x;
+	int y;
 };

@@ -28,23 +28,30 @@ void Backs::Draw() {
 	Game* game = FindGameObject<Game>();
 	for (int i = 0; i < game->HEIGHT; i += 1) {
 		for (int j = 0; j < game->WIDTH; j += 1) {
-			if (game->num[i][j] == 0) {
+			switch (game->num[i][j]) {
+			case 0:
 				DrawExtendGraph(i * size1, j * size1, (i * size1) + size1, (j * size1) + size1, hImage[1], 0);
-			}
-			if (game->num[i][j] == 1) {
+				break;
+
+			case 1:
 				DrawExtendGraph(i * size1, j * size1, (i * size1) + size1, (j * size1) + size1, hImage[2], 0);
-			}
-			if (game->num[i][j] == 2) {
+				break;
+
+			case 2:
 				DrawExtendGraph(i * size1, j * size1, (i * size1) + size1, (j * size1) + size1, hImage[0], 0);
-			}
-			if (game->num[i][j] == 3) {
+				break;
+
+			case 3:
 				DrawExtendGraph(i * size1, j * size1, (i * size1) + size1, (j * size1) + size1, hImage[0], 0);
-			}
-			if (game->num[i][j] == 4) {
+				break;
+
+			case 4:
 				DrawExtendGraph(i * size1, j * size1, (i * size1) + size1, (j * size1) + size1, hImage[0], 0);
-			}
-			if (game->num[i][j] == 5) {
+				break;
+
+			case 5:
 				DrawExtendGraph(i * size1, j * size1, (i * size1) + size1, (j * size1) + size1, hImage[3], 0);
+				break;
 			}
 		}
 	}
