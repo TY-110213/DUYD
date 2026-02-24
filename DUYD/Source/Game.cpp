@@ -28,6 +28,7 @@ Game::Game()
 			}
 			if (matrix[i][j] == 2) {
 				num[i][j] = 2;
+				Scount += 1;
 			}
 			if (matrix[i][j] == 3) {
 				num[i][j] = 3;
@@ -38,12 +39,26 @@ Game::Game()
 		}
 	}
 
-	new Backs(size);
+	Snum = Random(1, Scount);
+	
 
 	for (int i = 0; i < HEIGHT; i += 1) {
 		for (int j = 0; j < WIDTH; j += 1) {
 			if (num[i][j] == 2) {
-				Scount += 1;
+				Scount2 += 1;
+			}
+			if (Scount2 == Snum && !isSteps) {
+				num[i][j] = 5;
+				isSteps == true;
+			}
+		}
+	}
+
+	new Backs(size);
+
+	for (int i = 0; i < HEIGHT; i += 1) {
+		for (int j = 0; j < WIDTH; j += 1) {
+			if (num[i][j] == 2 || num[i][j] == 5) {
 				if (Random(0, 2) > 0) {
 					new Rocks(i * size, j * size, size);
 				}
@@ -53,9 +68,7 @@ Game::Game()
 			}
 		}
 	}
-	Snum = Random(1, Scount);
-	Cnum = Random(1, Scount);
-
+	
 }
 
 Game::~Game()
