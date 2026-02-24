@@ -22,6 +22,8 @@ public:
 	
 private:
 	// メンバー変数（プレイヤーを処理するのに必要な変数）
+	int walkSE;
+	int seTimer;
 	int hImage;
 	float x, y;
 	float velocity;

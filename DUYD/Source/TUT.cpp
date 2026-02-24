@@ -65,10 +65,17 @@ TUT::TUT()
     
 
     LoadMapFromCSV("data/TUTmap.csv");
+    bgmHandle = LoadSoundMem("data/BGM_cave.mp3");
+    if (bgmHandle == -1) {
+        printfDx("BGMÇÃì«Ç›çûÇ›Ç…é∏îsÇµÇ‹ÇµÇΩ\n");
+    }
+    PlaySoundMem(bgmHandle, DX_PLAYTYPE_LOOP);
 }
 
 TUT::~TUT()
 {
+    StopSoundMem(bgmHandle);
+    DeleteSoundMem(bgmHandle);
     delete player;
     delete statusUI;
     DeleteGraph(tileImage);

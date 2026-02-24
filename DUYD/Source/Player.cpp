@@ -21,6 +21,9 @@ Player::Player(TUT* map) : tutMap(map)
 	statusRef = nullptr;
 
 	hImage = LoadGraph("data/chara.png");
+	walkSE = LoadSoundMem("data/footsteps.mp3");
+	
+	seTimer = 0.0f;
 	// 画像読み込み
 	for (int dir = 0; dir < 4; dir++) {
 		for (int frame = 0; frame < 4; frame++) {
@@ -50,6 +53,7 @@ Player::~Player()
 		delete stone;
 	}
 	stones.clear();
+	DeleteSoundMem(walkSE);
 }
 
 void Player::SetStatusReference(status* statusPtr)
@@ -97,16 +101,21 @@ if (throwCoolTimer > 0.0f) throwCoolTimer -= Time::DeltaTime();
 
 	float dx = 0.0f;
 	float dy = 0.0f;
+
+	
 	// キー入力で移動方向を決定
 	if (CheckHitKey(KEY_INPUT_W)) { dy -= 1.0f; direction = 2; moved = true; }
 	if (CheckHitKey(KEY_INPUT_S)) { dy += 1.0f; direction = 0; moved = true; }
 	if (CheckHitKey(KEY_INPUT_A)) { dx -= 1.0f; direction = 1; moved = true; }
 	if (CheckHitKey(KEY_INPUT_D)) { dx += 1.0f; direction = 3; moved = true; }
-
+	
 	if (dx != 0.0f && dy != 0.0f) {
 		dx *= 0.7071f;
 		dy *= 0.7071f;
 	}
+	
+	
+	
 
 	nextX += dx * MOVE_SPEED * Time::DeltaTime();
 	nextY += dy * MOVE_SPEED * Time::DeltaTime();
@@ -126,11 +135,22 @@ if (throwCoolTimer > 0.0f) throwCoolTimer -= Time::DeltaTime();
 		if (animCounter >= ANIM_INTERVAL) {  // 10フレームごとにアニメーション変更
 			animCounter = 0.0f;
 			animFrame = (animFrame + 1) % 4;
+
+
+
+		}
+		seTimer += Time::DeltaTime();
+		
+
+		if (seTimer >= 0.4f) {  // 0.4秒ごとに再生
+			PlaySoundMem(walkSE, DX_PLAYTYPE_BACK);
+			seTimer = 0.0f;
 		}
 	}
 	else {
 		animFrame = 0;  // 停止時は最初のフレーム
 		animCounter = 0.0f;
+		seTimer = 0.0f;
 	}
 
 	// 左クリックで向いている方向のタイルを掘る

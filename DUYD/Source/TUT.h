@@ -39,5 +39,6 @@ private:
     int cameraX;
     int cameraY;
     int stairTimer;
+    int bgmHandle;
     void LoadMapFromCSV(const char* filename);
 };
