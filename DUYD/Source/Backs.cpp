@@ -14,16 +14,6 @@ Backs::Backs(int size)
 
 	Game* game = FindGameObject<Game>();
 
-	for (int i = 0; i < game->HEIGHT; i += 1) {
-		for (int j = 0; j < game->WIDTH; j += 1) {
-			if (game->num[i][j] == 2) {
-				game->Scount2 += 1;
-			}
-			if (game->Scount2 == game->Snum) {
-				game->num[i][j] = 5;
-			}
-		}
-	}
 }
 
 Backs::~Backs()

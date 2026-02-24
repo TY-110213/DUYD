@@ -20,7 +20,12 @@ PlayScene::~PlayScene()
 
 void PlayScene::Update()
 {
-
+	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
+		SceneManager::Exit();
+	}
+	if (CheckHitKey(KEY_INPUT_Q)) {
+		SceneManager::ChangeScene("TITLE");
+	}
 }
 
 void PlayScene::Draw()
