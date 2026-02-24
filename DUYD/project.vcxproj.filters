@@ -60,6 +60,8 @@
     <ClCompile Include="Source\Rocks.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Backs.cpp" />
+    <ClCompile Include="Source\Game.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -129,6 +131,12 @@
     <ClInclude Include="Source\status.h" />
     <ClInclude Include="Source\Stone.h" />
     <ClInclude Include="Source\Rocks.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Backs.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
   </ItemGroup>

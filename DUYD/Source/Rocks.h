@@ -8,7 +8,10 @@ public:
 	void Update() override;
 	void Draw() override;
 private:
-	int x = 0;
-	int y = 0;
-	int size = 0;
+	int x1 = 0;
+	int y1 = 0;
+	int size1 = 0;
+	int hImage[3];
+	int num = 0;
+	int Random(int min, int max);
 };

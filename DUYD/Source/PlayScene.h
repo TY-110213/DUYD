@@ -12,28 +12,7 @@ public:
 	~PlayScene();
 	void Update() override;
 	void Draw() override;
+
 private:
-
-	int Random(int min, int max);
-
-	static const int WIDTH = 40;
-	static const int HEIGHT = 70;
-	int size = 20;
-
-	using shape_t = std::uint_fast8_t;
-	std::array<std::array<shape_t, WIDTH>, HEIGHT> matrix{ {} };
-
-	int Scount = 0;
-	int Scount2 = 0;
-	int Snum = 0;
-
-	int Cnum = 0;
-	int Ccount = 0;
-
-	bool isSteps = false;
-
-	bool isMap = false;
-	
-	int hImage[7];
 
 };
