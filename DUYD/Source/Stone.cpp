@@ -1,6 +1,6 @@
 #include "Stone.h"
 #include "TUT.h"
-
+#include "../Library/Time.h"
 Stone::Stone(float startX, float startY, int dir, TUT* map)
 	: x(startX), y(startY), direction(dir), active(true), tutmap(map)
 {
@@ -18,6 +18,8 @@ Stone::~Stone()
 void Stone::Update()
 {
 	if (!active) return;
+
+	float move = SPEED * Time::DeltaTime();
 	switch (direction)
 	{
 	case 0: y += SPEED; break;

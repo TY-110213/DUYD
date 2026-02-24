@@ -17,7 +17,7 @@ private:
 	bool active;
 	TUT* tutmap;
 
-	static constexpr float SPEED = 5.0f;
+	static constexpr float SPEED = 3.0f;
 	static constexpr int  STONE_SIZE = 32; //Î‚Ì‘å‚«‚³
 
 	int hImage;

@@ -1,5 +1,5 @@
 #include "status.h"
-
+#include "../Library/Time.h"
 status::status()
 {// フォントハンドルの作成（サイズ24、太さ6、アンチエイリアス有効）
 	normalFont = CreateFontToHandle(NULL, 44, 8, DX_FONTTYPE_ANTIALIASING);
@@ -79,6 +79,45 @@ bool status::IsButtonClicked(int btnX, int btnY, int btnW, int btnH, int mouseX,
 
 void status::Update()
 {
+
+	if (isPaused)
+	{
+		if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0 && !prevMouseLeft)
+		{
+			isPaused = false;
+		}
+		prevMouseLeft = (GetMouseInput() & MOUSE_INPUT_LEFT) != 0;
+		return;
+	}
+	static constexpr float O2_INTERVAL = 10.0f;
+	static constexpr float HP_INTERVAL = 1.0f;
+
+	//o2の1秒減少
+	o2Timer += Time::DeltaTime();
+	if (o2Timer >= O2_INTERVAL)
+	{
+		o2Timer = 0.0f;
+		if (O2 > 0)
+		{
+			O2--;
+		}
+		else
+		{
+			hpTimer += Time::DeltaTime();
+			if (hpTimer >= HP_INTERVAL)
+			{
+				hpTimer = 0.0f;
+				HP -= 30;
+				if (HP < 0) HP = 0;
+			}
+		}
+	}
+	if (O2 > 0)
+	{
+		hpTimer = 0.0f;
+	}
+
+
 	if (!showUpgradeScreen) return;
 
 	bool currentMouseLeft = (GetMouseInput() & MOUSE_INPUT_LEFT) != 0;
@@ -147,12 +186,47 @@ void status::Draw()
 	else {
 		DrawNormalStatus();
 	}
+	if (isPaused) {
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 150);
+		DrawBox(0, 0, 1920, 1080, GetColor(0, 0, 0), TRUE);
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+
+		DrawBox(360, 350, 1560, 730, GetColor(20, 30, 50), TRUE);
+		DrawBox(360, 350, 1560, 730, GetColor(100, 200, 255), FALSE);
+
+		unsigned int white = GetColor(255, 255, 255);
+		unsigned int cyan = GetColor(100, 200, 255);
+
+	
+	}
 }
+
 
 void status::ToggleUpgradeScreen()
 {
 	showUpgradeScreen = !showUpgradeScreen;
 }
+
+void status::ReduceO2(int amount)
+{
+	O2 -= 1;
+	if (O2 < 0) O2 = 0;//playercpp160
+}
+
+void status::RecoverO2()
+{
+	O2 += O2_MAX / 4;
+	if (O2 > O2_MAX) O2 = O2_MAX;
+}
+
+
+void status::TakeDamage(int amount)
+{
+	HP -= amount;
+	if (HP < 0) HP = 0;
+}
+
+
 
 
 
@@ -184,9 +258,9 @@ void status::DrawUpgradeScreen()
 	int screenWidth = 1920;
 	int screenHeight = 1080;
 	int upgradePanelWidth = 1100;
-	int upgradePanelHeight = 700;
+	int upgradePanelHeight = 550;
 	int upgradePanelX = (screenWidth - upgradePanelWidth) / 2;
-	int upgradePanelY = (screenHeight - upgradePanelHeight) / 2;
+	int upgradePanelY = 190;
 
 	//アップグレード画面背景
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 220);

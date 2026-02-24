@@ -2,7 +2,7 @@
 #include "TUT.h"
 #include "status.h"
 #include "Stone.h"
-
+#include "../Library/Time.h"
 Player::Player(TUT* map) : tutMap(map)
 {
 	// 初期位置
@@ -63,6 +63,11 @@ void Player::SetStatusReference(status* statusPtr)
 
 void Player::Update()
 {
+	if (digCoolTimer   > 0.0f) digCoolTimer   -= Time::DeltaTime();
+if (throwCoolTimer > 0.0f) throwCoolTimer -= Time::DeltaTime();
+
+	
+
 	bool currentHKEY = CheckHitKey(KEY_INPUT_H) != 0;
 
 	if (currentHKEY && !prevHKey && statusRef != nullptr) {
@@ -89,27 +94,22 @@ void Player::Update()
 	float nextX = x;
 	float nextY = y;
 	bool moved = false;
+
+	float dx = 0.0f;
+	float dy = 0.0f;
 	// キー入力で移動方向を決定
-	if (CheckHitKey(KEY_INPUT_W)) {
-		nextY -= MOVE_SPEED;  // 上方向に移動（Y座標を減少）
-		direction = 2;
-		moved = true;
+	if (CheckHitKey(KEY_INPUT_W)) { dy -= 1.0f; direction = 2; moved = true; }
+	if (CheckHitKey(KEY_INPUT_S)) { dy += 1.0f; direction = 0; moved = true; }
+	if (CheckHitKey(KEY_INPUT_A)) { dx -= 1.0f; direction = 1; moved = true; }
+	if (CheckHitKey(KEY_INPUT_D)) { dx += 1.0f; direction = 3; moved = true; }
+
+	if (dx != 0.0f && dy != 0.0f) {
+		dx *= 0.7071f;
+		dy *= 0.7071f;
 	}
-	if (CheckHitKey(KEY_INPUT_S)) {
-		nextY += MOVE_SPEED;  // 下方向に移動（Y座標を増加）
-		direction = 0;
-		moved = true;
-	}
-	if (CheckHitKey(KEY_INPUT_A)) {
-		nextX -= MOVE_SPEED;  // 左方向に移動（X座標を減少）
-		direction = 1;
-		moved = true;
-	}
-	if (CheckHitKey(KEY_INPUT_D)) {
-		nextX += MOVE_SPEED;  // 右方向に移動（X座標を増加）
-		direction = 3;
-		moved = true;
-	}
+
+	nextX += dx * MOVE_SPEED * Time::DeltaTime();
+	nextY += dy * MOVE_SPEED * Time::DeltaTime();
 	// 当たり判定用の座標（スプライトの中心部分）
 	int collisionX = (int)(nextX + offsetX);
 	int collisionY = (int)(nextY + offsetY);
@@ -122,21 +122,21 @@ void Player::Update()
 
 	// アニメーション更新
 	if (moved) {
-		animCounter++;
-		if (animCounter >= 10) {  // 10フレームごとにアニメーション変更
-			animCounter = 0;
+		animCounter+= Time::DeltaTime();
+		if (animCounter >= ANIM_INTERVAL) {  // 10フレームごとにアニメーション変更
+			animCounter = 0.0f;
 			animFrame = (animFrame + 1) % 4;
 		}
 	}
 	else {
 		animFrame = 0;  // 停止時は最初のフレーム
-		animCounter = 0;
+		animCounter = 0.0f;
 	}
 
 	// 左クリックで向いている方向のタイルを掘る
 	bool currentMouseLeft = (GetMouseInput() & MOUSE_INPUT_LEFT) != 0;
 
-	if (currentMouseLeft && !prevMouseLeft) {
+	if (currentMouseLeft && !prevMouseLeft && digCoolTimer <= 0.0f) {
 		// プレイヤーの中心座標
 		int centerX = (int)(x + SPRITE_WIDTH / 2);
 		int centerY = (int)(y + SPRITE_HEIGHT / 2);
@@ -159,7 +159,9 @@ void Player::Update()
 		// タイル2,3,4が隣接していれば掘る
 		if (tileType == 2 || tileType == 3 || tileType == 4) {
 			tutMap->DigTile(checkX, checkY);
-
+			// つるはしで岩を破壊したとき
+			statusRef->ReduceO2(1);
+	
 
 			if (statusRef != nullptr) {
 				if (tileType == 4) {
@@ -172,12 +174,13 @@ void Player::Update()
 				}
 			}
 		}
+		digCoolTimer = DIG_COOLTIME;
 	} // 左クリック処理の終了
 
 	// 右クリックで石を投げる
 	bool currentMouseRight = (GetMouseInput() & MOUSE_INPUT_RIGHT) != 0;
 
-	if (currentMouseRight && !prevMouseRight) {
+	if (currentMouseRight && !prevMouseRight && throwCoolTimer <= 0.0f) {
 		// 石が残っている場合のみ投げる
 		if (statusRef != nullptr && statusRef ->UseStone()) {
 			// プレイヤーの中心座標から石を投げる
@@ -203,6 +206,7 @@ void Player::Update()
 		else {
 			printfDx("石が足りない！\n");
 		}
+		throwCoolTimer = THROW_COOLTIME;
 	} // 右クリック処理の終了
 
 	prevMouseLeft = currentMouseLeft;

@@ -32,10 +32,12 @@ private:
     int caveImage;
     int horuImage;
     int kyoukaImage;
+    int stairImage;
     int mapData[MAP_HEIGHT][MAP_WIDTH];
     Player* player;
     status* statusUI;
     int cameraX;
     int cameraY;
+    int stairTimer;
     void LoadMapFromCSV(const char* filename);
 };

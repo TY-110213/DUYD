@@ -29,10 +29,14 @@ private:
 	bool prevPush;
 	int direction;  // 0:下, 1:左, 3:右, 2:上
 	int animFrame;  // アニメーションフレーム (0-3)
-	int animCounter;  // アニメーション用カウンター
+	float animCounter;  // アニメーション用カウンター
 	bool prevMouseLeft;
 	int characterImage[4][4];  // [方向][アニメーションフレーム]
-	
+	float digCoolTimer = 0.0f;
+	float throwCoolTimer = 0.0f;
+	static constexpr float DIG_COOLTIME =0.3f;//クールタイムの秒数
+	static constexpr float THROW_COOLTIME = 0.3f;
+
 	static constexpr int MAX_STONES = 99;//最大所持数
 	static constexpr int INITIAL_STONES = 5;//初期の石の数
 	std::vector<Stone*>stones;
@@ -49,7 +53,8 @@ private:
 	static constexpr int PLAYER_HEIGHT = 32;
 
 	// 移動速度
-	static constexpr float MOVE_SPEED =	1.0f;
+	static constexpr float MOVE_SPEED =	120.0f;
+	static constexpr float ANIM_INTERVAL = 0.15f;
 	int offsetX = (SPRITE_WIDTH - PLAYER_WIDTH) / 2;   // (64-32)/2 = 16
 	int offsetY = (SPRITE_HEIGHT - PLAYER_HEIGHT) / 2; // (64-32)/2 = 16
 	const int DREACH = 64;//掘る距離

@@ -13,11 +13,18 @@ public:
 	void ToggleUpgradeScreen();
 	bool IsUpgradeScreenOpen() const { return showUpgradeScreen; }
 
+	void ReduceO2(int amount = 1);   // O2を減らす
+	void RecoverO2();                // 酸素鉱石破壊時の回復（MAX/4）
+	
+	void TakeDamage(int amount = 30);  // HP直接ダメージ
 	void AddStone(int amount = 1) { stone += amount; }
 	bool UseStone() { if (stone <= 0)return false;stone--;return true; }
 	int GetStone() const { return stone; }
 	bool HasStone() const { return stone > 0; }
 
+	
+	bool o2TUTDone = false;
+	bool oreTUTDone = false;
 	void AddOre(int amount = 1) { ore += amount; }
 	int GetOre() const { return ore; }
 
@@ -26,8 +33,10 @@ public:
 	int GetO2Max() const { return O2_MAX; }
 	int GetStrength() const { return strength; }
 	int GetPix() const { return pix; }
+	
 
 private:
+	int pauseType = 0;
 	int BF = 1;
 	int HP = 3;
 	int O2 = 30;
@@ -37,9 +46,12 @@ private:
 	int panelY = 10;
 	int panelWidth = 400;
 	int panelHeight = 150;
+	bool isPaused = false;
 
+	float o2Timer = 0.0f;       // 1秒カウント用
+	float hpTimer = 0.0f;       // O2=0時のHPダメージ用カウント
 	int Hp = 3;
-	int Op = 30;
+	int Op = 29;
 	int Sp = 1;
 	int Pp = 1;
 	int strength = 1;

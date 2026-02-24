@@ -19,7 +19,13 @@ void TUT::DigTile(int pixelX, int pixelY)
     if (mapData[tileY][tileX] == 2 ||
         mapData[tileY][tileX] == 3 ||
         mapData[tileY][tileX] == 4) {
-        mapData[tileY][tileX] = 1;  // 床に変更
+         // 床に変更
+
+        if (mapData[tileY][tileX] == 2)
+        {
+            statusUI->RecoverO2();
+        }
+        mapData[tileY][tileX] = 1;
     }
 
 }
@@ -41,11 +47,12 @@ TUT::TUT()
     player = new Player(this); // thisポインタを渡してマップへのアクセスを可能に
     statusUI = new status();
     player->SetStatusReference(statusUI);
-    tileImage = LoadGraph("data/jimenn.png");
+    tileImage = LoadGraph("data/floor.png");
     wallImage = LoadGraph("data/wall.png");
     caveImage = LoadGraph("data/cave_tile.png");
-    horuImage = LoadGraph("data/horu.png");
+    horuImage = LoadGraph("data/stone.png");
     kyoukaImage = LoadGraph("data/item.png");
+    stairImage = LoadGraph("data/stairs.png");
     // マップデータを初期化（全て壁にしておく）
     for (int y = 0; y < MAP_HEIGHT; y++) {
         for (int x = 0; x < MAP_WIDTH; x++) {
@@ -54,7 +61,7 @@ TUT::TUT()
     }
     cameraX = 0;
     cameraY = 0;
-
+    stairTimer = 0;
     
 
     LoadMapFromCSV("data/TUTmap.csv");
@@ -107,6 +114,19 @@ void TUT::Update()
 {
     player->Update();
     statusUI->Update();
+
+    int tileType = GetTileType(player->GetX() + 16, player->GetY() + 16);
+    if (tileType == 5)
+    {
+        stairTimer++;
+        if (stairTimer >= 180)
+        {
+            SceneManager::ChangeScene("PLAY");
+        }
+    }
+    else {
+        stairTimer = 0;
+    }
 
     cameraX = player->GetX() - 1920 / 2 + 16;  // プレイヤー中心 (32/2=16)
     cameraY = player->GetY() - 1080 / 2 + 16;
@@ -161,6 +181,10 @@ void TUT::Draw()
             else if (mapData[y][x] == 4) {
                 DrawGraph(drawX, drawY, kyoukaImage, TRUE);
             }
+            else if (mapData[y][x] == 5)
+            {
+                DrawGraph(drawX, drawY, stairImage, TRUE);
+            }
             else {
                 DrawBox(drawX, drawY, drawX + TILE_SIZE, drawY + TILE_SIZE, GetColor(0, 0, 0), TRUE);
             }
@@ -170,6 +194,14 @@ void TUT::Draw()
    
     player->Draw(cameraX, cameraY);
     statusUI->Draw();
+    if(stairTimer > 0) {
+        int percent = (stairTimer * 100) / 180;
+        // プログレスバー背景
+        DrawBox(860, 1020, 1060, 1050, GetColor(50, 50, 50), TRUE);
+        // プログレスバー本体
+        DrawBox(860, 1020, 860 + percent * 2, 1050, GetColor(255, 220, 0), TRUE);
+        DrawFormatString(870, 990, GetColor(255, 255, 255), "次のエリアへ... %d%%", percent);
+    }
 }
 
 // タイル座標が壁かどうかをチェック
@@ -181,7 +213,7 @@ bool TUT::IsWall(int x, int y)
     }
 
     // 0が壁、1が床
-    return !(mapData[y][x] == 1);
+    return !(mapData[y][x] == 1 || mapData[y][x] == 5);
         //|| mapData[y][x] == 2 ||  mapData[y][x] == 4);
 }
 
