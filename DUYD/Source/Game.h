@@ -4,8 +4,10 @@
 #include "DTL/DTL.hpp"
 #include <DxLib.h>
 #include <cstdint>
+#include "Player.h"
+#include "IMap.h"
 
-class Game : public GameObject {
+class Game : public GameObject ,public IMap{
 public:
 	Game();
 	~Game();
@@ -20,12 +22,23 @@ public:
 	bool isSteps = false;
 	int num[HEIGHT][WIDTH];
 
+	bool IsWall(int tileX, int tileY);
+	bool CanMove(int pixelX, int pixelY);
+	int GetTileType(int pixelX, int pixelY);
+	void DigTile(int pixelX, int pixelY);  // å@ÇÈèàóùÇ‡égÇ§Ç»ÇÁ
+
+	static constexpr int TILE_SIZE = 25;  // sizeÇ∆ìØÇ∂íl
+
+
 private:
+	Player* player;  // í«â¡
+	int cameraX = 0;
+	int cameraY = 0;
 
 	using shape_t = std::uint_fast8_t;
 	std::array<std::array<shape_t, WIDTH>, HEIGHT> matrix{ {} };
 	int Random(int min, int max);
-	int size = 25;
+	int size = 64;
 	int Scount = 0;
 	int Cnum = 0;
 	int Ccount = 0;

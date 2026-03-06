@@ -1,7 +1,8 @@
 #include "Stone.h"
-#include "TUT.h"
+#include <DxLib.h> 
+#include "IMap.h"  
 #include "../Library/Time.h"
-Stone::Stone(float startX, float startY, int dir, TUT* map)
+Stone::Stone(float startX, float startY, int dir, IMap* map)
 	: x(startX), y(startY), direction(dir), active(true), tutmap(map)
 {
 	hImage = -1;
@@ -34,7 +35,7 @@ void Stone::Update()
 		active = false;
 	}
 
-	if (x < 0|| x >= TUT::MAP_WIDTH * TUT::TILE_SIZE || y < 0 || y >= TUT::MAP_HEIGHT * TUT::TILE_SIZE) {
+	if (x < 0|| x >=  10000 || y < 0 || y >= 10000) {
 		active = false;
 	}
 }

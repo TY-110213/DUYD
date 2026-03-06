@@ -1,9 +1,9 @@
 #pragma once
 #include "../Library/SceneBase.h"
-
+#include "IMap.h"
 class Player;  // ‘O•ûéŒ¾
 class status;
-class TUT : public SceneBase
+class TUT : public SceneBase, public IMap
 {
 public:
     void DigTile(int pixelX, int pixelY);

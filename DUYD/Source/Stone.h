@@ -1,11 +1,11 @@
 #pragma once
+#include "IMap.h"
 
-class TUT;
 
 class Stone
 {
 public:
-	Stone(float startX, float startY, int dir, TUT* map);
+	Stone(float startX, float startY, int dir, IMap* map);
 	~Stone();
 	void Update();
 	void Draw(int cameraX, int cameraY);
@@ -15,7 +15,7 @@ private:
 	float x, y;
 	int direction;
 	bool active;
-	TUT* tutmap;
+	IMap* tutmap;
 
 	static constexpr float SPEED = 3.0f;
 	static constexpr int  STONE_SIZE = 32; //Î‚Ì‘å‚«‚³
