@@ -1,18 +1,11 @@
 #include "Game.h"
 #include "Backs.h"
 #include "Rocks.h"
+#include "Enemy.h"
 #include <random>
 
 Game::Game()
 {
-	hImage[0] = LoadGraph("data/jimenn.png");
-	hImage[1] = LoadGraph("data/‰æ‘œ1.png");
-	hImage[2] = LoadGraph("data/wall.png");
-	hImage[3] = LoadGraph("data/stairs.png");
-	hImage[4] = LoadGraph("data/iwa.png.png");
-	hImage[5] = LoadGraph("data/sanso.png");
-	hImage[6] = LoadGraph("data/kyouka.png");
-
 
 	dtl::shape::RogueLike<shape_t>(0, 1, 2, 3, 4, 70,
 		dtl::base::MatrixRange(5, 5, 4, 4),
@@ -61,11 +54,16 @@ Game::Game()
 			if (num[i][j] == 2 || num[i][j] == 5) {
 				if (Random(0, 2) > 0) {
 					new Rocks(i * size, j * size, size);
+					isRocks = true;
+				}
+				if (Random(0, 5) == 0 && !isRocks) {
+					new Enemy(i * size, j * size, size);
 				}
 			}
 			if (num[i][j] == 3 || num[i][j] == 4) {
 				new Rocks(i * size, j * size, size);
 			}
+			isRocks = false;
 		}
 	}
 	int startX = 64, startY = 64;

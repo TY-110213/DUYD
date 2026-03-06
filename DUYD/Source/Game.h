@@ -38,11 +38,11 @@ private:
 	using shape_t = std::uint_fast8_t;
 	std::array<std::array<shape_t, WIDTH>, HEIGHT> matrix{ {} };
 	int Random(int min, int max);
-	int size = 64;
+	int size = 32;
 	int Scount = 0;
 	int Cnum = 0;
 	int Ccount = 0;
 	bool isMap = false;
 	int hImage[7];
-
+	int isRocks = false;
 };
