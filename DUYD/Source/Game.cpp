@@ -1,7 +1,9 @@
 #include "Game.h"
 #include "Backs.h"
 #include "Rocks.h"
+#include "GlobalStatus.h"
 #include <random>
+
 
 Game::Game()
 {
@@ -80,6 +82,7 @@ Game::Game()
 	}
 found:
 	player = new Player(this, startX, startY);
+	player->SetStatusReference(&GlobalStatus::Get());
 }
 
 Game::~Game()
@@ -88,7 +91,7 @@ Game::~Game()
 
 void Game::Update() {
 	player->Update();
-
+	GlobalStatus::Get().Update();
 	cameraX = player->GetX() - 1920 / 2 + 16;
 	cameraY = player->GetY() - 1080 / 2 + 16;
 
@@ -102,7 +105,7 @@ void Game::Update() {
 
 void Game::Draw() {
 	player->Draw(cameraX, cameraY);
-
+	GlobalStatus::Get().Draw();
 }
 
 bool Game::IsWall(int tileX, int tileY)

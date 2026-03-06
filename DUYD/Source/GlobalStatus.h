@@ -1,6 +1,8 @@
 #pragma once
 #include "status.h"
-class GlobalStatus
+#include "../Library/GameObject.h"
+
+class GlobalStatus : public GameObject
 {
 public:
 	static status& Get() {

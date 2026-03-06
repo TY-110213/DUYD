@@ -34,7 +34,7 @@ private:
 	int animFrame;  // アニメーションフレーム (0-3)
 	float animCounter;  // アニメーション用カウンター
 	bool prevMouseLeft;
-	int characterImage[4][4];  // [方向][アニメーションフレーム]
+	int characterImage[4][3];  // [方向][アニメーションフレーム]
 	float digCoolTimer = 0.0f;
 	float throwCoolTimer = 0.0f;
 	static constexpr float DIG_COOLTIME =0.3f;//クールタイムの秒数

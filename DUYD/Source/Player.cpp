@@ -21,13 +21,13 @@ Player::Player(IMap* map,float startX,float startY) : tutMap(map)
 	prevHKey = false;
 	statusRef = nullptr;
 
-	hImage = LoadGraph("data/chara.png");
+	hImage = LoadGraph("data/player.png");
 	walkSE = LoadSoundMem("data/footsteps.mp3");
 	
 	seTimer = 0.0f;
 	// 画像読み込み
 	for (int dir = 0; dir < 4; dir++) {
-		for (int frame = 0; frame < 4; frame++) {
+		for (int frame = 0; frame < 3; frame++) {
 			characterImage[dir][frame] = DerivationGraph(
 				frame * SPRITE_WIDTH,   // X座標
 				dir * SPRITE_HEIGHT,    // Y座標
@@ -43,7 +43,7 @@ Player::Player(IMap* map,float startX,float startY) : tutMap(map)
 Player::~Player()
 {
 	for (int dir = 0; dir < 4; dir++) {
-		for (int frame = 0; frame < 4; frame++) {
+		for (int frame = 0; frame < 3; frame++) {
 			DeleteGraph(characterImage[dir][frame]);
 		}
 	}
@@ -105,10 +105,10 @@ if (throwCoolTimer > 0.0f) throwCoolTimer -= Time::DeltaTime();
 
 	
 	// キー入力で移動方向を決定
-	if (CheckHitKey(KEY_INPUT_W)) { dy -= 1.0f; direction = 2; moved = true; }
+	if (CheckHitKey(KEY_INPUT_W)) { dy -= 1.0f; direction = 3; moved = true; }
 	if (CheckHitKey(KEY_INPUT_S)) { dy += 1.0f; direction = 0; moved = true; }
 	if (CheckHitKey(KEY_INPUT_A)) { dx -= 1.0f; direction = 1; moved = true; }
-	if (CheckHitKey(KEY_INPUT_D)) { dx += 1.0f; direction = 3; moved = true; }
+	if (CheckHitKey(KEY_INPUT_D)) { dx += 1.0f; direction = 2; moved = true; }
 	
 	if (dx != 0.0f && dy != 0.0f) {
 		dx *= 0.7071f;
@@ -135,7 +135,7 @@ if (throwCoolTimer > 0.0f) throwCoolTimer -= Time::DeltaTime();
 		animCounter+= Time::DeltaTime();
 		if (animCounter >= ANIM_INTERVAL) {  // 10フレームごとにアニメーション変更
 			animCounter = 0.0f;
-			animFrame = (animFrame + 1) % 4;
+			animFrame = (animFrame + 1) % 3;
 
 
 
