@@ -4,7 +4,7 @@
 #include "DTL/DTL.hpp"
 #include <DxLib.h>
 #include <cstdint>
-
+#include "Game.h"
 class PlayScene : public SceneBase
 {
 public:
@@ -14,5 +14,5 @@ public:
 	void Draw() override;
 
 private:
-
+	Game* game;
 };

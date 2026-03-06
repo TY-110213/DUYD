@@ -1,5 +1,6 @@
 #pragma once
 #include "../Library/GameObject.h"
+#include "IMap.h"
 #include <vector>
 
 class TUT;  // 前方宣言
@@ -9,7 +10,7 @@ class Stone;
 class Player : public GameObject
 {
 public:
-	Player(TUT* map); // コンストラクター（TUTマップへの参照を受け取る）
+	Player(IMap* map,float startX = 100.f,float startY = 100.f); // コンストラクター（TUTマップへの参照を受け取る）
 	~Player(); // デストラクター（最後に１回呼ばれる）
 	void Update() override; // 毎フレーム呼ばれる　計算
 	// 毎フレーム呼ばれる　描画
@@ -45,7 +46,7 @@ private:
 
 	
 	// マップとの連携用
-	TUT* tutMap;  // TUTマップへのポインタ
+	IMap* tutMap; // TUTマップへのポインタ
 	status* statusRef;
 	static constexpr int SPRITE_WIDTH = 64;   // 1キャラの幅
 	static constexpr int SPRITE_HEIGHT = 64;  // 1キャラの高さ

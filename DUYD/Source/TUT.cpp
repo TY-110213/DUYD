@@ -1,6 +1,7 @@
 #include "TUT.h"
 #include "Player.h"
 #include "status.h"
+#include "GlobalStatus.h"
 #include <fstream>
 #include <sstream>
 #include <string>
@@ -45,7 +46,7 @@ int TUT::GetTileType(int pixelX, int pixelY)
 TUT::TUT()
 {
     player = new Player(this); // thisポインタを渡してマップへのアクセスを可能に
-    statusUI = new status();
+    statusUI = &GlobalStatus::Get();
     player->SetStatusReference(statusUI);
     tileImage = LoadGraph("data/floor.png");
     wallImage = LoadGraph("data/wall.png");
@@ -69,6 +70,7 @@ TUT::TUT()
     if (bgmHandle == -1) {
         printfDx("BGMの読み込みに失敗しました\n");
     }
+    ChangeVolumeSoundMem(128, bgmHandle);
     PlaySoundMem(bgmHandle, DX_PLAYTYPE_LOOP);
 }
 
@@ -77,7 +79,7 @@ TUT::~TUT()
     StopSoundMem(bgmHandle);
     DeleteSoundMem(bgmHandle);
     delete player;
-    delete statusUI;
+   
     DeleteGraph(tileImage);
     DeleteGraph(wallImage);
     DeleteGraph(caveImage);  
