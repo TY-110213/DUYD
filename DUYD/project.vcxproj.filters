@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Source\SceneFactory.cpp" />
     <ClCompile Include="Library\App.cpp">
       <Filter>Library</Filter>
     </ClCompile>
@@ -63,6 +62,11 @@
     <ClCompile Include="Source\Backs.cpp" />
     <ClCompile Include="Source\Game.cpp" />
     <ClCompile Include="Source\Enemy.cpp" />
+    <ClCompile Include="Source\SceneFactory.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GlobalStatus.cpp" />
+    <ClCompile Include="IMap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -143,6 +147,8 @@
     <ClInclude Include="Source\Enemy.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
+    <ClInclude Include="Source\GlobalStatus.h" />
+    <ClInclude Include="Source\IMap.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Library">
