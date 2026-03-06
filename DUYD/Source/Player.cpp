@@ -1,13 +1,14 @@
 #include "Player.h"
-#include "TUT.h"
+
 #include "status.h"
 #include "Stone.h"
 #include "../Library/Time.h"
-Player::Player(TUT* map) : tutMap(map)
+#include "IMap.h"
+Player::Player(IMap* map,float startX,float startY) : tutMap(map)
 {
 	// ‰ŠúˆÊ’u
-	x = 100.0f;
-	y = 100.0f;
+	x = startX;
+	y = startY;
 
 	direction = 0;  // ‰Šú•ûŒü‚Í‰º
 	animFrame = 0;
