@@ -52,6 +52,10 @@ void Backs::Draw() {
 			case 5:
 				DrawExtendGraph(i * size1, j * size1, (i * size1) + size1, (j * size1) + size1, hImage[3], 0);
 				break;
+
+			case 6:
+				DrawExtendGraph(i * size1, j * size1, (i * size1) + size1, (j * size1) + size1, hImage[0], 0);
+				break;
 			}
 		}
 	}

@@ -4,8 +4,17 @@
 #include "DTL/DTL.hpp"
 #include <DxLib.h>
 #include <cstdint>
-#include "Player.h"
 #include "IMap.h"
+
+enum TileType {
+	FLOOR = 0,
+	WALL_A = 1,
+	TILE_2 = 2,
+	TILE_3 = 3,
+	TILE_4 = 4,
+	TILE_5 = 5,
+	WALL_B = 6,
+};
 
 class Game : public GameObject {
 public:
@@ -21,6 +30,9 @@ public:
 	int Snum = 0;
 	bool isSteps = false;
 	int num[WIDTH][HEIGHT];
+	int tileMap[WIDTH][HEIGHT];
+
+	bool isWall(int tileX, int tileY);
 
 private:
 
@@ -29,8 +41,9 @@ private:
 
 	using shape_t = std::uint_fast8_t;
 	std::array<std::array<shape_t, HEIGHT>, WIDTH> matrix{ {} };
+
 	int Random(int min, int max);
-	int size = 64;
+	int size = 16;
 	int Scount = 0;
 	int Cnum = 0;
 	int Ccount = 0;
