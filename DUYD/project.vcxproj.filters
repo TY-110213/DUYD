@@ -67,6 +67,7 @@
     </ClCompile>
     <ClCompile Include="Source\GlobalStatus.cpp" />
     <ClCompile Include="IMap.cpp" />
+    <ClCompile Include="Source\GamePlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -149,6 +150,9 @@
     </ClInclude>
     <ClInclude Include="Source\GlobalStatus.h" />
     <ClInclude Include="Source\IMap.h" />
+    <ClInclude Include="Source\GamePlayer.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Library">

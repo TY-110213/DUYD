@@ -155,6 +155,7 @@
     <ClInclude Include="Source\BootScene.h" />
     <ClInclude Include="Source\Enemy.h" />
     <ClInclude Include="Source\Game.h" />
+    <ClInclude Include="Source\GamePlayer.h" />
     <ClInclude Include="Source\GlobalStatus.h" />
     <ClInclude Include="Source\IMap.h" />
     <ClInclude Include="Source\Player.h" />
@@ -187,6 +188,7 @@
     <ClCompile Include="Source\BootScene.cpp" />
     <ClCompile Include="Source\Enemy.cpp" />
     <ClCompile Include="Source\Game.cpp" />
+    <ClCompile Include="Source\GamePlayer.cpp" />
     <ClCompile Include="Source\GlobalStatus.cpp" />
     <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\PlayScene.cpp" />

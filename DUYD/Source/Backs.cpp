@@ -26,8 +26,8 @@ void Backs::Update() {
 
 void Backs::Draw() {
 	Game* game = FindGameObject<Game>();
-	for (int i = 0; i < game->HEIGHT; i += 1) {
-		for (int j = 0; j < game->WIDTH; j += 1) {
+	for (int i = 0; i < game->WIDTH; i += 1) {
+		for (int j = 0; j < game->HEIGHT; j += 1) {
 			switch (game->num[i][j]) {
 			case 0:
 				DrawExtendGraph(i * size1, j * size1, (i * size1) + size1, (j * size1) + size1, hImage[1], 0);
