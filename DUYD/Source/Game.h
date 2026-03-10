@@ -27,7 +27,7 @@ public:
 	int GetTileType(int pixelX, int pixelY);
 	void DigTile(int pixelX, int pixelY);  // Œ@‚éˆ—‚àg‚¤‚È‚ç
 
-	static constexpr int TILE_SIZE = 25;  // size‚Æ“¯‚¶’l
+	static constexpr int TILE_SIZE = 64;  // size‚Æ“¯‚¶’l
 
 
 private:
@@ -44,5 +44,5 @@ private:
 	int Ccount = 0;
 	bool isMap = false;
 	int hImage[7];
-
+	int isRocks = false;
 };

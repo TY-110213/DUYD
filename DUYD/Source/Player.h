@@ -63,4 +63,5 @@ private:
 	const int DREACH = 64;//Œ@‚é‹——£
 	bool prevHKey;
 	bool prevMouseRight;
+	bool game = false;
 };

@@ -3,7 +3,7 @@
 
 Backs::Backs(int size)
 { 
-	hImage[0] = LoadGraph("data/jimenn.png");
+	hImage[0] = LoadGraph("data/floor.png");
 	hImage[1] = LoadGraph("data/‰æ‘œ1.png");
 	hImage[2] = LoadGraph("data/wall.png");
 	hImage[3] = LoadGraph("data/stairs.png");
