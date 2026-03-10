@@ -27,7 +27,7 @@ public:
 	int GetTileType(int pixelX, int pixelY);
 	void DigTile(int pixelX, int pixelY);  // Œ@‚éˆ—‚àg‚¤‚È‚ç
 
-	static constexpr int TILE_SIZE = 25;  // size‚Æ“¯‚¶’l
+	static constexpr int TILE_SIZE = 64;  // size‚Æ“¯‚¶’l
 
 
 private:
@@ -38,7 +38,7 @@ private:
 	using shape_t = std::uint_fast8_t;
 	std::array<std::array<shape_t, WIDTH>, HEIGHT> matrix{ {} };
 	int Random(int min, int max);
-	int size = 32;
+	int size = 64;
 	int Scount = 0;
 	int Cnum = 0;
 	int Ccount = 0;
