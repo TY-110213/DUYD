@@ -14,5 +14,5 @@ public:
 	void Draw() override;
 
 private:
-	Game* game;
+
 };

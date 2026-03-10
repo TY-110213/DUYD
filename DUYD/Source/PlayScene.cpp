@@ -11,12 +11,12 @@
 
 PlayScene::PlayScene()
 {
-	game = new Game();
+	new Game();
 }
 
 PlayScene::~PlayScene()
 {
-	delete game;
+	
 }
 
 void PlayScene::Update()
@@ -27,10 +27,10 @@ void PlayScene::Update()
 	if (CheckHitKey(KEY_INPUT_Q)) {
 		SceneManager::ChangeScene("TITLE");
 	}
-	game->Update();
+	
 }
 
 void PlayScene::Draw()
 {
-	game->Draw();
+	
 }
