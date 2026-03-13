@@ -3,13 +3,13 @@
 
 Backs::Backs(int size)
 { 
-	hImage[0] = LoadGraph("data/floor.png");
-	hImage[1] = LoadGraph("data/‰æ‘œ1.png");
-	hImage[2] = LoadGraph("data/wall.png");
-	hImage[3] = LoadGraph("data/stairs.png");
-	hImage[4] = LoadGraph("data/iwa.png.png");
-	hImage[5] = LoadGraph("data/sanso.png");
-	hImage[6] = LoadGraph("data/kyouka.png");
+	hImage[0] = LoadGraph("data/map/floor.png");
+	hImage[1] = LoadGraph("data/sample/‰æ‘œ1.png");
+	hImage[2] = LoadGraph("data/map/wall.png");
+	hImage[3] = LoadGraph("data/map/stairs.png");
+	hImage[4] = LoadGraph("data/map/iwa.png.png");
+	hImage[5] = LoadGraph("data/sample/sanso.png");
+	hImage[6] = LoadGraph("data/sample/kyouka.png");
 	size1 = size;
 
 	Game* game = FindGameObject<Game>();

@@ -5,7 +5,7 @@ Enemy::Enemy(float x, float y, int size)
 	Ex = x;
 	Ey = y;
 	Esize = size;
-	hImage = LoadGraph("data/Enemy.png");
+	hImage = LoadGraph("data/sample/Enemy.png");
 }
 
 Enemy::~Enemy()

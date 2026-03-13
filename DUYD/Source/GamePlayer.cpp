@@ -14,7 +14,7 @@ GamePlayer::~GamePlayer()
 {
 }
 
-void GamePlayer::Update(Map& map)
+void GamePlayer::Update()
 {
 
 	if (CheckHitKey(KEY_INPUT_W)) {
