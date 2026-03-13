@@ -10,7 +10,7 @@ TitleScene::TitleScene()
 {
 	image = LoadGraph("data/chara.png");
 	coinImage = LoadGraph("data/item.png");
-	TitleImage = LoadGraph("data/title.png");
+	TitleImage = LoadGraph("data/screen/title.png");
 }
 
 TitleScene::~TitleScene()
