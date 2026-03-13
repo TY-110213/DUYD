@@ -1,5 +1,7 @@
 #pragma once
 #include "../Library/GameObject.h"
+#include "IMap.h"
+
 
 class Enemy : public GameObject {
 public:

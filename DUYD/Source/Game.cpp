@@ -8,6 +8,7 @@
 
 Game::Game()
 {
+	DontDestroyOnSceneChange();
 
 	dtl::shape::RogueLike<shape_t>(0, 1, 2, 3, 4, 70,
 		dtl::base::MatrixRange(5, 5, 4, 4),
@@ -48,8 +49,7 @@ Game::Game()
 			}
 		}
 	}
-
-	new Backs(size,this);
+ new Backs(size);
 
 	for (int i = 0; i < HEIGHT; i += 1) {
 		for (int j = 0; j < WIDTH; j += 1) {
@@ -102,7 +102,7 @@ void Game::Update() {
 }
 
 void Game::Draw() {
-	player->Draw(cameraX, cameraY);
+	
 	GlobalStatus::Get().Draw();
 }
 
