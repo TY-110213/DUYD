@@ -6,6 +6,7 @@
 #include "PlayScene.h"
 #include "Tansakunosyo.h"
 #include "TUT.h"
+#include "Game.h"
 SceneBase* SceneFactory::CreateFirst()
 {
 	return new BootScene();
@@ -28,6 +29,10 @@ SceneBase * SceneFactory::Create(const std::string & name)
 	if (name == "tut")
 	{
 		return new TUT();
+	}
+	if (name == "GAME")
+	{
+		return new PlayScene();
 	}
 	MessageBox(NULL, ("éüÇÃÉVÅ[ÉìÇÕÇ†ÇËÇ‹ÇπÇÒ\n" + name).c_str(), "SceneFactory", MB_ICONERROR | MB_OK);
 	assert(false);

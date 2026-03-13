@@ -78,7 +78,7 @@ TUT::~TUT()
 {
     StopSoundMem(bgmHandle);
     DeleteSoundMem(bgmHandle);
-    delete player;
+    
    
     DeleteGraph(tileImage);
     DeleteGraph(wallImage);
@@ -121,7 +121,7 @@ void TUT::LoadMapFromCSV(const char* filename)
 
 void TUT::Update()
 {
-    player->Update();
+   // player->Update();
     statusUI->Update();
 
     int tileType = GetTileType(player->GetX() + 16, player->GetY() + 16);
@@ -130,12 +130,14 @@ void TUT::Update()
         stairTimer++;
         if (stairTimer >= 180)
         {
-            SceneManager::ChangeScene("PLAY");
+            SceneManager::ChangeScene("GAME");
+            return;
         }
     }
     else {
         stairTimer = 0;
     }
+    
 
     cameraX = player->GetX() - 1920 / 2 + 16;  // プレイヤー中心 (32/2=16)
     cameraY = player->GetY() - 1080 / 2 + 16;

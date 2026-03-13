@@ -14,8 +14,9 @@ void AppInit()
 void AppUpdate()
 {
 	Time::Refresh();
-	SceneManager::Update();
+	
 	ObjectManager::Update();
+	SceneManager::Update();
 }
 
 void AppDraw()

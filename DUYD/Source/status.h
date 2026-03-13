@@ -1,14 +1,14 @@
 #pragma once
 
-#include "../Library/GameObject.h"
+#include <DxLib.h> 
 
-class status : public GameObject
+class status 
 
 {
 public:
 	status();
 	~status();
-	void Update() override;
+	void Update() ;
 	void Draw();
 	void ToggleUpgradeScreen();
 	bool IsUpgradeScreenOpen() const { return showUpgradeScreen; }

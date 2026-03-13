@@ -167,8 +167,8 @@ if (throwCoolTimer > 0.0f) throwCoolTimer -= Time::DeltaTime();
 		switch (direction) {
 		case 0: dy = DREACH; break;   // 下
 		case 1: dx = -DREACH; break;  // 左
-		case 2: dy = -DREACH; break;  // 上
-		case 3: dx = DREACH; break;   // 右
+		case 3: dy = -DREACH; break;  // 上
+		case 2: dx = DREACH; break;   // 右
 		}
 
 		int checkX = centerX + dx;
@@ -212,8 +212,8 @@ if (throwCoolTimer > 0.0f) throwCoolTimer -= Time::DeltaTime();
 			switch (direction) {
 			case 0: stoneStartY += 20; break;  // 下
 			case 1: stoneStartX -= 20; break;  // 左
-			case 2: stoneStartY -= 20; break;  // 上
-			case 3: stoneStartX += 20; break;  // 右
+			case 3: stoneStartY -= 20; break;  // 上
+			case 2: stoneStartX += 20; break;  // 右
 			}
 
 			// 新しい石を生成

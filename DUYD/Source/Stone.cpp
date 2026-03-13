@@ -25,8 +25,8 @@ void Stone::Update()
 	{
 	case 0: y += SPEED; break;
 	case 1: x -= SPEED; break;
-	case 2: y -= SPEED; break;
-	case 3: x += SPEED; break;
+	case 3: y -= SPEED; break;
+	case 2: x += SPEED; break;
 	
 	}
 	int tileType = tutmap->GetTileType((int)x, (int)y);

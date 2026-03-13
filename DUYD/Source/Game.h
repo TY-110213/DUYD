@@ -1,55 +1,49 @@
 #pragma once
 #include "../Library/GameObject.h"
+#include "../Library/SceneBase.h"
 #include <array>
 #include "DTL/DTL.hpp"
 #include <DxLib.h>
 #include <cstdint>
+#include "Player.h"
 #include "IMap.h"
 
-enum TileType {
-	FLOOR = 0,
-	WALL_A = 1,
-	TILE_2 = 2,
-	TILE_3 = 3,
-	TILE_4 = 4,
-	TILE_5 = 5,
-	WALL_B = 6,
-};
-
-class Game : public GameObject {
+class Game : public SceneBase, public IMap{
 public:
 	Game();
 	~Game();
 	void Update() override;
 	void Draw() override;
 
-	static const int HEIGHT = 40;
-	static const int WIDTH = 70;
+	static const int WIDTH = 40;
+	static const int HEIGHT = 70;
 
 	int Scount2 = 0;
 	int Snum = 0;
 	bool isSteps = false;
-	int num[WIDTH][HEIGHT];
-	int tileMap[WIDTH][HEIGHT];
+	int num[HEIGHT][WIDTH];
 
-	bool isWall(int tileX, int tileY);
+	bool IsWall(int tileX, int tileY);
+	bool CanMove(int pixelX, int pixelY);
+	int GetTileType(int pixelX, int pixelY);
+	void DigTile(int pixelX, int pixelY);  // å@ÇÈèàóùÇ‡égÇ§Ç»ÇÁ
+
+	static constexpr int TILE_SIZE = 64;  // sizeÇ∆ìØÇ∂íl
+
 
 private:
-
+	Player* player;  // í«â¡
 	int cameraX = 0;
 	int cameraY = 0;
 
 	using shape_t = std::uint_fast8_t;
-	std::array<std::array<shape_t, HEIGHT>, WIDTH> matrix{ {} };
-
+	std::array<std::array<shape_t, WIDTH>, HEIGHT> matrix{ {} };
 	int Random(int min, int max);
-	int size = 16;
+	int size = 64;
 	int Scount = 0;
 	int Cnum = 0;
 	int Ccount = 0;
 	bool isMap = false;
 	int hImage[7];
-	bool isRocks = false;
-	bool isEnemy = false;
-	bool isPlayer = false;
+	int isRocks = false;
 };
