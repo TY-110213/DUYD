@@ -21,7 +21,7 @@ Player::Player(IMap* map,float startX,float startY) : tutMap(map)
 	prevHKey = false;
 	statusRef = nullptr;
 
-	hImage = LoadGraph("data/player.png");
+	hImage = LoadGraph("data/character/player.png");
 	walkSE = LoadSoundMem("data/footsteps.mp3");
 	
 	seTimer = 0.0f;

@@ -48,12 +48,12 @@ TUT::TUT()
     player = new Player(this); // thisポインタを渡してマップへのアクセスを可能に
     statusUI = &GlobalStatus::Get();
     player->SetStatusReference(statusUI);
-    tileImage = LoadGraph("data/floor.png");
-    wallImage = LoadGraph("data/wall.png");
-    caveImage = LoadGraph("data/cave_tile.png");
-    horuImage = LoadGraph("data/stone.png");
-    kyoukaImage = LoadGraph("data/item.png");
-    stairImage = LoadGraph("data/stairs.png");
+    tileImage = LoadGraph("data/map/floor.png");
+    wallImage = LoadGraph("data/map/wall.png");
+    caveImage = LoadGraph("data/sample/cave_tile.png");
+    horuImage = LoadGraph("data/map/stone.png");
+    kyoukaImage = LoadGraph("data/sample/item.png");
+    stairImage = LoadGraph("data/map/stairs.png");
     // マップデータを初期化（全て壁にしておく）
     for (int y = 0; y < MAP_HEIGHT; y++) {
         for (int x = 0; x < MAP_WIDTH; x++) {
