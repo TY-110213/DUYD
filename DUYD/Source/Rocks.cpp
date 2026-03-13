@@ -3,15 +3,15 @@
 
 Rocks::Rocks(int x, int y, int size)
 {
-	hImage[0] = LoadGraph("data/stone.png");
-	hImage[1] = LoadGraph("data/kyouka.png");
-	hImage[2] = LoadGraph("data/sanso.png");
+	hImage[0] = LoadGraph("data/map/stone.png");
+	hImage[1] = LoadGraph("data/sample/kyouka.png");
+	hImage[2] = LoadGraph("data/sample/sanso.png");
 	num = Random(0, 9);
 	if (num == 9) {
 		num = Random(0, 1);
 	}
-	x1 = x;
 	y1 = y;
+	x1 = x;
 	size1 = size;
 }
 
