@@ -10,7 +10,7 @@ Backs::Backs(int size)
 	hImage[4] = LoadGraph("data/map/iwa.png.png");
 	hImage[5] = LoadGraph("data/sample/sanso.png");
 	hImage[6] = LoadGraph("data/sample/kyouka.png");
-
+	size1 = size;
 }
 
 Backs::~Backs()
