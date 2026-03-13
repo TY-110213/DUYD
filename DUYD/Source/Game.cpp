@@ -17,8 +17,8 @@ Game::Game()
 		dtl::base::MatrixRange(5, 5, 4, 4),
 		dtl::base::MatrixRange(3, 3, 4, 4)).draw(matrix);
 
-	for (int i = 0; i < HEIGHT; i += 1) {
-		for (int j = 0; j < WIDTH; j += 1) {
+	for (int i = 0; i < WIDTH; i += 1) {
+		for (int j = 0; j < HEIGHT; j += 1) {
 			if (matrix[i][j] == 0) {
 				num[i][j] = 0;
 			}
@@ -40,8 +40,8 @@ Game::Game()
 
 	Snum = Random(1, Scount);
 
-	for (int i = 0; i < HEIGHT; i += 1) {
-		for (int j = 0; j < WIDTH; j += 1) {
+	for (int i = 0; i < WIDTH; i += 1) {
+		for (int j = 0; j < HEIGHT; j += 1) {
 			if (num[i][j] == 2) {
 				Scount2 += 1;
 				if (Scount2 == Snum && !isSteps) {
@@ -52,6 +52,7 @@ Game::Game()
 			}
 		}
 	}
+
  new Backs(size);
 
  for (int i = 0; i < WIDTH; i += 1) {
