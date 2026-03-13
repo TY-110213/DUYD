@@ -8,6 +8,7 @@ public:
 	~GamePlayer();
 	void Update() override;
 	void Draw() override;
+	void SetMap(Game* m);
 private:
 	int hImage = 0;
 	float px = 0;
