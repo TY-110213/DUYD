@@ -66,9 +66,9 @@ Game::Game()
 		for (int j = 0; j < HEIGHT; j += 1) {
 			if (num[i][j] == 2) {
 				if (Random(0, 2) > 0) {
-					//new Rocks(i * size, j * size, size);
+					new Rocks(i * size, j * size, size);
 					isRocks = true;
-					//num[i][j] = 6;
+					num[i][j] = 6;
 				}
 				if (Random(0, 5) == 0 && !isRocks) {
 					new Enemy(i * size, j * size, size);
@@ -76,11 +76,12 @@ Game::Game()
 				}
 				if (!isRocks && !isEnemy && !isPlayer) {
 					isPlayer = true;
-					new GamePlayer(i * size, j * size, size);
+					new GamePlayer(i * size, j * size, 32);
 				}
 			}
 			if (num[i][j] == 3 || num[i][j] == 4) {
-				//new Rocks(i * size, j * size, size);
+				new Rocks(i * size, j * size, size);
+				num[i][j] = 6;
 			}
 			isRocks = false;
 			isEnemy = false;

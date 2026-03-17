@@ -2,20 +2,28 @@
 #include "../Library/GameObject.h"
 #include "Game.h"
 
+enum Direction {
+    UP,
+    DOWN,
+    LEFT,
+    RIGHT
+};
+
 class GamePlayer : public GameObject {
 public:
-	GamePlayer(float x, float y, int size1);
-	~GamePlayer();
-	void Update() override;
-	void Draw() override;
-	void SetMap(Game* m);
-	float px = 0;
-	float py = 0;
+    GamePlayer(float x, float y, int size1);
+    ~GamePlayer();
+    void Update() override;
+    void Draw()   override;
+    void SetMap(Game* m);
+    float px = 0;
+    float py = 0;
+
 private:
-	int hImage = 0;
-	
-	float width = 0;
-	float height = 0;
-	int size = 0;
-	Game* game;
+    int hImage = 0;
+    float width = 0;
+    float height = 0;
+    int size = 0;
+    Game* game;
+    Direction dir = DOWN;
 };
