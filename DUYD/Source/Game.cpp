@@ -130,10 +130,11 @@ int Game::Random(int min, int max) {
 //“G‚Ì“–‚½‚è”»’è•Ç
 bool Game::CanMove(int pixelX, int pixelY)
 {
+	const int enemySize = 32;  // “G‚ÌƒTƒCƒY
 	int left = pixelX / size;
-	int right = (pixelX + size - 1) / size;
+	int right = (pixelX + enemySize - 1) / size;
 	int top = pixelY / size;
-	int bottom = (pixelY + size - 1) / size;
+	int bottom = (pixelY + enemySize - 1) / size;
 
 	return !isWall(left, top) && !isWall(right, top) &&
 		!isWall(left, bottom) && !isWall(right, bottom);
