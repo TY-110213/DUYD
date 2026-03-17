@@ -70,13 +70,16 @@ Game::Game()
 					isRocks = true;
 					//num[i][j] = 6;
 				}
-				if (Random(0, 5) == 0 && !isRocks) {
-					new Enemy(i * size, j * size, size, this,gamePlayer);
-					isEnemy = true;
-				}
+				// GamePlayerÇêÊÇ…ê∂ê¨
 				if (!isRocks && !isEnemy && !isPlayer) {
 					isPlayer = true;
-					new GamePlayer(i * size, j * size, size);
+					gamePlayer = new GamePlayer(i * size, j * size, size);
+				}
+				
+				// GamePlayerÇÃå„Ç…EnemyÇê∂ê¨
+				if (Random(0, 5) == 0 && !isRocks ) {
+					new Enemy(i * size, j * size, size, this,gamePlayer);
+					isEnemy = true;
 				}
 			}
 			if (num[i][j] == 3 || num[i][j] == 4) {

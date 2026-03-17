@@ -57,6 +57,5 @@ void Enemy::Draw() {
 	int screenY = (int)(Ey - Camera::GetOffsetY());
 
 	DrawExtendGraph(screenX, screenY, screenX + Esize, screenY + Esize, hImage, 1);
-	DrawExtendGraph((int)Ex, (int)Ey,
-		(int)Ex + Esize, (int)Ey + Esize, hImage, TRUE);
+	
 }
