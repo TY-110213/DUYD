@@ -1,6 +1,7 @@
 #include "GamePlayer.h"
 #include "status.h"
 #include "Game.h"
+#include "Camera.h"
 
 GamePlayer::GamePlayer(float x, float y, int size1)
 {
@@ -61,7 +62,11 @@ void GamePlayer::Update()
 
 void GamePlayer::Draw()
 {
-    DrawExtendGraph(px, py, px + size, py + size, hImage, 1);
+    int screenX = (int)(px - Camera::GetOffsetX());
+    int screenY = (int)(py - Camera::GetOffsetY());
+
+    DrawExtendGraph(screenX, screenY, screenX + size, screenY + size, hImage, 1);
+  //  DrawExtendGraph(px, py, px + size, py + size, hImage, 1);
 }
 
 void GamePlayer::SetMap(Game* m)

@@ -1,5 +1,6 @@
 #include "Backs.h"
 #include "Game.h"
+#include "Camera.h"
 
 Backs::Backs(int size) 
 { 
@@ -25,34 +26,32 @@ void Backs::Draw() {
 	Game* game = FindGameObject<Game>();
 	for (int i = 0; i < game->WIDTH; i += 1) {
 		for (int j = 0; j < game->HEIGHT; j += 1) {
+
+			int screenX = (i * size1) - (int)Camera::GetOffsetX();
+			int screenY = (j * size1) - (int)Camera::GetOffsetY();
+
 			switch (game->num[i][j]) {
-			case 0:
-				DrawExtendGraph(i * size1, j * size1, (i * size1) + size1, (j * size1) + size1, hImage[1], 0);
-				break;
-
-			case 1:
-				DrawExtendGraph(i * size1, j * size1, (i * size1) + size1, (j * size1) + size1, hImage[2], 0);
-				break;
-
-			case 2:
-				DrawExtendGraph(i * size1, j * size1, (i * size1) + size1, (j * size1) + size1, hImage[0], 0);
-				break;
-
-			case 3:
-				DrawExtendGraph(i * size1, j * size1, (i * size1) + size1, (j * size1) + size1, hImage[0], 0);
-				break;
-
-			case 4:
-				DrawExtendGraph(i * size1, j * size1, (i * size1) + size1, (j * size1) + size1, hImage[0], 0);
-				break;
-
-			case 5:
-				DrawExtendGraph(i * size1, j * size1, (i * size1) + size1, (j * size1) + size1, hImage[3], 0);
-				break;
-
-			case 6:
-				DrawExtendGraph(i * size1, j * size1, (i * size1) + size1, (j * size1) + size1, hImage[0], 0);
-				break;
+            case 0:
+                DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[1], 0);
+                break;
+            case 1:
+                DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[2], 0);
+                break;
+            case 2:
+                DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[0], 0);
+                break;
+            case 3:
+                DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[0], 0);
+                break;
+            case 4:
+                DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[0], 0);
+                break;
+            case 5:
+                DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[3], 0);
+                break;
+            case 6:
+                DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[0], 0);
+                break;
 			}
 		}
 	}

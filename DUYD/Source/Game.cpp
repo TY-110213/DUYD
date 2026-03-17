@@ -42,7 +42,7 @@ Game::Game()
 		}
 	}
 
-	memcpy(tilegame, num, sizeof(tilegame));
+	//memcpy(tilegame, num, sizeof(tilegame));
 
 	Snum = Random(1, Scount);
 
@@ -65,9 +65,9 @@ Game::Game()
 		for (int j = 0; j < HEIGHT; j += 1) {
 			if (num[i][j] == 2) {
 				if (Random(0, 2) > 0) {
-					new Rocks(i * size, j * size, size);
+					//new Rocks(i * size, j * size, size);
 					isRocks = true;
-					num[i][j] == 6;
+					//num[i][j] = 6;
 				}
 				if (Random(0, 5) == 0 && !isRocks) {
 					new Enemy(i * size, j * size, size);
@@ -79,13 +79,14 @@ Game::Game()
 				}
 			}
 			if (num[i][j] == 3 || num[i][j] == 4) {
-				new Rocks(i * size, j * size, size);
+				//new Rocks(i * size, j * size, size);
 			}
 			isRocks = false;
 			isEnemy = false;
 		}
 	}
 
+	memcpy(tilegame, num, sizeof(tilegame));
 	new status();
 
 
@@ -96,7 +97,8 @@ Game::~Game()
 }
 
 void Game::Update() {
-
+	GamePlayer* gameplayer = FindGameObject<GamePlayer>();
+	Camera::Update(gameplayer->px, gameplayer->py);
 }
 
 void Game::Draw() {

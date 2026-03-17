@@ -1,4 +1,5 @@
 #include "Enemy.h"
+#include "Camera.h"
 
 Enemy::Enemy(float x, float y, int size)
 {
@@ -17,5 +18,8 @@ void Enemy::Update() {
 }
 
 void Enemy::Draw() {
-	DrawExtendGraph(Ex, Ey, Ex + Esize, Ey + Esize, hImage, 1);
+	int screenX = (int)(Ex - Camera::GetOffsetX());
+	int screenY = (int)(Ey - Camera::GetOffsetY());
+
+	DrawExtendGraph(screenX, screenY, screenX + Esize, screenY + Esize, hImage, 1);
 }

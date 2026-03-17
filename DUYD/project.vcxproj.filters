@@ -68,6 +68,7 @@
     <ClCompile Include="Source\GlobalStatus.cpp" />
     <ClCompile Include="IMap.cpp" />
     <ClCompile Include="Source\GamePlayer.cpp" />
+    <ClCompile Include="Source\Camera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -151,6 +152,9 @@
     <ClInclude Include="Source\GlobalStatus.h" />
     <ClInclude Include="Source\IMap.h" />
     <ClInclude Include="Source\GamePlayer.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Camera.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
   </ItemGroup>

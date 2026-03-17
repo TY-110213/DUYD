@@ -4,6 +4,7 @@
 #include "DTL/DTL.hpp"
 #include <DxLib.h>
 #include <cstdint>
+#include "Camera.h"
 
 enum TileType {
 	FLOOR = 0,
@@ -30,7 +31,7 @@ public:
 	bool isSteps = false;
 	int num[WIDTH][HEIGHT];
 	int tilegame[WIDTH][HEIGHT];
-	int size = 16;
+	int size = 64;
 
 	bool isWall(int tileX, int tileY);
 
