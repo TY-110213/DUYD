@@ -70,24 +70,28 @@ Game::Game()
 					isRocks = true;
 					num[i][j] = 6;
 				}
-				if (Random(0, 5) == 0 && !isRocks) {
-					new Enemy(i * size, j * size, size);
-					isEnemy = true;
-				}
+				// GamePlayer‚ðæ‚É¶¬
 				if (!isRocks && !isEnemy && !isPlayer) {
 					isPlayer = true;
-					new GamePlayer(i * size, j * size, 32);
+					gamePlayer = new GamePlayer(i * size, j * size, 32);
 				}
+
+				// GamePlayer‚Æ“¯‚¶ƒ^ƒCƒ‹‚Å‚È‚¯‚ê‚ÎEnemy‚ð¶¬
+				if (Random(0, 5) == 0 && !isRocks && gamePlayer != nullptr) {
+					if (i * size != gamePlayer->GetX() || j * size != gamePlayer->GetY()) {
+						new Enemy(i * size, j * size, size, this, gamePlayer);
+						isEnemy = true;
+					}
+				}
+				if (num[i][j] == 3 || num[i][j] == 4) {
+					new Rocks(i * size, j * size, size);
+					num[i][j] = 6;
+				}
+				isRocks = false;
+				isEnemy = false;
 			}
-			if (num[i][j] == 3 || num[i][j] == 4) {
-				new Rocks(i * size, j * size, size);
-				num[i][j] = 6;
-			}
-			isRocks = false;
-			isEnemy = false;
 		}
 	}
-
 	memcpy(tilegame, num, sizeof(tilegame));
 	new status();
 
@@ -122,4 +126,15 @@ int Game::Random(int min, int max) {
 	std::mt19937 gen(rd());
 	std::uniform_int_distribution<> dist(min, max);
 	return dist(gen);
+}
+//“G‚Ì“–‚½‚è”»’è•Ç
+bool Game::CanMove(int pixelX, int pixelY)
+{
+	int left = pixelX / size;
+	int right = (pixelX + size - 1) / size;
+	int top = pixelY / size;
+	int bottom = (pixelY + size - 1) / size;
+
+	return !isWall(left, top) && !isWall(right, top) &&
+		!isWall(left, bottom) && !isWall(right, bottom);
 }

@@ -19,6 +19,6 @@ private:
 	Game* gameRef;         // マップ情報取得用
 	GamePlayer* playerRef; // プレイヤー追跡用
 
-	static constexpr float DETECT_RANGE = 200.0f; // 検知範囲
+	static constexpr float DETECT_RANGE = 1000.0f; // 検知範囲
 	static constexpr float SPEED = 60.0f;          // 移動速度
 };
