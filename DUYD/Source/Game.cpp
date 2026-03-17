@@ -66,24 +66,22 @@ Game::Game()
 		for (int j = 0; j < HEIGHT; j += 1) {
 			if (num[i][j] == 2) {
 				if (Random(0, 2) > 0) {
-					//new Rocks(i * size, j * size, size);
+					new Rocks(i * size, j * size, size);
 					isRocks = true;
-					//num[i][j] = 6;
+					num[i][j] = 6;
 				}
-				// GamePlayerを先に生成
+				if (Random(0, 5) == 0 && !isRocks) {
+					new Enemy(i * size, j * size, size);
+					isEnemy = true;
+				}
 				if (!isRocks && !isEnemy && !isPlayer) {
 					isPlayer = true;
-					gamePlayer = new GamePlayer(i * size, j * size, size);
-				}
-				
-				// GamePlayerの後にEnemyを生成
-				if (Random(0, 5) == 0 && !isRocks ) {
-					new Enemy(i * size, j * size, size, this,gamePlayer);
-					isEnemy = true;
+					new GamePlayer(i * size, j * size, 32);
 				}
 			}
 			if (num[i][j] == 3 || num[i][j] == 4) {
-				//new Rocks(i * size, j * size, size);
+				new Rocks(i * size, j * size, size);
+				num[i][j] = 6;
 			}
 			isRocks = false;
 			isEnemy = false;
@@ -124,18 +122,4 @@ int Game::Random(int min, int max) {
 	std::mt19937 gen(rd());
 	std::uniform_int_distribution<> dist(min, max);
 	return dist(gen);
-}
-
-//敵が壁を認識
-bool Game::CanMove(int pixelX, int pixelY)
-{
-	//キャラクターの四隅をチェック
-	int left = pixelX / size;
-	int right = (pixelX + size - 1) / size;
-	int top = pixelY / size;
-	int bottom = (pixelY + size - 1) / size;
-
-	// 四隅全てが壁でなければ移動可能
-	return !isWall(left, top) && !isWall(right, top) &&
-		!isWall(left, bottom) && !isWall(right, bottom);
 }
