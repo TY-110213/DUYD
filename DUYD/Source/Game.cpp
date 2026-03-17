@@ -70,7 +70,7 @@ Game::Game()
 					//num[i][j] = 6;
 				}
 				if (Random(0, 5) == 0 && !isRocks) {
-					new Enemy(i * size, j * size, size);
+					new Enemy(i * size, j * size, size, this,gamePlayer);
 					isEnemy = true;
 				}
 				if (!isRocks && !isEnemy && !isPlayer) {
@@ -120,4 +120,18 @@ int Game::Random(int min, int max) {
 	std::mt19937 gen(rd());
 	std::uniform_int_distribution<> dist(min, max);
 	return dist(gen);
+}
+
+//敵が壁を認識
+bool Game::CanMove(int pixelX, int pixelY)
+{
+	//キャラクターの四隅をチェック
+	int left = pixelX / size;
+	int right = (pixelX + size - 1) / size;
+	int top = pixelY / size;
+	int bottom = (pixelY + size - 1) / size;
+
+	// 四隅全てが壁でなければ移動可能
+	return !isWall(left, top) && !isWall(right, top) &&
+		!isWall(left, bottom) && !isWall(right, bottom);
 }

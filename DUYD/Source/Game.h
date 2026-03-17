@@ -15,6 +15,7 @@ enum TileType {
 	TILE_5 = 5,
 	WALL_B = 6,
 };
+class GamePlayer;
 
 class Game : public GameObject {
 public:
@@ -32,7 +33,8 @@ public:
 	int num[WIDTH][HEIGHT];
 	int tilegame[WIDTH][HEIGHT];
 	int size = 64;
-
+	//“G‚Ì“–‚½‚è”»’è‚æ‚¤
+	bool CanMove(int pixelX, int pixelY);
 	bool isWall(int tileX, int tileY);
 
 private:
@@ -53,4 +55,6 @@ private:
 	bool isRocks = false;
 	bool isEnemy = false;
 	bool isPlayer = false;
+
+	GamePlayer* gamePlayer = nullptr;
 };
