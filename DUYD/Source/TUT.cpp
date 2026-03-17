@@ -50,9 +50,9 @@ TUT::TUT()
     player->SetStatusReference(statusUI);
     tileImage = LoadGraph("data/map/floor.png");
     wallImage = LoadGraph("data/map/wall.png");
-    caveImage = LoadGraph("data/sample/cave_tile.png");
+    caveImage = LoadGraph("data/map/oxygen_ore.png");
     horuImage = LoadGraph("data/map/stone.png");
-    kyoukaImage = LoadGraph("data/sample/item.png");
+    kyoukaImage = LoadGraph("data/map/reinforced_ore.png");
     stairImage = LoadGraph("data/map/stairs.png");
     // マップデータを初期化（全て壁にしておく）
     for (int y = 0; y < MAP_HEIGHT; y++) {
