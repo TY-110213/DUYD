@@ -46,14 +46,15 @@ Game::Game()
 
 	Snum = Random(1, Scount);
 
-	for (int i = 0; i < WIDTH; i += 1) {
-		for (int j = 0; j < HEIGHT; j += 1) {
+	bool found = false;
+	for (int i = 0; i < WIDTH && !found; i += 1) {
+		for (int j = 0; j < HEIGHT && !found; j += 1) {
 			if (num[i][j] == 2) {
 				Scount2 += 1;
 				if (Scount2 == Snum && !isSteps) {
 					num[i][j] = 5;
-					isSteps == true;
-					break;
+					isSteps = true;
+					found = true;
 				}
 			}
 		}

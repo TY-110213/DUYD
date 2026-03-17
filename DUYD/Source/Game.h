@@ -46,7 +46,6 @@ private:
 	std::array<std::array<shape_t, HEIGHT>, WIDTH> matrix{ {} };
 
 	int Random(int min, int max);
-
 	int Scount = 0;
 	int Cnum = 0;
 	int Ccount = 0;

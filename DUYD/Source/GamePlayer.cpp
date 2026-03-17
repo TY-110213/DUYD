@@ -58,6 +58,20 @@ void GamePlayer::Update()
 
     if (dy < 0 && (game->isWall(left, top) || game->isWall(right, top)))
         py = (float)((top + 1) * game->size);
+
+    if (CheckHitKey(KEY_INPUT_P)) {
+        for (int i = 0; i < game->WIDTH; i++) {
+            for (int j = 0; j < game->HEIGHT; j++) {
+                if (game->num[i][j] == 5) { // 5‚ªŠK’i
+                    px = (float)(i * game->size);
+                    py = (float)(j * game->size);
+                    goto WARP_END; // Å‰‚ÌŠK’i‚ªŒ©‚Â‚©‚Á‚½‚çI—¹
+                }
+            }
+        }
+    WARP_END:;
+    }
+
 }
 
 void GamePlayer::Draw()
