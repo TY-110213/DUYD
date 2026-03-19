@@ -58,5 +58,6 @@ private:
 	bool isEnemy = false;
 	bool isPlayer = false;
 	bool isPlayer2 = false;
+	int count = 0;
 	GamePlayer* gamePlayer = nullptr;
 };

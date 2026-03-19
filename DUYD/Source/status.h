@@ -8,7 +8,7 @@ class status
 public:
 	status();
 	~status();
-	void Update() ;
+	void Update();
 	void Draw();
 	void ToggleUpgradeScreen();
 	bool IsUpgradeScreenOpen() const { return showUpgradeScreen; }

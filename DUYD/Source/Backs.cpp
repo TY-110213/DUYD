@@ -2,7 +2,7 @@
 #include "Game.h"
 #include "Camera.h"
 
-Backs::Backs(int size, int area) 
+Backs::Backs(int size) 
 { 
     hImage[0] = LoadGraph("data/map/floor.png");
     hImage[1] = LoadGraph("data/sample/‰æ‘œ1.png");
@@ -17,7 +17,6 @@ Backs::Backs(int size, int area)
     hImage[10] = LoadGraph("data/map/floor_4.png");
     hImage[11] = LoadGraph("data/map/ruins_wall_4.png");
 	size1 = size;
-    area1 = area;
 }
 
 Backs::~Backs()
@@ -30,6 +29,7 @@ void Backs::Update() {
 
 void Backs::Draw() {
     Game* game = FindGameObject<Game>();
+    area1 = game->area;
     for (int i = 0; i < game->WIDTH; i += 1) {
         for (int j = 0; j < game->HEIGHT; j += 1) {
 

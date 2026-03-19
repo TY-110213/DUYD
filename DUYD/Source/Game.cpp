@@ -7,10 +7,12 @@
 #include "status.h"
 #include <random>
 #include <cstring>
+#include <list>
 
 
 Game::Game()
 {
+	new Backs(size);
 	Create();
 }
 
@@ -21,6 +23,35 @@ Game::~Game()
 void Game::Update() {
 	GamePlayer* gameplayer = FindGameObject<GamePlayer>();
 	Camera::Update(gameplayer->px, gameplayer->py);
+
+	if (gamePlayer->isStairs) {
+		count += 1;
+	}
+	else {
+		count = 0;
+	}
+	if (gamePlayer->isStairs && count == 60 * 3) {
+		count = 0;
+		std::list<Enemy*> enemyList = FindGameObjects<Enemy>();
+		for (Enemy* enemy : enemyList) {
+			enemy->DestroyMe();
+		}
+
+		// Rocks‚ğ‘S‚Äíœ
+		std::list<Rocks*> rocksList = FindGameObjects<Rocks>();
+		for (Rocks* rocks : rocksList) {
+			rocks->DestroyMe();
+		}
+
+		area += 1;
+		Create();
+
+
+	}
+
+
+
+
 }
 
 void Game::Draw() {
@@ -101,12 +132,12 @@ void Game::Create()
 					num[i][j] = 5;
 					isSteps = true;
 					found = true;
+					Scount = 0;
+					Scount2 = 0;
 				}
 			}
 		}
 	}
-
-	new Backs(size, area);
 
 	for (int i = 0; i < WIDTH; i += 1) {
 		for (int j = 0; j < HEIGHT; j += 1) {
@@ -120,7 +151,14 @@ void Game::Create()
 				if (!isRocks && !isEnemy && !isPlayer) {
 					isPlayer = true;
 					isPlayer2 = true;
-					gamePlayer = new GamePlayer(i * size, j * size, 32);
+					if (area == 0) {
+						gamePlayer = new GamePlayer(i * size, j * size, 32);
+					}
+					else {
+						GamePlayer* gameplayer = FindGameObject<GamePlayer>();
+						gameplayer->px = (float)(i * size);
+						gameplayer->py = (float)(j * size);
+					}
 				}
 
 				if (Random(0, 5) == 0 && !isRocks && !isPlayer2) {
@@ -144,7 +182,10 @@ void Game::Create()
 
 	isPlayer = false;
 	memcpy(tilegame, num, sizeof(tilegame));
-	new status();
+	if (area == 0) {
+		new status();
+	}
 
+	isSteps = false;
 
 }

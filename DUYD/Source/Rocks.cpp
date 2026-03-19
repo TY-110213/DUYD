@@ -32,6 +32,9 @@ Rocks::Rocks(int x, int y, int size, int area)
 
 Rocks::~Rocks()
 {
+    for (int i = 0; i < 15; i += 1) {
+        DeleteGraph(hImage[i]);
+    }
 }
 
 void Rocks::Update() {

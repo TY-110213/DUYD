@@ -88,6 +88,15 @@ void GamePlayer::Update()
         }
     }
 
+    int tileX = (int)(px / game->size);
+    int tileY = (int)(py / game->size);
+
+    if (game->tilegame[tileX][tileY] == 5) {
+        isStairs = true;
+    }
+    else {
+        isStairs = false;
+    }
     // デバッグ用：Pキーで階段にワープ
     if (CheckHitKey(KEY_INPUT_P)) {
         for (int i = 0; i < game->WIDTH; i++) {

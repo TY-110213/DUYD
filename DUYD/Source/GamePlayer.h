@@ -20,6 +20,7 @@ public:
     float py = 0;
     float GetX() const { return px; }
     float GetY() const { return py; }
+    bool isStairs = false;
 private:
     int hImage = 0;
     float width = 0;
