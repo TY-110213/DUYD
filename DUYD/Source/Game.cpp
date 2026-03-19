@@ -11,11 +11,57 @@
 
 Game::Game()
 {
+	Create();
+}
+
+Game::~Game()
+{
+}
+
+void Game::Update() {
+	GamePlayer* gameplayer = FindGameObject<GamePlayer>();
+	Camera::Update(gameplayer->px, gameplayer->py);
+}
+
+void Game::Draw() {
+	
+	GlobalStatus::Get().Draw();
+
+}
+
+bool Game::isWall(int tileX, int tileY)
+{
+	if (tileX < 0 || tileX >= WIDTH || tileY < 0 || tileY >= HEIGHT)
+		return true;
+
+	int tile = tilegame[tileX][tileY]; // [x][y] の順番！
+	return tile == WALL_A || tile == WALL_B;
+}
+
+int Game::Random(int min, int max) {
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution<> dist(min, max);
+	return dist(gen);
+}
+//敵の当たり判定壁
+bool Game::CanMove(int pixelX, int pixelY)
+{
+	const int enemySize = 32;  // 敵のサイズ
+	int left = pixelX / size;
+	int right = (pixelX + enemySize - 1) / size;
+	int top = pixelY / size;
+	int bottom = (pixelY + enemySize - 1) / size;
+
+	return !isWall(left, top) && !isWall(right, top) &&
+		!isWall(left, bottom) && !isWall(right, bottom);
+}
+
+void Game::Create()
+{
 	DontDestroyOnSceneChange();
 
 	int startX = 0, startY = 0;
-
-
 
 	dtl::shape::RogueLike<shape_t>(0, 1, 2, 3, 4, 70,
 		dtl::base::MatrixRange(5, 5, 4, 4),
@@ -83,7 +129,7 @@ Game::Game()
 						isEnemy = true;
 					}
 				}
-				
+
 				isRocks = false;
 				isEnemy = false;
 				isPlayer2 = false;
@@ -101,47 +147,4 @@ Game::Game()
 	new status();
 
 
-}
-
-Game::~Game()
-{
-}
-
-void Game::Update() {
-	GamePlayer* gameplayer = FindGameObject<GamePlayer>();
-	Camera::Update(gameplayer->px, gameplayer->py);
-}
-
-void Game::Draw() {
-	
-	GlobalStatus::Get().Draw();
-
-}
-
-bool Game::isWall(int tileX, int tileY)
-{
-	if (tileX < 0 || tileX >= WIDTH || tileY < 0 || tileY >= HEIGHT)
-		return true;
-
-	int tile = tilegame[tileX][tileY]; // [x][y] の順番！
-	return tile == WALL_A || tile == WALL_B;
-}
-
-int Game::Random(int min, int max) {
-	std::random_device rd;
-	std::mt19937 gen(rd());
-	std::uniform_int_distribution<> dist(min, max);
-	return dist(gen);
-}
-//敵の当たり判定壁
-bool Game::CanMove(int pixelX, int pixelY)
-{
-	const int enemySize = 32;  // 敵のサイズ
-	int left = pixelX / size;
-	int right = (pixelX + enemySize - 1) / size;
-	int top = pixelY / size;
-	int bottom = (pixelY + enemySize - 1) / size;
-
-	return !isWall(left, top) && !isWall(right, top) &&
-		!isWall(left, bottom) && !isWall(right, bottom);
 }

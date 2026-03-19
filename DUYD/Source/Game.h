@@ -28,7 +28,7 @@ public:
 	static const int HEIGHT = 40;
 	static const int WIDTH = 70;
 
-	int area = 4;
+	int area = 0;
 
 	int Scount2 = 0;
 	int Snum = 0;
@@ -38,6 +38,7 @@ public:
 	int size = 64;
 	bool CanMove(int pixelX, int pixelY);
 	bool isWall(int tileX, int tileY);
+	void Create();
 
 private:
 
