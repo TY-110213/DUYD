@@ -4,7 +4,7 @@
 
 class Rocks : public GameObject {
 public:
-    Rocks(int x, int y, int size);
+    Rocks(int x, int y, int size, int area);
     ~Rocks();
     void Update() override;
     void Draw()   override;
@@ -13,10 +13,11 @@ public:
     int GetY() const { return y1; }
 
 private:
+    int area1 = 0;
     int x1 = 0;
     int y1 = 0;
     int size1 = 0;
-    int hImage[6];
+    int hImage[9];
     int num = 0;
     int Random(int min, int max);
 };

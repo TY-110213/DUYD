@@ -3,11 +3,12 @@
 
 class Backs : public GameObject {
 public:
-    Backs(int size);
+    Backs(int size, int area);
     ~Backs();
     void Update() override;
     void Draw() override;
 private:
-    int hImage[7];
+    int hImage[8];
     int size1 = 0;
+    int area1 = 0;
 };

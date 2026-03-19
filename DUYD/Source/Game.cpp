@@ -60,13 +60,13 @@ Game::Game()
 		}
 	}
 
-	new Backs(size);
+	new Backs(size, area);
 
 	for (int i = 0; i < WIDTH; i += 1) {
 		for (int j = 0; j < HEIGHT; j += 1) {
 			if (num[i][j] == 2) {
 				if (Random(0, 2) > 0) {
-					new Rocks(i * size, j * size, size);
+					new Rocks(i * size, j * size, size, area);
 					isRocks = true;
 					num[i][j] = 6;
 				}
@@ -84,7 +84,7 @@ Game::Game()
 					}
 				}
 				if (num[i][j] == 3 || num[i][j] == 4) {
-					new Rocks(i * size, j * size, size);
+					new Rocks(i * size, j * size, size, area);
 					num[i][j] = 6;
 				}
 				isRocks = false;
