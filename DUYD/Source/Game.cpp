@@ -98,7 +98,7 @@ Game::Game()
 
 	isPlayer = false;
 	memcpy(tilegame, num, sizeof(tilegame));
-	new status();
+	//new status();
 
 
 }
@@ -115,6 +115,7 @@ void Game::Update() {
 void Game::Draw() {
 	
 	GlobalStatus::Get().Draw();
+
 }
 
 bool Game::isWall(int tileX, int tileY)

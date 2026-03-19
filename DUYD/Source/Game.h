@@ -15,6 +15,7 @@ enum TileType {
 	TILE_5 = 5,
 	WALL_B = 6,
 };
+
 class GamePlayer;
 
 class Game : public GameObject {
@@ -27,7 +28,7 @@ public:
 	static const int HEIGHT = 40;
 	static const int WIDTH = 70;
 
-	int area = 0;
+	int area = 3;
 
 	int Scount2 = 0;
 	int Snum = 0;
@@ -56,6 +57,5 @@ private:
 	bool isEnemy = false;
 	bool isPlayer = false;
 	bool isPlayer2 = false;
-
 	GamePlayer* gamePlayer = nullptr;
 };

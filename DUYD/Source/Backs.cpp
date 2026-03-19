@@ -40,75 +40,75 @@ void Backs::Draw() {
                 break;
             case 1:
                 if (area1 == 0) {
-                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[2], 0);
+                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[2], 1);
                 }
                 if (area1 == 1) {
-                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[5], 0);
+                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[5], 1);
                 }
                 if (area1 == 2) {
-                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[7], 0);
+                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[7], 1);
                 }
                 if (area1 == 3) {
-                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[9], 0);
+                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[9], 1);
                 }
                 break;
             case 2:
                 if (area1 == 0) {
-                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[0], 0);
+                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[0], 1);
                 }
                 if (area1 == 1) {
-                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[4], 0);
+                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[4], 1);
                 }
                 if (area1 == 2) {
-                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[6], 0);
+                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[6], 1);
                 }
                 if (area1 == 3) {
-                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[8], 0);
+                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[8], 1);
                 }
                 break;
             case 3:
                 if (area1 == 0) {
-                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[0], 0);
+                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[0], 1);
                 }
                 if (area1 == 1) {
-                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[4], 0);
+                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[4], 1);
                 }
                 if (area1 == 2) {
-                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[6], 0);
+                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[6], 1);
                 }
                 if (area1 == 3) {
-                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[8], 0);
+                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[8], 1);
                 }
                 break;
             case 4:
                 if (area1 == 0) {
-                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[0], 0);
+                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[0], 1);
                 }
                 if (area1 == 1) {
-                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[4], 0);
+                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[4], 1);
                 }
                 if (area1 == 2) {
-                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[6], 0);
+                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[6], 1);
                 }
                 if (area1 == 3) {
-                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[8], 0);
+                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[8], 1);
                 }
                 break;
             case 5:
-                DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[3], 0);
+                DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[3], 1);
                 break;
             case 6:
                 if (area1 == 0) {
-                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[0], 0);
+                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[0], 1);
                 }
                 if (area1 == 1) {
-                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[4], 0);
+                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[4], 1);
                 }
                 if (area1 == 2) {
-                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[6], 0);
+                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[6], 1);
                 }
                 if (area1 == 3) {
-                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[8], 0);
+                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[8], 1);
                 }
                 break;
             }
