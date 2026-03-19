@@ -17,7 +17,7 @@ private:
     int x1 = 0;
     int y1 = 0;
     int size1 = 0;
-    int hImage[9];
+    int hImage[12];
     int num = 0;
     int Random(int min, int max);
 };

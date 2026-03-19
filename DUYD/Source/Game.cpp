@@ -70,28 +70,33 @@ Game::Game()
 					isRocks = true;
 					num[i][j] = 6;
 				}
-				// GamePlayer‚ðæ‚É¶¬
+
 				if (!isRocks && !isEnemy && !isPlayer) {
 					isPlayer = true;
+					isPlayer2 = true;
 					gamePlayer = new GamePlayer(i * size, j * size, 32);
 				}
 
-				// GamePlayer‚Æ“¯‚¶ƒ^ƒCƒ‹‚Å‚È‚¯‚ê‚ÎEnemy‚ð¶¬
-				if (Random(0, 5) == 0 && !isRocks && gamePlayer != nullptr) {
+				if (Random(0, 5) == 0 && !isRocks && !isPlayer2) {
 					if (i * size != gamePlayer->GetX() || j * size != gamePlayer->GetY()) {
 						new Enemy(i * size, j * size, size, this, gamePlayer);
 						isEnemy = true;
 					}
 				}
-				if (num[i][j] == 3 || num[i][j] == 4) {
-					new Rocks(i * size, j * size, size, area);
-					num[i][j] = 6;
-				}
+				
 				isRocks = false;
 				isEnemy = false;
+				isPlayer2 = false;
+			}
+
+			if (num[i][j] == 3 || num[i][j] == 4) {
+				new Rocks(i * size, j * size, size, area);
+				num[i][j] = 6;
 			}
 		}
 	}
+
+	isPlayer = false;
 	memcpy(tilegame, num, sizeof(tilegame));
 	new status();
 

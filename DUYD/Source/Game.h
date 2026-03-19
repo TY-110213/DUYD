@@ -27,7 +27,7 @@ public:
 	static const int HEIGHT = 40;
 	static const int WIDTH = 70;
 
-	int area = 2;
+	int area = 0;
 
 	int Scount2 = 0;
 	int Snum = 0;
@@ -35,7 +35,6 @@ public:
 	int num[WIDTH][HEIGHT];
 	int tilegame[WIDTH][HEIGHT];
 	int size = 64;
-	//“G‚Ì“–‚½‚è”»’è‚æ‚¤
 	bool CanMove(int pixelX, int pixelY);
 	bool isWall(int tileX, int tileY);
 
@@ -56,6 +55,7 @@ private:
 	bool isRocks = false;
 	bool isEnemy = false;
 	bool isPlayer = false;
+	bool isPlayer2 = false;
 
 	GamePlayer* gamePlayer = nullptr;
 };
