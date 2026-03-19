@@ -8,7 +8,7 @@ public:
     void Update() override;
     void Draw() override;
 private:
-    int hImage[10];
+    int hImage[12];
     int size1 = 0;
     int area1 = 0;
 };

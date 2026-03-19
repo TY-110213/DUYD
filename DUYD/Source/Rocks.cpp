@@ -16,6 +16,10 @@ Rocks::Rocks(int x, int y, int size, int area)
     hImage[9] = LoadGraph("data/map/stone_3.png");
     hImage[10] = LoadGraph("data/map/oxygen_ore_3.png");
     hImage[11] = LoadGraph("data/map/reinforced_ore_3.png");
+    hImage[12] = LoadGraph("data/map/stone_4.png");
+    hImage[13] = LoadGraph("data/map/oxygen_ore_4.png");
+    hImage[14] = LoadGraph("data/map/reinforced_ore_4.png");
+
     num = Random(0, 9);
     if (num == 9) {
         num = Random(0, 1);
@@ -52,6 +56,9 @@ void Rocks::Draw() {
         if (area1 == 3) {
             DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[10], 1);
         }
+        if (area1 == 4) {
+            DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[13], 1);
+        }
         break;
     case 1:
         if (area1 == 0) {
@@ -66,6 +73,9 @@ void Rocks::Draw() {
         if (area1 == 3) {
             DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[11], 1);
         }
+        if (area1 == 4) {
+            DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[14], 1);
+        }
         break;
     default:
         if (area1 == 0) {
@@ -79,6 +89,9 @@ void Rocks::Draw() {
         }
         if (area1 == 3) {
             DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[9], 1);
+        }
+        if (area1 == 4) {
+            DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[12], 1);
         }
         break;
     }

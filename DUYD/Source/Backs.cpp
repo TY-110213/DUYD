@@ -14,6 +14,8 @@ Backs::Backs(int size, int area)
     hImage[7] = LoadGraph("data/map/wall_2.png");
     hImage[8] = LoadGraph("data/map/floor_3.png");
     hImage[9] = LoadGraph("data/map/wall_3.png");
+    hImage[10] = LoadGraph("data/map/floor_4.png");
+    hImage[11] = LoadGraph("data/map/ruins_wall_4.png");
 	size1 = size;
     area1 = area;
 }
@@ -51,6 +53,9 @@ void Backs::Draw() {
                 if (area1 == 3) {
                     DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[9], 1);
                 }
+                if (area1 == 4) {
+                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[11], 1);
+                }
                 break;
             case 2:
                 if (area1 == 0) {
@@ -64,6 +69,9 @@ void Backs::Draw() {
                 }
                 if (area1 == 3) {
                     DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[8], 1);
+                }
+                if (area1 == 4) {
+                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[10], 1);
                 }
                 break;
             case 3:
@@ -79,6 +87,9 @@ void Backs::Draw() {
                 if (area1 == 3) {
                     DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[8], 1);
                 }
+                if (area1 == 4) {
+                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[10], 1);
+                }
                 break;
             case 4:
                 if (area1 == 0) {
@@ -92,6 +103,9 @@ void Backs::Draw() {
                 }
                 if (area1 == 3) {
                     DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[8], 1);
+                }
+                if (area1 == 4) {
+                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[10], 1);
                 }
                 break;
             case 5:
@@ -109,6 +123,9 @@ void Backs::Draw() {
                 }
                 if (area1 == 3) {
                     DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[8], 1);
+                }
+                if (area1 == 4) {
+                    DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[10], 1);
                 }
                 break;
             }
