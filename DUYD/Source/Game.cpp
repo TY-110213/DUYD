@@ -98,7 +98,7 @@ Game::Game()
 
 	isPlayer = false;
 	memcpy(tilegame, num, sizeof(tilegame));
-	//new status();
+	new status();
 
 
 }
