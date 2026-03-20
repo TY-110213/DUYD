@@ -1,6 +1,7 @@
 #pragma once
 #include "../Library/GameObject.h"
 #include "IMap.h"
+#include <vector>
 
 class GamePlayer;
 class Game;
@@ -24,7 +25,22 @@ private:
 	float animTimer = 0.0f;
 	static constexpr float ANIM_INTERVAL = 0.2f;
 
-	static constexpr float DETECT_RANGE = 1000.0f; // 検知範囲
+	static constexpr float DETECT_RANGE = 200.0f; // 検知範囲
 	static constexpr float SPEED = 60.0f;          // 移動速度
 	static constexpr int SPRITE_SIZE = 64;
-};
+
+	//A*アルゴリズム用
+	struct Node {
+		int x, y;//タイル座標
+		float g;//スタートからのコスト
+		float h;//ゴールまでのコスト
+		float f;//g + h
+		int parentX, parentY; //親ノードの座標
+	};
+
+		std::vector<std::pair<int, int>> path;  // 経路（タイル座標のリスト）
+		int pathTimer = 0;                       // 経路再計算タイマー
+		static constexpr int PATH_INTERVAL = 30; // 30フレームごとに再計算
+		// A*経路探索　調べる
+		void CalcPath(int startX, int startY, int goalX, int goalY);
+	};
