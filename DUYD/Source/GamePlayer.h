@@ -29,6 +29,8 @@ private:
     int count = 0;
     int count2 = 1;
     int count3 = 0;
+    int count4 = 0;
+    bool isBreak = false;
     bool move = false;
     Game* game;
     Direction dir = DOWN;

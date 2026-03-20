@@ -94,32 +94,46 @@ void GamePlayer::Update()
         py = (float)((top + 1) * game->size);
 
     // 左クリックで向いている方向の岩を壊す
-    if (GetMouseInput() & MOUSE_INPUT_LEFT) {
-        int tileX = (int)(px / game->size);
-        int tileY = (int)(py / game->size);
+    if (!isBreak) {
+        if (GetMouseInput() & MOUSE_INPUT_LEFT) {
+            int tileX = (int)((px + 20) / game->size);
+            int tileY = (int)((py + 20) / game->size);
 
-        switch (dir) {
-        case UP:    tileY -= 1; break;
-        case DOWN:  tileY += 1; break;
-        case LEFT:  tileX -= 1; break;
-        case RIGHT: tileX += 1; break;
-        }
+            switch (dir) {
+            case UP:    tileY -= 1; break;
+            case DOWN:  tileY += 1; break;
+            case LEFT:  tileX -= 1; break;
+            case RIGHT: tileX += 1; break;
+            }
 
-        if (tileX >= 0 && tileX < game->WIDTH &&
-            tileY >= 0 && tileY < game->HEIGHT &&
-            game->tilegame[tileX][tileY] == 6) {
+            if (tileX >= 0 && tileX < game->WIDTH &&
+                tileY >= 0 && tileY < game->HEIGHT &&
+                game->tilegame[tileX][tileY] == 6) {
 
-            game->tilegame[tileX][tileY] = 2;
+                game->tilegame[tileX][tileY] = 2;
 
-            // 全ての岩から該当座標のものを探して削除
-            std::list<Rocks*> rocksList = FindGameObjects<Rocks>();
-            for (Rocks* rocks : rocksList) {
-                if (rocks->GetX() == tileX * game->size &&
-                    rocks->GetY() == tileY * game->size) {
-                    rocks->DestroyMe();
-                    break;
+                // 全ての岩から該当座標のものを探して削除
+                std::list<Rocks*> rocksList = FindGameObjects<Rocks>();
+                for (Rocks* rocks : rocksList) {
+                    if (rocks->GetX() == tileX * game->size &&
+                        rocks->GetY() == tileY * game->size) {
+                        rocks->DestroyMe();
+                        break;
+                    }
                 }
             }
+
+            isBreak = true;
+
+        }
+    }
+    
+
+    if (isBreak) {
+        count4 += 1;
+        if (count4 == 20) {
+            isBreak = false;
+            count4 = 0;
         }
     }
 
