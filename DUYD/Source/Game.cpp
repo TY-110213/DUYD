@@ -122,6 +122,7 @@ void Game::Create()
 	//memcpy(tilegame, num, sizeof(tilegame));
 
 	Snum = Random(1, Scount);
+	Snum2 = Random(1, Scount - 1);
 
 	bool found = false;
 	for (int i = 0; i < WIDTH && !found; i += 1) {
@@ -133,22 +134,27 @@ void Game::Create()
 					isSteps = true;
 					found = true;
 					Scount = 0;
-					Scount2 = 0;
+					
 				}
 			}
 		}
 	}
 
+	Scount2 = 0;
+
 	for (int i = 0; i < WIDTH; i += 1) {
 		for (int j = 0; j < HEIGHT; j += 1) {
 			if (num[i][j] == 2) {
-				if (Random(0, 2) > 0) {
+
+				Scount2 += 1;
+
+				if (Random(0, 2) > 0 && Scount2 != Snum2) {
 					new Rocks(i * size, j * size, size, area);
 					isRocks = true;
 					num[i][j] = 6;
 				}
 
-				if (!isRocks && !isEnemy && !isPlayer) {
+				if (Scount2 == Snum2 && !isPlayer) {
 					isPlayer = true;
 					isPlayer2 = true;
 					if (area == 1) {
@@ -179,6 +185,8 @@ void Game::Create()
 			}
 		}
 	}
+
+	Scount2 = 0;
 
 	isPlayer = false;
 	memcpy(tilegame, num, sizeof(tilegame));
