@@ -12,7 +12,7 @@ GamePlayer::GamePlayer(float x, float y, int size1)
     size = size1;
     width = size;
     height = size;
-    hImage = LoadGraph("data/sample/âÊëú1.png");
+    hImage = LoadGraph("data/character/player.png");
     game = (nullptr);
 }
 
@@ -26,11 +26,46 @@ void GamePlayer::Update()
     float dx = 0.0f;
     float dy = 0.0f;
 
-    // à⁄ìÆÇ∆å¸Ç´ÇÃçXêV
-    if (CheckHitKey(KEY_INPUT_W)) { dy -= 1.0f; dir = UP; }
-    if (CheckHitKey(KEY_INPUT_S)) { dy += 1.0f; dir = DOWN; }
-    if (CheckHitKey(KEY_INPUT_A)) { dx -= 1.0f; dir = LEFT; }
-    if (CheckHitKey(KEY_INPUT_D)) { dx += 1.0f; dir = RIGHT; }
+    move = false;
+
+    if (CheckHitKey(KEY_INPUT_W)) { 
+        dy -= 1.0f;
+        dir = UP; 
+        move = true;
+        count3 = 3;
+    }
+    if (CheckHitKey(KEY_INPUT_S)) {
+        dy += 1.0f;
+        dir = DOWN; 
+        move = true;
+        count3 = 0;
+    }
+    if (CheckHitKey(KEY_INPUT_A)) { 
+        dx -= 1.0f;
+        dir = LEFT;
+        move = true;
+        count3 = 1;
+    }
+    if (CheckHitKey(KEY_INPUT_D)) {
+        dx += 1.0f;
+        dir = RIGHT; 
+        move = true;
+        count3 = 2;
+    }
+
+    if (move == true) {
+        count += 1;
+        if (count == 15) {
+            count2 += 1;
+            count = 0;
+        }
+        if (count2 == 3) {
+            count2 = 0;
+        }
+    }
+    else {
+        count2 = 1;
+    }
 
     // --- Xé≤ÇÃà⁄ìÆÇ∆ìñÇΩÇËîªíË ---
     px += dx;
@@ -116,7 +151,8 @@ void GamePlayer::Draw()
 {
     int screenX = (int)(px - Camera::GetOffsetX());
     int screenY = (int)(py - Camera::GetOffsetY());
-    DrawExtendGraph(screenX, screenY, screenX + size, screenY + size, hImage, 1);
+    //DrawExtendGraph(screenX, screenY, screenX + size, screenY + size, hImage, 1);
+    DrawRectExtendGraph(screenX, screenY - 5, screenX + 60, screenY + 60 - 5, count2 * 64, count3 * 64, 64, 64, hImage, 1);
 }
 
 void GamePlayer::SetMap(Game* m)

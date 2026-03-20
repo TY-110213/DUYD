@@ -152,7 +152,7 @@ void Game::Create()
 					isPlayer = true;
 					isPlayer2 = true;
 					if (area == 0) {
-						gamePlayer = new GamePlayer(i * size, j * size, 32);
+						gamePlayer = new GamePlayer(i * size, j * size, 46);
 					}
 					else {
 						GamePlayer* gameplayer = FindGameObject<GamePlayer>();

@@ -26,6 +26,10 @@ private:
     float width = 0;
     float height = 0;
     int size = 0;
+    int count = 0;
+    int count2 = 1;
+    int count3 = 0;
+    bool move = false;
     Game* game;
     Direction dir = DOWN;
 };
