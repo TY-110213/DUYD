@@ -78,7 +78,7 @@ int Game::Random(int min, int max) {
 //“G‚Ì“–‚½‚è”»’è•Ç
 bool Game::CanMove(int pixelX, int pixelY)
 {
-	const int enemySize = 64;  // “G‚ÌƒTƒCƒY
+	const int enemySize = 48;  // “G‚ÌƒTƒCƒY
 	int left = pixelX / size;
 	int right = (pixelX + enemySize - 1) / size;
 	int top = pixelY / size;
@@ -163,7 +163,7 @@ void Game::Create()
 
 				if (Random(0, 5) == 0 && !isRocks && !isPlayer2) {
 					if (i * size != gamePlayer->GetX() || j * size != gamePlayer->GetY()) {
-						new Enemy(i * size, j * size, size, this, gamePlayer);
+						new Enemy(i * size, j * size, 48, this, gamePlayer);
 						isEnemy = true;
 					}
 				}

@@ -188,8 +188,10 @@ void Enemy::Update() {
 		if (!path.empty())
 		{
 			// 次のタイルのピクセル座標
-			float targetX = path[0].first * gameRef->size + gameRef->size / 2.0f;
-			float targetY = path[0].second * gameRef->size + gameRef->size / 2.0f;
+			float offset = (gameRef->size - 48) / 2.0f;  // タイルと敵の差の半分
+			float targetX = path[0].first * gameRef->size + offset;
+			float targetY = path[0].second * gameRef->size + offset;
+
 
 			float tdx = targetX - Ex;
 			float tdy = targetY - Ey;
@@ -235,7 +237,7 @@ void Enemy::Draw() {
 
 	DrawExtendGraph(
 		screenX, screenY,
-		screenX + Esize, screenY + Esize,
+		screenX + 48, screenY + 48,
 		frameImage[animFrame], TRUE
 	);
 	

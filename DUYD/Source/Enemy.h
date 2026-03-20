@@ -25,7 +25,7 @@ private:
 	float animTimer = 0.0f;
 	static constexpr float ANIM_INTERVAL = 0.2f;
 
-	static constexpr float DETECT_RANGE = 200.0f; // ŒŸ’m”ÍˆÍ
+	static constexpr float DETECT_RANGE = 1000.0f; // ŒŸ’m”ÍˆÍ
 	static constexpr float SPEED = 60.0f;          // ˆÚ“®‘¬“x
 	static constexpr int SPRITE_SIZE = 64;
 
