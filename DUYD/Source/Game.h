@@ -28,7 +28,7 @@ public:
 	static const int HEIGHT = 40;
 	static const int WIDTH = 70;
 
-	int area = 0;
+	int area = 1;
 
 	int Scount2 = 0;
 	int Snum = 0;

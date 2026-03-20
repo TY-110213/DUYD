@@ -151,7 +151,7 @@ void Game::Create()
 				if (!isRocks && !isEnemy && !isPlayer) {
 					isPlayer = true;
 					isPlayer2 = true;
-					if (area == 0) {
+					if (area == 1) {
 						gamePlayer = new GamePlayer(i * size, j * size, 46);
 					}
 					else {
@@ -182,7 +182,7 @@ void Game::Create()
 
 	isPlayer = false;
 	memcpy(tilegame, num, sizeof(tilegame));
-	if (area == 0) {
+	if (area == 1) {
 		new status();
 	}
 

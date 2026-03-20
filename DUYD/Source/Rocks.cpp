@@ -27,7 +27,7 @@ Rocks::Rocks(int x, int y, int size, int area)
     y1 = y;
     x1 = x;
     size1 = size;
-    area1 = area;
+    area1 = (area - 1) / 20;
 }
 
 Rocks::~Rocks()

@@ -21,6 +21,9 @@ Backs::Backs(int size)
 
 Backs::~Backs()
 {
+    for (int i = 0; i < 12; i += 1) {
+        DeleteGraph(hImage[i]);
+    }
 }
 
 void Backs::Update() {
@@ -29,7 +32,7 @@ void Backs::Update() {
 
 void Backs::Draw() {
     Game* game = FindGameObject<Game>();
-    area1 = game->area;
+    area1 = (game->area - 1) / 20;
     for (int i = 0; i < game->WIDTH; i += 1) {
         for (int j = 0; j < game->HEIGHT; j += 1) {
 
