@@ -78,7 +78,7 @@ int Game::Random(int min, int max) {
 //敵の当たり判定壁
 bool Game::CanMove(int pixelX, int pixelY)
 {
-	const int enemySize = 32;  // 敵のサイズ
+	const int enemySize = 64;  // 敵のサイズ
 	int left = pixelX / size;
 	int right = (pixelX + enemySize - 1) / size;
 	int top = pixelY / size;
