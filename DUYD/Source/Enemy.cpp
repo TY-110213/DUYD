@@ -3,6 +3,7 @@
 #include "Game.h"
 #include "GamePlayer.h"
 #include "../Library/Time.h"
+#include "GlobalStatus.h"
 #include <cmath>
 #include <algorithm>
 #include <vector>
@@ -13,6 +14,17 @@ Enemy::Enemy(float x, float y, int size, Game* game, GamePlayer* player)
 	Ex = x;
 	Ey = y;
 	Esize = size;
+	//¡‚ª‰½ŠK‘w‚©æ“¾‚·‚é
+	int n = GlobalStatus::Get().GetBF();
+
+	//HP = 3 x 1.015n
+	HP = 3.0f * std::pow(1.015f, (float)n);
+
+	//STG = 0.7 x n
+	STG = 0.7f * n;
+
+	// AGR = 0.2 x n
+	AGR = 0.2f * n;
 
 	// ‰æ‘œ‘S‘Ì‚ğ“Ç‚İ‚Ş
 	hImage = LoadGraph("data/character/enemy.png");
@@ -197,7 +209,7 @@ void Enemy::Update() {
 			float tdy = targetY - Ey;
 			float tdist = std::sqrt(tdx * tdx + tdy * tdy);
 
-			float speed = SPEED * Time::DeltaTime();
+			float speed = AGR * 60.0f * Time::DeltaTime();
 
 			if (tdist <= speed)
 			{
