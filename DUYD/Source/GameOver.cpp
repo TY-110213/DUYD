@@ -28,5 +28,6 @@ void GameOver::Draw()
 	else {
 		//3Œ…ˆÈã‚ÌŽž‚Ì•\Ž¦ˆÊ’uC³—p
 	}
+	DrawFormatString(1245, 751, GetColor(0, 0, 0), "%01d", game->BreakRocks);
 	SetFontSize(15);
 }

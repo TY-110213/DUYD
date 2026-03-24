@@ -118,6 +118,7 @@ void GamePlayer::Update()
                     if (rocks->GetX() == tileX * game->size &&
                         rocks->GetY() == tileY * game->size) {
                         rocks->DestroyMe();
+                        game->BreakRocks += 1;
                         break;
                     }
                 }

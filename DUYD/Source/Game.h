@@ -30,6 +30,8 @@ public:
 
 	int area = 1;
 
+	int BreakRocks = 0;
+
 	bool gameover = false;
 
 	int Scount2 = 0;
