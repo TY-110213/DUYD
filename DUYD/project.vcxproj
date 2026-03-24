@@ -151,6 +151,7 @@
     <ClInclude Include="Library\SceneBase.h" />
     <ClInclude Include="Library\SceneManager.h" />
     <ClInclude Include="Library\Time.h" />
+    <ClInclude Include="ScoreManager.h" />
     <ClInclude Include="Source\Backs.h" />
     <ClInclude Include="Source\BootScene.h" />
     <ClInclude Include="Source\Camera.h" />

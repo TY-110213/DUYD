@@ -163,6 +163,9 @@
     <ClInclude Include="Source\GameOver.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
+    <ClInclude Include="ScoreManager.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Library">

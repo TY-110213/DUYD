@@ -9,5 +9,5 @@ public:
 	void Draw() override;
 
 private:
-	int hImage = 0;
+	int hImage[2];
 };
