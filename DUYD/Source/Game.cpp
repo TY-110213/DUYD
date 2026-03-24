@@ -154,7 +154,7 @@ void Game::Create()
 					num[i][j] = 6;
 				}
 
-				if (!isPlayer) {
+				if (!isPlayer && !isRocks) {
 					isPlayer = true;
 					isPlayer2 = true;
 					if (area == 1) {
