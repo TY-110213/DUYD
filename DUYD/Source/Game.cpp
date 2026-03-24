@@ -146,7 +146,7 @@ void Game::Create()
 				}
 				if (Scount2 == Snum2 && !found2) {
 					if (area == 1) {
-						gamePlayer = new GamePlayer(i * size, j * size, 46);
+						gamePlayer = new GamePlayer(i * size, j * size, 44);
 					}
 					else {
 						GamePlayer* gameplayer = FindGameObject<GamePlayer>();

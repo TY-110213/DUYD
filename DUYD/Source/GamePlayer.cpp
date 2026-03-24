@@ -137,8 +137,8 @@ void GamePlayer::Update()
         }
     }
 
-    int tileX = (int)(px / game->size);
-    int tileY = (int)(py / game->size);
+    int tileX = (int)((px + 20) / game->size);
+    int tileY = (int)((py + 20) / game->size);
 
     if (game->tilegame[tileX][tileY] == 5) {
         isStairs = true;
