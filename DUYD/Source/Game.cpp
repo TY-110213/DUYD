@@ -23,6 +23,7 @@ Game::~Game()
 }
 
 void Game::Update() {
+	GlobalStatus::Get().Update();
 	GamePlayer* gameplayer = FindGameObject<GamePlayer>();
 	Camera::Update(gameplayer->px, gameplayer->py);
 
@@ -126,30 +127,17 @@ void Game::Create()
 	Snum = Random(1, Scount);
 	Snum2 = Random(1, Scount - 1);
 
-	int pi = 0;
-	int pj = 0;
 	bool found = false;
-	bool found2 = false;
-	for (int i = 0; i < WIDTH && !(found && found2); i += 1) {
-		for (int j = 0; j < HEIGHT && !(found && found2); j += 1) {
+	for (int i = 0; i < WIDTH && !found; i += 1) {
+		for (int j = 0; j < HEIGHT && !found; j += 1) {
 			if (num[i][j] == 2) {
 				Scount2 += 1;
-				if (Scount2 == Snum && !found) {
+				if (Scount2 == Snum && !isSteps) {
 					num[i][j] = 5;
+					isSteps = true;
 					found = true;
-				}
-				if (Scount2 == Snum2 && !found2) {
-					if (area == 1) {
-						gamePlayer = new GamePlayer(i * size, j * size, 46);
-					}
-					else {
-						GamePlayer* gameplayer = FindGameObject<GamePlayer>();
-						gameplayer->px = (float)(i * size);
-						gameplayer->py = (float)(j * size);
-					}
-					pi = i;
-					pj = j;
-					found2 = true;
+					Scount = 0;
+					
 				}
 			}
 		}
@@ -163,13 +151,26 @@ void Game::Create()
 
 				Scount2 += 1;
 
-				if (Random(0, 2) > 0 && Scount2 != Snum2 && i != pi && j != pj) {
+				if (Random(0, 2) > 0 && Scount2 != Snum2) {
 					new Rocks(i * size, j * size, size, area);
 					isRocks = true;
 					num[i][j] = 6;
 				}
 
-				if (Random(0, 5) == 0 && !isRocks && i != pi && j != pj) {
+				if (!isPlayer) {
+					isPlayer = true;
+					isPlayer2 = true;
+					if (area == 1) {
+						gamePlayer = new GamePlayer(i * size, j * size, 46);
+					}
+					else {
+						GamePlayer* gameplayer = FindGameObject<GamePlayer>();
+						gameplayer->px = (float)(i * size);
+						gameplayer->py = (float)(j * size);
+					}
+				}
+
+				if (Random(0, 5) == 0 && !isRocks && !isPlayer2) {
 					if (i * size != gamePlayer->GetX() || j * size != gamePlayer->GetY()) {
 						new Enemy(i * size, j * size, 48, this, gamePlayer);
 						isEnemy = true;
@@ -178,6 +179,7 @@ void Game::Create()
 
 				isRocks = false;
 				isEnemy = false;
+				isPlayer2 = false;
 			}
 
 			if (num[i][j] == 3 || num[i][j] == 4) {
@@ -188,11 +190,13 @@ void Game::Create()
 	}
 
 	Scount2 = 0;
-	Scount = 0;
 
+	isPlayer = false;
 	memcpy(tilegame, num, sizeof(tilegame));
 	/*if (area == 1) {
 		new status();
 	}*/
+
+	isSteps = false;
 
 }
