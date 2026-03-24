@@ -33,6 +33,17 @@ private:
 	static constexpr float DETECT_RANGE = 1000.0f; // 検知範囲
 	       // 移動速度
 	static constexpr int SPRITE_SIZE = 64;
+	//攻撃関連
+	float attackTimer = 0.0f;
+	static constexpr float ATTACK_COOLDOWN = 3.0f;//攻撃間隔
+	static constexpr float ATTACK_RANGE = 60.0f;//リーチ
+
+	//たいあたりごの予備動作的な
+	float knockbackX = 0.0f;
+	float knockbackY = 0.0f;
+	float knockbackTimer = 0.0f;
+	static constexpr float KNOCKBACK_DURATION = 0.2f;//ノックバック時間
+	static constexpr float KNOCKBACK_SPEED = 100.0f;
 
 	//A*アルゴリズム用
 	struct Node {

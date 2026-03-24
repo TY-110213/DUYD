@@ -202,58 +202,86 @@ void Enemy::Update() {
 	//敵とプレイヤーの距離を計算
 	float dist = std::sqrt(diffX * diffX + diffY * diffY);
 
-	if (dist <= DETECT_RANGE && dist > 0.0f)
-	{
-		// 数フレームごとに経路を再計算
-		pathTimer++;
-		if (pathTimer >= PATH_INTERVAL)
+	//ノックバック中は指導処理なし
+	if (knockbackTimer > 0.0f) {
+		knockbackTimer -= Time::DeltaTime();
+
+		float nx = Ex + knockbackX * KNOCKBACK_SPEED * Time::DeltaTime();
+		float ny = Ey + knockbackY * KNOCKBACK_SPEED * Time::DeltaTime();
+
+		//壁にあたるか
+		if (gameRef->CanMove((int)nx, (int)Ey))Ex = nx;
+		if (gameRef->CanMove((int)Ex, (int)ny))Ey = ny;
+	}
+	else {
+		if (dist <= DETECT_RANGE && dist > 0.0f)
 		{
-			pathTimer = 0;
-
-			// タイル座標に変換
-			int startX = (int)(Ex / gameRef->size);
-			int startY = (int)(Ey / gameRef->size);
-			int goalX = (int)(px / gameRef->size);
-			int goalY = (int)(py / gameRef->size);
-
-			CalcPath(startX, startY, goalX, goalY);
-		}
-		if (!path.empty())
-		{
-			// 次のタイルのピクセル座標
-			float offset = (gameRef->size - 48) / 2.0f;  // タイルと敵の差の半分
-			float targetX = path[0].first * gameRef->size + offset;
-			float targetY = path[0].second * gameRef->size + offset;
-
-
-			float tdx = targetX - Ex;
-			float tdy = targetY - Ey;
-			float tdist = std::sqrt(tdx * tdx + tdy * tdy);
-
-			float speed = AGR * 60.0f * Time::DeltaTime();
-
-			if (tdist <= speed)
+			// 数フレームごとに経路を再計算
+			pathTimer++;
+			if (pathTimer >= PATH_INTERVAL)
 			{
-				if (gameRef->CanMove((int)targetX, (int)targetY))
-				{
-					Ex = targetX;
-					Ey = targetY;
-				}
-				path.erase(path.begin());
-				
+				pathTimer = 0;
+
+				// タイル座標に変換
+				int startX = (int)(Ex / gameRef->size);
+				int startY = (int)(Ey / gameRef->size);
+				int goalX = (int)(px / gameRef->size);
+				int goalY = (int)(py / gameRef->size);
+
+				CalcPath(startX, startY, goalX, goalY);
 			}
-			else
+			if (!path.empty())
 			{
-			float nextX =	Ex + (tdx / tdist) * speed;
-			float nextY =	Ey + (tdy / tdist) * speed;
+				// 次のタイルのピクセル座標
+				float offset = (gameRef->size - 48) / 2.0f;  // タイルと敵の差の半分
+				float targetX = path[0].first * gameRef->size + offset;
+				float targetY = path[0].second * gameRef->size + offset;
 
-			if (gameRef->CanMove((int)nextX, (int)Ey))
-				Ex = nextX;
-			if (gameRef->CanMove((int)Ex, (int)nextY))
-				Ey = nextY;
+
+				float tdx = targetX - Ex;
+				float tdy = targetY - Ey;
+				float tdist = std::sqrt(tdx * tdx + tdy * tdy);
+
+				float speed = AGR * 60.0f * Time::DeltaTime();
+
+				if (tdist <= speed)
+				{
+					if (gameRef->CanMove((int)targetX, (int)targetY))
+					{
+						Ex = targetX;
+						Ey = targetY;
+					}
+					path.erase(path.begin());
+
+				}
+				else
+				{
+					float nextX = Ex + (tdx / tdist) * speed;
+					float nextY = Ey + (tdy / tdist) * speed;
+
+					if (gameRef->CanMove((int)nextX, (int)Ey))
+						Ex = nextX;
+					if (gameRef->CanMove((int)Ex, (int)nextY))
+						Ey = nextY;
+				}
 			}
 		}
 	}
+	attackTimer -= Time::DeltaTime();
+
+	if (dist <= ATTACK_RANGE && attackTimer <= 0.0f)
+	{
+		GlobalStatus::Get().TakeDamage((int)STG);
+
+		// 敵自身をプレイヤーと逆方向にノックバック
+		knockbackX = -(diffX / dist);
+		knockbackY = -(diffY / dist);
+		knockbackTimer = KNOCKBACK_DURATION;
+
+		// クールタイムリセット
+		attackTimer = ATTACK_COOLDOWN;
+	}
+	
 	// アニメーション更新
 	animTimer += Time::DeltaTime();
 	if (animTimer >= ANIM_INTERVAL)
