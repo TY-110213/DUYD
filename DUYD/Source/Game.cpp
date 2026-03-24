@@ -5,6 +5,7 @@
 #include "Enemy.h"
 #include "GamePlayer.h"
 #include "status.h"
+#include "StatusDrawer.h"
 #include <random>
 #include <cstring>
 #include <list>
@@ -13,6 +14,7 @@
 Game::Game()
 {
 	new Backs(size);
+	new StatusDrawer();
 	Create();
 }
 
@@ -56,7 +58,7 @@ void Game::Update() {
 
 void Game::Draw() {
 	
-	GlobalStatus::Get().Draw();
+	//GlobalStatus::Get().Draw();
 
 }
 
@@ -189,8 +191,8 @@ void Game::Create()
 	Scount = 0;
 
 	memcpy(tilegame, num, sizeof(tilegame));
-	if (area == 1) {
+	/*if (area == 1) {
 		new status();
-	}
+	}*/
 
 }
