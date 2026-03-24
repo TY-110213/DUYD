@@ -74,7 +74,6 @@ if (throwCoolTimer > 0.0f) throwCoolTimer -= Time::DeltaTime();
 	
 
 	bool currentHKEY = CheckHitKey(KEY_INPUT_H) != 0;
-
 	if (currentHKEY && !prevHKey && statusRef != nullptr) {
 		statusRef->ToggleUpgradeScreen();
 	}

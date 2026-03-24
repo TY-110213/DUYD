@@ -10,7 +10,7 @@ class Stone;
 class Player : public GameObject
 {
 public:
-	Player(IMap* map,float startX = 100.f,float startY = 100.f); // コンストラクター（TUTマップへの参照を受け取る）
+	Player(IMap* map,float startX = 300.f,float startY = 300.f); // コンストラクター（TUTマップへの参照を受け取る）
 	~Player(); // デストラクター（最後に１回呼ばれる）
 	void Update() override; // 毎フレーム呼ばれる　計算
 	// 毎フレーム呼ばれる　描画
@@ -19,7 +19,6 @@ public:
 	int GetY() const { return y; }
 
 	void SetStatusReference(status* statusPtr);
-
 	
 private:
 	// メンバー変数（プレイヤーを処理するのに必要な変数）

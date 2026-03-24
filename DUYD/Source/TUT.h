@@ -36,6 +36,7 @@ private:
     int horuImage;
     int kyoukaImage;
     int stairImage;
+    int null;
     int mapData[MAP_HEIGHT][MAP_WIDTH];
     Player* player;
     status* statusUI;
@@ -49,12 +50,14 @@ private:
     int imageHandle_0;
     int imageHandle_1;
     int imageHandle_2;
-    
+    int imageHandle_3;
+    int telopHidden;
+    int checkCount ;
     // --- 説明PNG管理 ---
     // 説明用PNGハンドル
-    int imageHandle_3 = LoadGraph("data/screen/テロップ10.png");
-    int imageHandle_4 = LoadGraph("data/screen/テロップ11.png");
-    int imageHandle_5 = LoadGraph("data/screen/テロップ12.png");
+    int imageHandle_4 = LoadGraph("data/screen/テロップ10.png");
+    int imageHandle_5 = LoadGraph("data/screen/テロップ11.png");
+    int imageHandle_6 = LoadGraph("data/screen/テロップ12.png");
 
     bool horuTelopShown;       // 石：初回表示済みフラグ
     bool caveTelopShown;       // 酸素鉱石：初回表示済みフラグ

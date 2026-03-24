@@ -27,7 +27,7 @@ void TUT::DigTile(int pixelX, int pixelY)
             // 酸素鉱石：初回破壊でテロップ4表示
             if (!caveTelopShown) {
                 caveTelopShown = true;
-                activeTelopHandle = imageHandle_4;
+                activeTelopHandle = imageHandle_5;
             }
         }
         else if (mapData[tileY][tileX] == 3)
@@ -35,7 +35,7 @@ void TUT::DigTile(int pixelX, int pixelY)
             // 石：初回破壊でテロップ3表示
             if (!horuTelopShown) {
                 horuTelopShown = true;
-                activeTelopHandle = imageHandle_3;
+                activeTelopHandle = imageHandle_4;
             }
         }
         else if (mapData[tileY][tileX] == 4)
@@ -43,7 +43,7 @@ void TUT::DigTile(int pixelX, int pixelY)
             // 強化鉱石：初回破壊でテロップ5表示
             if (!kyoukaTelopShown) {
                 kyoukaTelopShown = true;
-                activeTelopHandle = imageHandle_5;
+                activeTelopHandle = imageHandle_6;
             }
         }
          // 床に変更
@@ -72,6 +72,7 @@ int TUT::GetTileType(int pixelX, int pixelY)
 
 TUT::TUT()
 {
+    
     player = new Player(this); // thisポインタを渡してマップへのアクセスを可能に
     statusUI = &GlobalStatus::Get();
     player->SetStatusReference(statusUI);
@@ -81,10 +82,14 @@ TUT::TUT()
     horuImage = LoadGraph("data/map/stone.png");
     kyoukaImage = LoadGraph("data/map/reinforced_ore.png");
     stairImage = LoadGraph("data/map/stairs.png");
+    null = LoadGraph("data/map/null_block");
 
     imageHandle_0 = LoadGraph("data/screen/テロップ0.png");
     imageHandle_1 = LoadGraph("data/screen/テロップ1.png");
     imageHandle_2 = LoadGraph("data/screen/テロップ2.png");
+    imageHandle_3 = LoadGraph("data/screen/テロップ4.png");
+    telopHidden = TRUE;
+    checkCount = 0;
     // マップデータを初期化（全て壁にしておく）
     for (int y = 0; y < MAP_HEIGHT; y++) {
         for (int x = 0; x < MAP_WIDTH; x++) {
@@ -117,9 +122,14 @@ TUT::~TUT()
     DeleteGraph(wallImage);
     DeleteGraph(caveImage);  
     DeleteGraph(horuImage);  
+    DeleteGraph(null);
     DeleteGraph(imageHandle_0);
     DeleteGraph(imageHandle_1);
     DeleteGraph(imageHandle_2);
+    DeleteGraph(imageHandle_3);
+    DeleteGraph(imageHandle_4);
+    DeleteGraph(imageHandle_5);
+    DeleteGraph(imageHandle_6);
 }
 
 void TUT::LoadMapFromCSV(const char* filename)
@@ -237,6 +247,10 @@ void TUT::Draw()
             {
                 DrawGraph(drawX, drawY, stairImage, TRUE);
             }
+            else if (mapData[y][x] == 6)
+            {
+                DrawGraph(drawX, drawY,null, TRUE);
+            }
             else {
                 DrawBox(drawX, drawY, drawX + TILE_SIZE, drawY + TILE_SIZE, GetColor(0, 0, 0), TRUE);
             }
@@ -258,9 +272,27 @@ void TUT::Draw()
     }
 
     //テロップ表示
-    DrawGraph(100 - cameraX, 500, imageHandle_0, TRUE);
-    DrawGraph(680 - cameraX, 120, imageHandle_1, TRUE);
-    DrawGraph(680 - cameraX, 400, imageHandle_2, TRUE);
+    if (CheckHitKey(KEY_INPUT_H) && checkCount==0)
+    {
+        telopHidden = FALSE;
+        checkCount = 1;
+    }
+    else if (CheckHitKey(KEY_INPUT_H) && checkCount == 1)
+    {
+        telopHidden = TRUE;
+        checkCount = 0;
+    }
+    if(telopHidden==TRUE)
+    {
+        DrawGraph(300 - cameraX, 650 - cameraY, imageHandle_0, TRUE);//「WASDで移動」
+        DrawGraph(850 - cameraX, 300 - cameraY, imageHandle_1, TRUE);//「左クリックで採掘」
+        DrawGraph(1400 - cameraX, 600 - cameraY, imageHandle_2, TRUE);//「階段に触れて次へ」
+        DrawGraph(850 - cameraX, 600 - cameraY, imageHandle_3, TRUE);//「[H]でステータス表示」
+    }
+       
+
+
+    
     //説明テロップ
     if (activeTelopHandle != -1) {
         int w, h;
