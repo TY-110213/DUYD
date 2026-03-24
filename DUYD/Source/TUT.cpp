@@ -263,7 +263,9 @@ void TUT::Draw()
     DrawGraph(680 - cameraX, 400, imageHandle_2, TRUE);
     //ê‡ñæÉeÉçÉbÉv
     if (activeTelopHandle != -1) {
-        DrawGraph(0, 0, activeTelopHandle, TRUE);
+        int w, h;
+        GetGraphSize(activeTelopHandle, &w, &h);
+        DrawGraph((1920 - w) / 2, (1080 - h) / 2, activeTelopHandle, TRUE);
     }
 }
 
