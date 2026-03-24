@@ -19,7 +19,33 @@ void TUT::DigTile(int pixelX, int pixelY)
     // タイル2,3,4は掘れる（床タイル1に変更）
     if (mapData[tileY][tileX] == 2 ||
         mapData[tileY][tileX] == 3 ||
-        mapData[tileY][tileX] == 4) {
+        mapData[tileY][tileX] == 4) 
+    {
+        if (mapData[tileY][tileX] == 2)
+        {
+            statusUI->RecoverO2();
+            // 酸素鉱石：初回破壊でテロップ4表示
+            if (!caveTelopShown) {
+                caveTelopShown = true;
+                activeTelopHandle = imageHandle_4;
+            }
+        }
+        else if (mapData[tileY][tileX] == 3)
+        {
+            // 石：初回破壊でテロップ3表示
+            if (!horuTelopShown) {
+                horuTelopShown = true;
+                activeTelopHandle = imageHandle_3;
+            }
+        }
+        else if (mapData[tileY][tileX] == 4)
+        {
+            // 強化鉱石：初回破壊でテロップ5表示
+            if (!kyoukaTelopShown) {
+                kyoukaTelopShown = true;
+                activeTelopHandle = imageHandle_5;
+            }
+        }
          // 床に変更
 
         if (mapData[tileY][tileX] == 2)
@@ -27,6 +53,7 @@ void TUT::DigTile(int pixelX, int pixelY)
             statusUI->RecoverO2();
         }
         mapData[tileY][tileX] = 1;
+        
     }
 
 }
@@ -54,6 +81,10 @@ TUT::TUT()
     horuImage = LoadGraph("data/map/stone.png");
     kyoukaImage = LoadGraph("data/map/reinforced_ore.png");
     stairImage = LoadGraph("data/map/stairs.png");
+
+    imageHandle_0 = LoadGraph("data/screen/テロップ0.png");
+    imageHandle_1 = LoadGraph("data/screen/テロップ1.png");
+    imageHandle_2 = LoadGraph("data/screen/テロップ2.png");
     // マップデータを初期化（全て壁にしておく）
     for (int y = 0; y < MAP_HEIGHT; y++) {
         for (int x = 0; x < MAP_WIDTH; x++) {
@@ -65,13 +96,15 @@ TUT::TUT()
     stairTimer = 0;
     
 
-    LoadMapFromCSV("data/TUTmap.csv");
+    LoadMapFromCSV("data/map/TUTmap.csv");
     bgmHandle = LoadSoundMem("data/BGM_cave.mp3");
     if (bgmHandle == -1) {
         printfDx("BGMの読み込みに失敗しました\n");
     }
     ChangeVolumeSoundMem(128, bgmHandle);
     PlaySoundMem(bgmHandle, DX_PLAYTYPE_LOOP);
+
+    
 }
 
 TUT::~TUT()
@@ -84,6 +117,9 @@ TUT::~TUT()
     DeleteGraph(wallImage);
     DeleteGraph(caveImage);  
     DeleteGraph(horuImage);  
+    DeleteGraph(imageHandle_0);
+    DeleteGraph(imageHandle_1);
+    DeleteGraph(imageHandle_2);
 }
 
 void TUT::LoadMapFromCSV(const char* filename)
@@ -155,6 +191,11 @@ void TUT::Update()
     if (CheckHitKey(KEY_INPUT_ESCAPE)) {
         SceneManager::ChangeScene("TITLE");
     }
+    if (activeTelopHandle != -1 && CheckHitKey(KEY_INPUT_F)) {
+        activeTelopHandle = -1;
+    }
+
+    
 }
 
 void TUT::Draw()
@@ -205,6 +246,7 @@ void TUT::Draw()
    
     player->Draw(cameraX, cameraY);
     statusUI->Draw();
+
     if(stairTimer > 0) {
         int percent = (stairTimer * 100) / 180;
         // プログレスバー背景
@@ -212,6 +254,16 @@ void TUT::Draw()
         // プログレスバー本体
         DrawBox(860, 1020, 860 + percent * 2, 1050, GetColor(255, 220, 0), TRUE);
         DrawFormatString(870, 990, GetColor(255, 255, 255), "次のエリアへ... %d%%", percent);
+        
+    }
+
+    //テロップ表示
+    DrawGraph(100 - cameraX, 500, imageHandle_0, TRUE);
+    DrawGraph(680 - cameraX, 120, imageHandle_1, TRUE);
+    DrawGraph(680 - cameraX, 400, imageHandle_2, TRUE);
+    //説明テロップ
+    if (activeTelopHandle != -1) {
+        DrawGraph(0, 0, activeTelopHandle, TRUE);
     }
 }
 
