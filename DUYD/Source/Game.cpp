@@ -35,6 +35,10 @@ void Game::Update() {
 	}
 	if (gamePlayer->isStairs && count == 60 * 3) {
 		count = 0;
+
+		// BF‚ğ1‘‚â‚·
+		GlobalStatus::Get().AddBF();
+
 		std::list<Enemy*> enemyList = FindGameObjects<Enemy>();
 		for (Enemy* enemy : enemyList) {
 			enemy->DestroyMe();

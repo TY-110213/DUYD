@@ -33,7 +33,8 @@ public:
 	int GetO2Max() const { return O2_MAX; }
 	int GetStrength() const { return strength; }
 	int GetPix() const { return pix; }
-	
+	int GetBF() const { return BF; }
+	void AddBF() { BF++; }  // BF‚ğ1‘‚â‚·
 
 private:
 	int pauseType = 0;
