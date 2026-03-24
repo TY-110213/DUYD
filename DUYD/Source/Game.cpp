@@ -154,7 +154,7 @@ void Game::Create()
 					num[i][j] = 6;
 				}
 
-				if (Scount2 == Snum2 && !isPlayer) {
+				if (!isPlayer) {
 					isPlayer = true;
 					isPlayer2 = true;
 					if (area == 1) {
