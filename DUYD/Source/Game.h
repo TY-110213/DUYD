@@ -33,7 +33,6 @@ public:
 	int Scount2 = 0;
 	int Snum = 0;
 	int Snum2 = 0;
-	bool isSteps = false;
 	int num[WIDTH][HEIGHT];
 	int tilegame[WIDTH][HEIGHT];
 	int size = 64;
