@@ -30,6 +30,8 @@ public:
 
 	int area = 1;
 
+	bool gameover = false;
+
 	int Scount2 = 0;
 	int Snum = 0;
 	int Snum2 = 0;
