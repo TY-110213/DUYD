@@ -28,18 +28,38 @@ Enemy::Enemy(float x, float y, int size, Game* game, GamePlayer* player)
 
 	// 画像全体を読み込む
 	hImage = LoadGraph("data/character/enemy.png");
-	
-	
-	// 赤列（左列：x=0）の4フレームを切り出す
-	for (int i = 0; i < 4; i++) {
+	int hImage2 = LoadGraph("data/character/enemy_2.png");
+	//BF10ごとに色変化
+	int phase = (n - 1) / 10;
+	if (phase > 5)phase = 5;
+
+	int useImage;
+	int col;
+
+	if (phase <= 2)
+	{
+		useImage = hImage;
+		col = phase;
+	}
+	else {
+		useImage = hImage2;
+		col = phase - 3;
+
+	}
+
+	int offsetX = col * SPRITE_SIZE;
+
+	for (int i = 0; i < 4; i++)
+	{
 		frameImage[i] = DerivationGraph(
-			0,                // X座標（赤列なので0）
-			i * SPRITE_SIZE,  // Y座標（行ごとに32px）
-			SPRITE_SIZE,      // 幅32px
-			SPRITE_SIZE,      // 高さ32px
-			hImage
+			offsetX,
+			i * SPRITE_SIZE,
+			SPRITE_SIZE,
+			SPRITE_SIZE,
+			useImage
 		);
 	}
+	DeleteGraph(hImage2);
 }
 
 Enemy::~Enemy()
@@ -48,6 +68,7 @@ Enemy::~Enemy()
 		DeleteGraph(frameImage[i]);
 	}
 	DeleteGraph(hImage);
+	
 }
 void Enemy::CalcPath(int startX, int startY, int goalX, int goalY)
 {
