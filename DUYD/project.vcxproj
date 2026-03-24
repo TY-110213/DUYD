@@ -165,6 +165,7 @@
     <ClInclude Include="Source\PlayScene.h" />
     <ClInclude Include="Source\SceneFactory.h" />
     <ClInclude Include="Source\status.h" />
+    <ClInclude Include="Source\StatusDrawer.h" />
     <ClInclude Include="Source\Stone.h" />
     <ClInclude Include="Source\Tansakunosyo.h" />
     <ClInclude Include="Source\TitleScene.h" />
@@ -197,6 +198,7 @@
     <ClCompile Include="Source\Rocks.cpp" />
     <ClCompile Include="Source\SceneFactory.cpp" />
     <ClCompile Include="Source\status.cpp" />
+    <ClCompile Include="Source\StatusDrawer.cpp" />
     <ClCompile Include="Source\Stone.cpp" />
     <ClCompile Include="Source\Tansakunosyo.cpp" />
     <ClCompile Include="Source\TitleScene.cpp" />
