@@ -88,8 +88,7 @@ TUT::TUT()
     imageHandle_1 = LoadGraph("data/screen/テロップ1.png");
     imageHandle_2 = LoadGraph("data/screen/テロップ2.png");
     imageHandle_3 = LoadGraph("data/screen/テロップ4.png");
-    telopHidden = TRUE;
-    checkCount = 0;
+ 
     // マップデータを初期化（全て壁にしておく）
     for (int y = 0; y < MAP_HEIGHT; y++) {
         for (int x = 0; x < MAP_WIDTH; x++) {
@@ -272,17 +271,12 @@ void TUT::Draw()
     }
 
     //テロップ表示
-    if (CheckHitKey(KEY_INPUT_H) && checkCount==0)
-    {
-        telopHidden = FALSE;
-        checkCount = 1;
-    }
-    else if (CheckHitKey(KEY_INPUT_H) && checkCount == 1)
-    {
-        telopHidden = TRUE;
-        checkCount = 0;
-    }
-    if(telopHidden==TRUE)
+
+    bool currH = (CheckHitKey(KEY_INPUT_H) != 0);
+        if (currH && !Keycheck)          // 押した瞬間だけ反応
+            telopHidden = !telopHidden;
+        Keycheck = currH;
+    if(!telopHidden)
     {
         DrawGraph(300 - cameraX, 650 - cameraY, imageHandle_0, TRUE);//「WASDで移動」
         DrawGraph(850 - cameraX, 300 - cameraY, imageHandle_1, TRUE);//「左クリックで採掘」

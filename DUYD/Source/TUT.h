@@ -51,8 +51,8 @@ private:
     int imageHandle_1;
     int imageHandle_2;
     int imageHandle_3;
-    int telopHidden;
-    int checkCount ;
+    bool telopHidden=FALSE;
+    bool Keycheck=FALSE;
     // --- 説明PNG管理 ---
     // 説明用PNGハンドル
     int imageHandle_4 = LoadGraph("data/screen/テロップ10.png");
