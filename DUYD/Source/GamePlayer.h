@@ -1,6 +1,7 @@
 #pragma once
 #include "../Library/GameObject.h"
 #include "Game.h"
+#include "GlobalStatus.h"
 
 enum Direction {
     UP,

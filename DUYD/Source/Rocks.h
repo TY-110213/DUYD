@@ -12,12 +12,14 @@ public:
     int GetX() const { return x1; }
     int GetY() const { return y1; }
 
+    int kind = 0;
+
 private:
     int area1 = 0;
     int x1 = 0;
     int y1 = 0;
     int size1 = 0;
     int hImage[15];
-    int num = 0;
+    
     int Random(int min, int max);
 };
