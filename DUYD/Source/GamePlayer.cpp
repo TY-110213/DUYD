@@ -151,6 +151,7 @@ void GamePlayer::Update()
                         rocks->DestroyMe();
                         game->BreakRocks += 1;
                         break;
+                        GlobalStatus::Get().ReduceO2(1);
                     }
                 }
             }
