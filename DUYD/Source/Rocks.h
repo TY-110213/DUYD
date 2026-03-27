@@ -13,6 +13,7 @@ public:
     int GetY() const { return y1; }
 
     int kind = 0;
+    float Rhp = 0;
 
 private:
     int area1 = 0;
