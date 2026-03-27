@@ -16,7 +16,12 @@ public:
 	float GetEy() const { return Ey; }
 	void TakeDamage(int amount)
 	{
+		// 無敵中はダメージを受けない
+		if (hitTimer > 0.0f) return;
+
 		HP -= amount;
+		hitTimer = HIT_DURATION; // 無敵タイマーをセット
+
 		if (HP <= 0) DestroyMe();
 	}
 private:
@@ -52,6 +57,9 @@ private:
 	static constexpr float KNOCKBACK_DURATION = 0.2f;//ノックバック時間
 	static constexpr float KNOCKBACK_SPEED = 100.0f;
 
+	// 無敵・点滅関連
+	float hitTimer = 0.0f;                        // ダメージ後の無敵タイマー
+	static constexpr float HIT_DURATION = 1.0f;  // 無敵時間（秒）
 	//A*アルゴリズム用
 	struct Node {
 		int x, y;//タイル座標

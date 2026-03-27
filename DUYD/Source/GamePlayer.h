@@ -38,4 +38,5 @@ private:
     Game* game;
     Direction dir = DOWN;
     bool prevHKey = false;
+    bool prevLKey = false;
 };
