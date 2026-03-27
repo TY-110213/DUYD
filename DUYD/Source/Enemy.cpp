@@ -191,6 +191,10 @@ void Enemy::Update() {
 
 	// アップグレード画面が開いている間は停止
 	if (GlobalStatus::Get().IsUpgradeScreenOpen()) return;
+	// 無敵タイマーの更新
+	if (hitTimer > 0.0f)
+		hitTimer -= Time::DeltaTime();
+
 	// プレイヤーかゲームが存在しない場合は処理しない
 	if (playerRef == nullptr || gameRef == nullptr) return;
 
@@ -296,6 +300,14 @@ void Enemy::Update() {
 
 
 void Enemy::Draw() {
+
+	// 点滅：0.1秒ごとに表示/非表示を切り替え
+	if (hitTimer > 0.0f)
+	{
+		int blinkFrame = (int)(hitTimer * 10) % 2;
+		if (blinkFrame == 0) return; // 非表示フレームはスキップ
+	}
+
 	int screenX = (int)(Ex - Camera::GetOffsetX());
 	int screenY = (int)(Ey - Camera::GetOffsetY());
 

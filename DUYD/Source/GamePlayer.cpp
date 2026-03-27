@@ -83,8 +83,13 @@ void GamePlayer::Update()
     else {
         count2 = 1;
     }
-
-    
+    //テスト
+    bool currentLKey = CheckHitKey(KEY_INPUT_L) != 0;
+    if (currentLKey && !prevLKey)
+    {
+        GlobalStatus::Get().AddOre(1);
+    }
+    prevLKey = currentLKey;
 
     // --- X軸の移動と当たり判定 ---
     px += dx;
@@ -142,7 +147,7 @@ void GamePlayer::Update()
                     }
                 }
             }
-            // ② つるはしで敵にダメージ（筋力の1/4）
+            //  つるはしで敵にダメージ（筋力の1/4）
             std::list<Enemy*> enemyList = FindGameObjects<Enemy>();
             for (Enemy* enemy : enemyList) {
                 int etileX = (int)(enemy->GetEx() / game->size);
