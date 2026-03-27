@@ -3,6 +3,7 @@
 #include "Game.h"
 #include "Camera.h"
 #include "Rocks.h"
+#include "GlobalStatus.h"
 #include <list>
 
 GamePlayer::GamePlayer(float x, float y, int size1)
@@ -23,6 +24,17 @@ GamePlayer::~GamePlayer()
 void GamePlayer::Update()
 {
     Game* game = FindGameObject<Game>();
+
+    //アップグレード画面を開く
+    bool currentHKey = CheckHitKey(KEY_INPUT_H) != 0;
+    if (currentHKey && !prevHKey)
+    {
+        GlobalStatus::Get().ToggleUpgradeScreen();
+    }
+    prevHKey = currentHKey;
+    // アップグレード画面が開いている間は移動処理をスキップ
+    if (GlobalStatus::Get().IsUpgradeScreenOpen()) return;
+
     float dx = 0.0f;
     float dy = 0.0f;
 
@@ -66,6 +78,8 @@ void GamePlayer::Update()
     else {
         count2 = 1;
     }
+
+    
 
     // --- X軸の移動と当たり判定 ---
     px += dx;

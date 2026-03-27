@@ -89,8 +89,11 @@ void status::Update()
 		prevMouseLeft = (GetMouseInput() & MOUSE_INPUT_LEFT) != 0;
 		return;
 	}
+	
 	static constexpr float O2_INTERVAL = 10.0f;
 	static constexpr float HP_INTERVAL = 1.0f;
+	if (!showUpgradeScreen)
+	{
 
 	//o2ÇÃ1ïbå∏è≠
 	o2Timer += Time::DeltaTime();
@@ -117,6 +120,7 @@ void status::Update()
 		hpTimer = 0.0f;
 	}
 
+	}
 
 	if (!showUpgradeScreen) return;
 

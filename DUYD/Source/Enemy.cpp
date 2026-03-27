@@ -188,6 +188,9 @@ void Enemy::CalcPath(int startX, int startY, int goalX, int goalY)
 
 
 void Enemy::Update() {
+
+	// アップグレード画面が開いている間は停止
+	if (GlobalStatus::Get().IsUpgradeScreenOpen()) return;
 	// プレイヤーかゲームが存在しない場合は処理しない
 	if (playerRef == nullptr || gameRef == nullptr) return;
 
