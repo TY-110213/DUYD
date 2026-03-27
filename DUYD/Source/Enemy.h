@@ -1,6 +1,7 @@
 #pragma once
 #include "../Library/GameObject.h"
 #include "IMap.h"
+#include "Game.h"
 #include <vector>
 
 class GamePlayer;
@@ -20,7 +21,13 @@ public:
 		HP -= amount;
 		hitTimer = HIT_DURATION; // 停止＆点滅タイマーをセット
 
-		if (HP <= 0) DestroyMe();
+		if (HP <= 0)
+		{
+			// 敵を倒したカウントを増やす
+			if (gameRef != nullptr)
+				gameRef->KillCount += 1;
+			DestroyMe();
+		}
 	}
 private:
 	float Ex;

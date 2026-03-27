@@ -70,7 +70,7 @@
     <ClCompile Include="Source\GamePlayer.cpp" />
     <ClCompile Include="Source\Camera.cpp" />
     <ClCompile Include="Source\StatusDrawer.cpp" />
-    <ClCompile Include="Source\GameOver.cpp" />
+    <ClCompile Include="Source\GameOverScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -166,6 +166,7 @@
     <ClInclude Include="ScoreManager.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
+    <ClInclude Include="Source\GameOverScene.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Library">
