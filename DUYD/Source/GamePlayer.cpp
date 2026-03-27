@@ -136,6 +136,13 @@ void GamePlayer::Update()
                 for (Rocks* rocks : rocksList) {
                     if (rocks->GetX() == tileX * game->size &&
                         rocks->GetY() == tileY * game->size) {
+
+                        GlobalStatus::Get().ReduceO2();
+                        GlobalStatus::Get().AddStone();
+
+                        if (rocks->kind == 0) {
+                            GlobalStatus::Get().RecoverO2();
+                        }
                         rocks->DestroyMe();
                         game->BreakRocks += 1;
                         break;

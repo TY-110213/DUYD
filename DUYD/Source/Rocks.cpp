@@ -20,9 +20,9 @@ Rocks::Rocks(int x, int y, int size, int area)
     hImage[13] = LoadGraph("data/map/oxygen_ore_4.png");
     hImage[14] = LoadGraph("data/map/reinforced_ore_4.png");
 
-    num = Random(0, 9);
-    if (num == 9) {
-        num = Random(0, 1);
+    kind = Random(0, 9);
+    if (kind == 9) {
+        kind = Random(0, 1);
     }
     y1 = y;
     x1 = x;
@@ -45,7 +45,7 @@ void Rocks::Draw() {
     int screenX = x1 - (int)Camera::GetOffsetX();
     int screenY = y1 - (int)Camera::GetOffsetY();
 
-    switch (num) {
+    switch (kind) {
     case 0:
         if (area1 == 0) {
             DrawExtendGraph(screenX, screenY, screenX + size1, screenY + size1, hImage[1], 1);
