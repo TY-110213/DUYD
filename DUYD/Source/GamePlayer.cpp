@@ -4,6 +4,7 @@
 #include "Camera.h"
 #include "Rocks.h"
 #include "GlobalStatus.h"
+#include "Enemy.h"
 #include <list>
 
 GamePlayer::GamePlayer(float x, float y, int size1)
@@ -25,6 +26,9 @@ void GamePlayer::Update()
 {
     Game* game = FindGameObject<Game>();
 
+    if (invincibleTimer > 0.0f)
+        invincibleTimer -= Time::DeltaTime();
+
     //アップグレード画面を開く
     bool currentHKey = CheckHitKey(KEY_INPUT_H) != 0;
     if (currentHKey && !prevHKey)
@@ -39,27 +43,28 @@ void GamePlayer::Update()
     float dy = 0.0f;
 
     move = false;
-
+    //移動速度に筋力を加算
+    float speed = 1.0f + GlobalStatus::Get().GetStrength() * 0.5f;
     if (CheckHitKey(KEY_INPUT_W)) { 
-        dy -= 1.0f;
+        dy -= speed;
         dir = UP; 
         move = true;
         count3 = 3;
     }
     if (CheckHitKey(KEY_INPUT_S)) {
-        dy += 1.0f;
+        dy += speed;
         dir = DOWN; 
         move = true;
         count3 = 0;
     }
     if (CheckHitKey(KEY_INPUT_A)) { 
-        dx -= 1.0f;
+        dx -= speed;
         dir = LEFT;
         move = true;
         count3 = 1;
     }
     if (CheckHitKey(KEY_INPUT_D)) {
-        dx += 1.0f;
+        dx += speed;
         dir = RIGHT; 
         move = true;
         count3 = 2;
@@ -137,7 +142,18 @@ void GamePlayer::Update()
                     }
                 }
             }
-
+            // ② つるはしで敵にダメージ（筋力の1/4）
+            std::list<Enemy*> enemyList = FindGameObjects<Enemy>();
+            for (Enemy* enemy : enemyList) {
+                int etileX = (int)(enemy->GetEx() / game->size);
+                int etileY = (int)(enemy->GetEy() / game->size);
+                if (etileX == tileX && etileY == tileY) {
+                    int dmg = GlobalStatus::Get().GetStrength() / 4;
+                    if (dmg < 1) dmg = 1;
+                    enemy->TakeDamage(dmg);
+                }
+            }
+        
             isBreak = true;
 
         }
@@ -178,6 +194,13 @@ void GamePlayer::Update()
 
 void GamePlayer::Draw()
 {
+    // 無敵中は0.1秒ごとに点滅（10分の1秒 = 6フレーム周期）
+    if (invincibleTimer > 0.0f)
+    {
+        int blinkFrame = (int)(invincibleTimer * 10) % 2;
+        if (blinkFrame == 0) return; // 非表示フレームはスキップ
+    }
+
     int screenX = (int)(px - Camera::GetOffsetX());
     int screenY = (int)(py - Camera::GetOffsetY());
     //DrawExtendGraph(screenX, screenY, screenX + size, screenY + size, hImage, 1);

@@ -12,6 +12,13 @@ public:
 	~Enemy();
 	void Update() override;
 	void Draw() override;
+	float GetEx() const { return Ex; }
+	float GetEy() const { return Ey; }
+	void TakeDamage(int amount)
+	{
+		HP -= amount;
+		if (HP <= 0) DestroyMe();
+	}
 private:
 	float Ex;
 	float Ey;

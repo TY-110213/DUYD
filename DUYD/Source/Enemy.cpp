@@ -275,7 +275,7 @@ void Enemy::Update() {
 	if (dist <= ATTACK_RANGE && attackTimer <= 0.0f)
 	{
 		GlobalStatus::Get().TakeDamage((int)STG);
-
+		playerRef->invincibleTimer = GamePlayer::INVINCIBLE_TIME; // 1秒無敵
 		// 敵自身をプレイヤーと逆方向にノックバック
 		knockbackX = -(diffX / dist);
 		knockbackY = -(diffY / dist);
