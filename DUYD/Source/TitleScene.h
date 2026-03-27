@@ -14,5 +14,7 @@ public:
 	void Update() override;
 	void Draw() override;
 public:
+	int TitleBGM;
+	int buttonSE;
 	
 };

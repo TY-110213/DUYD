@@ -11,29 +11,43 @@ TitleScene::TitleScene()
 	image = LoadGraph("data/chara.png");
 	coinImage = LoadGraph("data/item.png");
 	TitleImage = LoadGraph("data/screen/title.png");
+	TitleBGM = LoadSoundMem("data/sound/タイトル/BGM_title.mp3");
+	buttonSE = LoadSoundMem("data/sound/タイトル/button.mp3");
+
+	PlaySoundMem(TitleBGM, DX_PLAYTYPE_LOOP);
 }
 
 TitleScene::~TitleScene()
 {
+	DeleteSoundMem(TitleBGM);
 }
 
 void TitleScene::Update()
 {
 	
-	if (CheckHitKey(KEY_INPUT_P)) {
+	if (CheckHitKey(KEY_INPUT_P)) 
+	{
 		SceneManager::ChangeScene("tut");
-	}if (CheckHitKey(KEY_INPUT_T))
+		PlaySoundMem(buttonSE, DX_PLAYTYPE_BACK);
+	}
+	if (CheckHitKey(KEY_INPUT_T))
 	{
 		SceneManager::ChangeScene("Tansaku");
+		PlaySoundMem(buttonSE, DX_PLAYTYPE_BACK);
 	}
-	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
+	if (CheckHitKey(KEY_INPUT_ESCAPE)) 
+	{
 		SceneManager::Exit();
+		PlaySoundMem(buttonSE, DX_PLAYTYPE_BACK);
 	}
 	
 
-	if (CheckHitKey(KEY_INPUT_A)) {
+	if (CheckHitKey(KEY_INPUT_A)) 
+	{
 		SceneManager::ChangeScene("PLAY");
+		PlaySoundMem(buttonSE, DX_PLAYTYPE_BACK);
 	}
+
 
 }
 

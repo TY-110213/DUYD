@@ -88,7 +88,10 @@ TUT::TUT()
     imageHandle_1 = LoadGraph("data/screen/テロップ1.png");
     imageHandle_2 = LoadGraph("data/screen/テロップ2.png");
     imageHandle_3 = LoadGraph("data/screen/テロップ4.png");
- 
+
+    Open_Book = LoadSoundMem("data/sound/SE/open_book.mp3");
+    Clause_Book = LoadSoundMem("data/sound/SE/clause_book.mp3");
+
     // マップデータを初期化（全て壁にしておく）
     for (int y = 0; y < MAP_HEIGHT; y++) {
         for (int x = 0; x < MAP_WIDTH; x++) {
@@ -101,7 +104,7 @@ TUT::TUT()
     
 
     LoadMapFromCSV("data/map/TUTmap.csv");
-    bgmHandle = LoadSoundMem("data/BGM_cave.mp3");
+    bgmHandle = LoadSoundMem("data/sound/洞窟/BGM_cave.mp3");
     if (bgmHandle == -1) {
         printfDx("BGMの読み込みに失敗しました\n");
     }
@@ -129,6 +132,10 @@ TUT::~TUT()
     DeleteGraph(imageHandle_4);
     DeleteGraph(imageHandle_5);
     DeleteGraph(imageHandle_6);
+
+    DeleteSoundMem(Open_Book);
+    DeleteSoundMem(Clause_Book);
+
 }
 
 void TUT::LoadMapFromCSV(const char* filename)
@@ -202,9 +209,8 @@ void TUT::Update()
     }
     if (activeTelopHandle != -1 && CheckHitKey(KEY_INPUT_F)) {
         activeTelopHandle = -1;
+        PlaySoundMem(Clause_Book, DX_PLAYTYPE_BACK);
     }
-
-    
 }
 
 void TUT::Draw()
@@ -273,8 +279,10 @@ void TUT::Draw()
     //テロップ表示
 
     bool currH = (CheckHitKey(KEY_INPUT_H) != 0);
-        if (currH && !Keycheck)          // 押した瞬間だけ反応
-            telopHidden = !telopHidden;
+    if (currH && !Keycheck)          // 押した瞬間だけ反応
+    {
+        telopHidden = !telopHidden;
+    }
         Keycheck = currH;
     if(!telopHidden)
     {
@@ -292,6 +300,7 @@ void TUT::Draw()
         int w, h;
         GetGraphSize(activeTelopHandle, &w, &h);
         DrawGraph((1920 - w) / 2, (1080 - h) / 2, activeTelopHandle, TRUE);
+        
     }
 }
 

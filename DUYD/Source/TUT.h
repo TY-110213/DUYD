@@ -63,4 +63,8 @@ private:
     bool caveTelopShown;       // 酸素鉱石：初回表示済みフラグ
     bool kyoukaTelopShown;     // 強化鉱石：初回表示済みフラグ
     int  activeTelopHandle;    // 現在表示中のテロップ（-1=非表示）
+
+    //sound
+    int Open_Book;
+    int Clause_Book;
 };
