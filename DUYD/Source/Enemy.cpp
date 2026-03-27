@@ -26,6 +26,8 @@ Enemy::Enemy(float x, float y, int size, Game* game, GamePlayer* player)
 	// AGR = 0.2 x n
 	AGR = 0.2f * n;
 
+	static constexpr float AGR_MAX = 0.2f * 10;
+	if (AGR > AGR_MAX) AGR = AGR_MAX;
 	// 画像全体を読み込む
 	hImage = LoadGraph("data/character/enemy.png");
 	int hImage2 = LoadGraph("data/character/enemy_2.png");
@@ -191,9 +193,19 @@ void Enemy::Update() {
 
 	// アップグレード画面が開いている間は停止
 	if (GlobalStatus::Get().IsUpgradeScreenOpen()) return;
-	// 無敵タイマーの更新
 	if (hitTimer > 0.0f)
+	{
 		hitTimer -= Time::DeltaTime();
+		// ↓移動処理をスキップ（その場に停止）
+		// アニメーションだけ更新して return
+		animTimer += Time::DeltaTime();
+		if (animTimer >= ANIM_INTERVAL)
+		{
+			animTimer = 0.0f;
+			animFrame = (animFrame + 1) % 4;
+		}
+		return;
+	}
 
 	// プレイヤーかゲームが存在しない場合は処理しない
 	if (playerRef == nullptr || gameRef == nullptr) return;
@@ -276,9 +288,10 @@ void Enemy::Update() {
 	}
 	attackTimer -= Time::DeltaTime();
 
-	if (dist <= ATTACK_RANGE && attackTimer <= 0.0f)
+	if (dist <= ATTACK_RANGE && attackTimer <= 0.0f && playerRef->invincibleTimer <= 0.0f)
 	{
 		GlobalStatus::Get().TakeDamage((int)STG);
+		GlobalStatus::Get().ReduceO2(3); // 敵の攻撃でO2も3減少
 		playerRef->invincibleTimer = GamePlayer::INVINCIBLE_TIME; // 1秒無敵
 		// 敵自身をプレイヤーと逆方向にノックバック
 		knockbackX = -(diffX / dist);

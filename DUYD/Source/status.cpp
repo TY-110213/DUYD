@@ -213,7 +213,7 @@ void status::ToggleUpgradeScreen()
 
 void status::ReduceO2(int amount)
 {
-	O2 -= 1;
+	O2 -= amount;
 	if (O2 < 0) O2 = 0;//playercpp160
 }
 

@@ -45,6 +45,8 @@ void GamePlayer::Update()
     move = false;
     //ˆÚ“®‘¬“x‚É‹Ø—Í‚ð‰ÁŽZ
     float speed = 1.0f + GlobalStatus::Get().GetStrength() * 0.5f;
+    static constexpr float SPEED_MAX = 0.2f * 10;
+    if (speed > SPEED_MAX) speed = SPEED_MAX;
     if (CheckHitKey(KEY_INPUT_W)) { 
         dy -= speed;
         dir = UP; 

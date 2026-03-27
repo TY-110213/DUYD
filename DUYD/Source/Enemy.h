@@ -16,11 +16,9 @@ public:
 	float GetEy() const { return Ey; }
 	void TakeDamage(int amount)
 	{
-		// 無敵中はダメージを受けない
-		if (hitTimer > 0.0f) return;
-
+		// 無敵チェックを削除（何度でもダメージを受ける）
 		HP -= amount;
-		hitTimer = HIT_DURATION; // 無敵タイマーをセット
+		hitTimer = HIT_DURATION; // 停止＆点滅タイマーをセット
 
 		if (HP <= 0) DestroyMe();
 	}
