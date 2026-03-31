@@ -22,8 +22,6 @@ public:
 	
 	
 private:
-	int Throw;
-	int Break;
 	// メンバー変数（プレイヤーを処理するのに必要な変数）
 	int walkSE;
 	int seTimer;
@@ -66,4 +64,9 @@ private:
 	bool prevHKey;
 	bool prevMouseRight;
 	bool game = false;
+
+	//サウンド
+	int Throw;
+	int Break;
+	
 };

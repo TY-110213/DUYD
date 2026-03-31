@@ -29,6 +29,7 @@ void TUT::DigTile(int pixelX, int pixelY)
                 caveTelopShown = true;
                 activeTelopHandle = imageHandle_5;
                 PlaySoundMem(Open_Book,DX_PLAYTYPE_BACK);
+                PlaySoundMem(air, DX_PLAYTYPE_BACK);
             }
         }
         else if (mapData[tileY][tileX] == 3)
@@ -95,6 +96,7 @@ TUT::TUT()
     Open_Book = LoadSoundMem("data/sound/SE/open_book.mp3");
     Clause_Book = LoadSoundMem("data/sound/SE/clause_book.mp3");
 	Stairs = LoadSoundMem("data/sound/SE/stairs.mp3");
+    air = LoadSoundMem("data/sound/SE/Obtaining_oxygen.mp3");
 
     // マップデータを初期化（全て壁にしておく）
     for (int y = 0; y < MAP_HEIGHT; y++) {
@@ -112,7 +114,7 @@ TUT::TUT()
     if (bgmHandle == -1) {
         printfDx("BGMの読み込みに失敗しました\n");
     }
-    ChangeVolumeSoundMem(128, bgmHandle);
+    ChangeVolumeSoundMem(170, bgmHandle);
     PlaySoundMem(bgmHandle, DX_PLAYTYPE_LOOP);
 
     

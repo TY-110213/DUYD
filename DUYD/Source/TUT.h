@@ -68,4 +68,5 @@ private:
     int Open_Book;
     int Clause_Book;
     int Stairs;
+    int air;
 };
