@@ -25,6 +25,7 @@ Game::~Game()
 void Game::Update() {
 	GlobalStatus::Get().Update();
 	GamePlayer* gameplayer = FindGameObject<GamePlayer>();
+	if (gameplayer == nullptr) return;
 	Camera::Update(gameplayer->px, gameplayer->py);
 
 	
