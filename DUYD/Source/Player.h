@@ -20,7 +20,10 @@ public:
 
 	void SetStatusReference(status* statusPtr);
 	
+	
 private:
+	int Throw;
+	int Break;
 	// メンバー変数（プレイヤーを処理するのに必要な変数）
 	int walkSE;
 	int seTimer;

@@ -28,6 +28,7 @@ void TUT::DigTile(int pixelX, int pixelY)
             if (!caveTelopShown) {
                 caveTelopShown = true;
                 activeTelopHandle = imageHandle_5;
+                PlaySoundMem(Open_Book,DX_PLAYTYPE_BACK);
             }
         }
         else if (mapData[tileY][tileX] == 3)
@@ -36,6 +37,7 @@ void TUT::DigTile(int pixelX, int pixelY)
             if (!horuTelopShown) {
                 horuTelopShown = true;
                 activeTelopHandle = imageHandle_4;
+                PlaySoundMem(Open_Book, DX_PLAYTYPE_BACK);
             }
         }
         else if (mapData[tileY][tileX] == 4)
@@ -44,6 +46,7 @@ void TUT::DigTile(int pixelX, int pixelY)
             if (!kyoukaTelopShown) {
                 kyoukaTelopShown = true;
                 activeTelopHandle = imageHandle_6;
+                PlaySoundMem(Open_Book, DX_PLAYTYPE_BACK);
             }
         }
          // è∞Ç…ïœçX
@@ -109,7 +112,7 @@ TUT::TUT()
         printfDx("BGMÇÃì«Ç›çûÇ›Ç…é∏îsÇµÇ‹ÇµÇΩ\n");
     }
     ChangeVolumeSoundMem(128, bgmHandle);
-    PlaySoundMem(bgmHandle, DX_PLAYTYPE_LOOP);
+    //PlaySoundMem(bgmHandle, DX_PLAYTYPE_LOOP);
 
     
 }

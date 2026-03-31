@@ -22,7 +22,9 @@ Player::Player(IMap* map,float startX,float startY) : tutMap(map)
 	statusRef = nullptr;
 
 	hImage = LoadGraph("data/character/player.png");
-	walkSE = LoadSoundMem("data/footsteps.mp3");
+	walkSE = LoadSoundMem("data/sound/SE/footsteps.mp3");
+	Throw = LoadSoundMem("data/sound/SE/throw.mp3");
+	Break = LoadSoundMem("data/sound/SE/break.mp3");
 	
 	seTimer = 0.0f;
 	// 画像読み込み
@@ -193,6 +195,9 @@ if (throwCoolTimer > 0.0f) throwCoolTimer -= Time::DeltaTime();
 					statusRef->AddStone(1);
 				}
 			}
+
+			PlaySoundMem(Break, DX_PLAYTYPE_BACK);
+
 		}
 		digCoolTimer = DIG_COOLTIME;
 	} // 左クリック処理の終了
@@ -221,7 +226,7 @@ if (throwCoolTimer > 0.0f) throwCoolTimer -= Time::DeltaTime();
 
 			// 石の数を減らす
 			
-			
+			PlaySoundMem(Throw, DX_PLAYTYPE_BACK);
 		}
 		else {
 			printfDx("石が足りない！\n");
