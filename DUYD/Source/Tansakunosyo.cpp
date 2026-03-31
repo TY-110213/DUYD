@@ -10,12 +10,16 @@ int TansakuImage;
 Tansakunosyo::Tansakunosyo()
 {
 	TansakuImage = LoadGraph("data/screen/探索の書.png");
+	TitleBGM = LoadSoundMem("data/sound/タイトル/BGM_title.mp3");
+	buttonSE = LoadSoundMem("data/sound/タイトル/button.mp3");
+	ChangeVolumeSoundMem(180, TitleBGM);
+	PlaySoundMem(TitleBGM, DX_PLAYTYPE_LOOP);
 
 }
 
 Tansakunosyo::~Tansakunosyo()
 {
-
+	DeleteSoundMem(TitleBGM);
 }
 
 void Tansakunosyo::Update()
@@ -23,6 +27,7 @@ void Tansakunosyo::Update()
 	if (CheckHitKey(KEY_INPUT_F))
 	{
 		SceneManager::ChangeScene("TITLE");
+		PlaySoundMem(buttonSE, DX_PLAYTYPE_BACK);
 	}
 }
 

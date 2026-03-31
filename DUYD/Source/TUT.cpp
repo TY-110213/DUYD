@@ -94,6 +94,7 @@ TUT::TUT()
 
     Open_Book = LoadSoundMem("data/sound/SE/open_book.mp3");
     Clause_Book = LoadSoundMem("data/sound/SE/clause_book.mp3");
+	Stairs = LoadSoundMem("data/sound/SE/stairs.mp3");
 
     // マップデータを初期化（全て壁にしておく）
     for (int y = 0; y < MAP_HEIGHT; y++) {
@@ -112,7 +113,7 @@ TUT::TUT()
         printfDx("BGMの読み込みに失敗しました\n");
     }
     ChangeVolumeSoundMem(128, bgmHandle);
-    //PlaySoundMem(bgmHandle, DX_PLAYTYPE_LOOP);
+    PlaySoundMem(bgmHandle, DX_PLAYTYPE_LOOP);
 
     
 }
@@ -138,6 +139,7 @@ TUT::~TUT()
 
     DeleteSoundMem(Open_Book);
     DeleteSoundMem(Clause_Book);
+    PlaySoundMem(Stairs, DX_PLAYTYPE_BACK);
 
 }
 

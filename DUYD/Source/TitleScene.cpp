@@ -13,8 +13,8 @@ TitleScene::TitleScene()
 	TitleImage = LoadGraph("data/screen/title.png");
 	TitleBGM = LoadSoundMem("data/sound/タイトル/BGM_title.mp3");
 	buttonSE = LoadSoundMem("data/sound/タイトル/button.mp3");
-
-	//PlaySoundMem(TitleBGM, DX_PLAYTYPE_LOOP);
+	ChangeVolumeSoundMem(180, TitleBGM);
+	PlaySoundMem(TitleBGM, DX_PLAYTYPE_LOOP);
 }
 
 TitleScene::~TitleScene()

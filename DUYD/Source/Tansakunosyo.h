@@ -6,6 +6,9 @@ class Tansakunosyo : public SceneBase
 	~Tansakunosyo();
 	void Update() override;
 	void Draw() override;
+	int TitleBGM;
+	int buttonSE;
+
 	
 };
 
