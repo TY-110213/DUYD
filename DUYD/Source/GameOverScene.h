@@ -20,5 +20,8 @@ private:
 	int fontLabel;
 
 	bool prevMouseLeft = false;
+
+	float blinkTimer = 0.0f;
+	bool blinkVisible = true;
 };
 

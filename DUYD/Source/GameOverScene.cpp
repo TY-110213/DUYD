@@ -44,6 +44,19 @@ GameOverScene::~GameOverScene()
 
 void GameOverScene::Update()
 {
+    // ハイスコア文字点滅（0.5秒ごとに切り替え）
+    if (isHighScore)
+    {
+        blinkTimer += 1.0f / 60.0f;
+        if (blinkTimer >= 0.5f)
+        {
+            blinkTimer = 0.0f;
+            blinkVisible = !blinkVisible;
+        }
+    }
+
+
+
     bool currentMouseLeft = (GetMouseInput() & MOUSE_INPUT_LEFT) != 0;
 
     // クリックでタイトルへ
@@ -76,11 +89,11 @@ void GameOverScene::Draw()
     DrawFormatString(0, 0, GetColor(255, 0, 0), "X:%d Y:%d", mx, my);
 
 
-    if (isHighScore)
+    if (isHighScore && blinkVisible)
     {
         // ハイスコア時：金色できらびやかに
         unsigned int goldColor = GetColor(255, 215, 0);
-        DrawStringToHandle(837, 159, "ハイスコア！", goldColor, fontTitle);
+        DrawStringToHandle(750, 130, "ハイスコア！", goldColor, fontTitle);
     }
     
     
@@ -94,12 +107,12 @@ void GameOverScene::Draw()
 
     
    
-    DrawFormatStringToHandle(700, 690, yellow, fontResult, "%d ", reachedBF);//kaisou 
+    DrawFormatStringToHandle(670, 690, black, fontResult, "%d ", reachedBF);//kaisou 
 
    
-    DrawFormatStringToHandle(1370, 550, yellow, fontResult, "%d ", killCount);//tai
+    DrawFormatStringToHandle(1300, 550, black, fontResult, "%d ", killCount);//tai
 
    
-    DrawFormatStringToHandle(1370, 735, yellow, fontResult, "%d ", breakRocks);//ko
+    DrawFormatStringToHandle(1300, 735, black, fontResult, "%d ", breakRocks);//ko
 
 }
