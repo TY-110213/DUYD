@@ -67,42 +67,42 @@ void GameOverScene::Draw()
 {
     // 背景画像を全画面表示
     if (bgImage != -1)
-        DrawExtendGraph(0, 0, 1280, 720, bgImage, FALSE);
+        DrawExtendGraph(0, 0, 1980, 1080, bgImage, FALSE);
     else
         DrawBox(0, 0, 1280, 720, GetColor(10, 5, 5), TRUE);
+    // ↓デバッグ用：マウス座標をリアルタイム表示（座標が決まったら削除）
+    int mx, my;
+    GetMousePoint(&mx, &my);
+    DrawFormatString(0, 0, GetColor(255, 0, 0), "X:%d Y:%d", mx, my);
+
 
     if (isHighScore)
     {
         // ハイスコア時：金色できらびやかに
         unsigned int goldColor = GetColor(255, 215, 0);
-        DrawStringToHandle(340, 80, "ハイスコア！", goldColor, fontTitle);
+        DrawStringToHandle(837, 159, "ハイスコア！", goldColor, fontTitle);
     }
     else
     {
         // 通常時：血文字でGAME OVER
         unsigned int bloodColor = GetColor(180, 0, 0);
-        DrawStringToHandle(280, 80, "GAME  OVER", bloodColor, fontTitle);
+        DrawStringToHandle(857, 159, "GAME  OVER", bloodColor, fontTitle);
     }
 
-    // リザルトパネル（半透明）
-    SetDrawBlendMode(DX_BLENDMODE_ALPHA, 180);
-    DrawBox(340, 230, 940, 560, GetColor(10, 10, 20), TRUE);
-    SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-    DrawBox(340, 230, 940, 560, GetColor(120, 120, 160), FALSE);
+    
 
     // 今回の記録
     unsigned int white = GetColor(255, 255, 255);
     unsigned int yellow = GetColor(255, 230, 80);
 
-    DrawStringToHandle(500, 250, "今回の記録", white, fontResult);
+    
+   
+    DrawFormatStringToHandle(705, 723, yellow, fontResult, "%d ", reachedBF);//kaisou 
 
-    DrawStringToHandle(380, 330, "到達階層", white, fontLabel);
-    DrawFormatStringToHandle(750, 325, yellow, fontResult, "%d 階", reachedBF);
+   
+    DrawFormatStringToHandle(1387, 580, yellow, fontResult, "%d ", killCount);//tai
 
-    DrawStringToHandle(380, 400, "倒した敵の数", white, fontLabel);
-    DrawFormatStringToHandle(750, 395, yellow, fontResult, "%d 体", killCount);
-
-    DrawStringToHandle(380, 470, "壊した岩の数", white, fontLabel);
-    DrawFormatStringToHandle(750, 465, yellow, fontResult, "%d 個", breakRocks);
+   
+    DrawFormatStringToHandle(1366, 764, yellow, fontResult, "%d ", breakRocks);//ko
 
 }
