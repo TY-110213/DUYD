@@ -29,7 +29,7 @@ GameOverScene::GameOverScene()
         bgImage = LoadGraph("data/screen/gameover.png");
 
     fontTitle = CreateFontToHandle(NULL, 90, 12, DX_FONTTYPE_ANTIALIASING);
-    fontResult = CreateFontToHandle(NULL, 40, 7, DX_FONTTYPE_ANTIALIASING);
+    fontResult = CreateFontToHandle(NULL, 80, 7, DX_FONTTYPE_ANTIALIASING);
     fontLabel = CreateFontToHandle(NULL, 30, 5, DX_FONTTYPE_ANTIALIASING);
 }
 
@@ -82,27 +82,24 @@ void GameOverScene::Draw()
         unsigned int goldColor = GetColor(255, 215, 0);
         DrawStringToHandle(837, 159, "ハイスコア！", goldColor, fontTitle);
     }
-    else
-    {
-        // 通常時：血文字でGAME OVER
-        unsigned int bloodColor = GetColor(180, 0, 0);
-        DrawStringToHandle(857, 159, "GAME  OVER", bloodColor, fontTitle);
-    }
+    
+    
 
     
 
     // 今回の記録
     unsigned int white = GetColor(255, 255, 255);
     unsigned int yellow = GetColor(255, 230, 80);
+    unsigned int black = GetColor(0, 0, 0);
 
     
    
-    DrawFormatStringToHandle(705, 723, yellow, fontResult, "%d ", reachedBF);//kaisou 
+    DrawFormatStringToHandle(700, 690, yellow, fontResult, "%d ", reachedBF);//kaisou 
 
    
-    DrawFormatStringToHandle(1387, 580, yellow, fontResult, "%d ", killCount);//tai
+    DrawFormatStringToHandle(1370, 550, yellow, fontResult, "%d ", killCount);//tai
 
    
-    DrawFormatStringToHandle(1366, 764, yellow, fontResult, "%d ", breakRocks);//ko
+    DrawFormatStringToHandle(1370, 735, yellow, fontResult, "%d ", breakRocks);//ko
 
 }

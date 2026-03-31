@@ -48,7 +48,11 @@ void TitleScene::Update()
 		PlaySoundMem(buttonSE, DX_PLAYTYPE_BACK);
 	}
 
-
+	if (CheckHitKey(KEY_INPUT_G))
+	{
+		SceneManager::ChangeScene("GAMEOVER");
+		PlaySoundMem(buttonSE, DX_PLAYTYPE_BACK);
+	}
 }
 
 
