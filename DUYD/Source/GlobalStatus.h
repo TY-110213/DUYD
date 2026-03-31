@@ -9,6 +9,9 @@ public:
 		static status instance;
 		return instance;
 	}
+	static void Reset() {
+		Get() = status();
+	}
 private:
 	GlobalStatus() = delete;
 };

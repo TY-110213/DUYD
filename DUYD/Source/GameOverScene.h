@@ -19,6 +19,6 @@ private:
 	int fontResult;
 	int fontLabel;
 
-	bool prevMouseLseft = false;
+	bool prevMouseLeft = false;
 };
 

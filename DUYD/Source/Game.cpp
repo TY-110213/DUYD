@@ -27,6 +27,14 @@ void Game::Update() {
 	GamePlayer* gameplayer = FindGameObject<GamePlayer>();
 	Camera::Update(gameplayer->px, gameplayer->py);
 
+	
+	if (GlobalStatus::Get().IsGameOver())
+	{
+		SceneManager::ChangeScene("GAMEOVER");
+		return;
+	}
+
+
 	if (gamePlayer->isStairs) {
 		count += 1;
 	}

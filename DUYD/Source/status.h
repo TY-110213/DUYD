@@ -35,7 +35,7 @@ public:
 	int GetPix() const { return pix; }
 	int GetBF() const { return BF; }
 	void AddBF() { BF++; }  // BF‚ğ1‘‚â‚·
-
+	bool IsGameOver() const { return HP <= 0; }
 private:
 	int pauseType = 0;
 	int BF = 1;
