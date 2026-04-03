@@ -129,6 +129,10 @@ void Game::Create()
 
 	int BGMnum = (area - 1) / 20;
 
+	if (BGMnum >= 5) {
+		BGMnum -= BGMnum;
+	}
+
 	if ((area - 1) % 20 == 0) {
 
 		DeleteSoundMem(BGMHandle);
