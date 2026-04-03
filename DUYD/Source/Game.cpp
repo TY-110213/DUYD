@@ -229,7 +229,7 @@ void Game::Create()
 
 	isSteps = false;
 
-	if (area == 1) {
-		new FovOverlay();
-	}
+	FovOverlay* oldFov = FindGameObject<FovOverlay>();
+	if (oldFov) oldFov->DestroyMe();
+	new FovOverlay();
 }
