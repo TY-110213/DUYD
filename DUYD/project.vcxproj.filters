@@ -71,6 +71,7 @@
     <ClCompile Include="Source\Camera.cpp" />
     <ClCompile Include="Source\StatusDrawer.cpp" />
     <ClCompile Include="Source\GameOverScene.cpp" />
+    <ClCompile Include="Source\FavOverlay.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -167,6 +168,7 @@
       <Filter>PlayScene</Filter>
     </ClInclude>
     <ClInclude Include="Source\GameOverScene.h" />
+    <ClInclude Include="Source\FavOverlay.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Library">

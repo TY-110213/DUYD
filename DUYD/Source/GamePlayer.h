@@ -24,6 +24,8 @@ public:
     bool isStairs = false;
     float invincibleTimer = 0.0f;//–³“GŽžŠÔ
     static constexpr float INVINCIBLE_TIME = 1.0f;
+    Direction GetDir() const {
+        return dir;}
 private:
     int hImage = 0;
     float width = 0;

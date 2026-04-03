@@ -44,7 +44,8 @@ public:
 	bool isWall(int tileX, int tileY);
 	void Create();
 	int KillCount = 0; // “|‚µ‚½“G‚Ì”
-	
+	int fovRadius  = 300;//î
+	int fovRadius2 = 100;//‹ŠE”ÍˆÍ ‰~
 private:
 
 	int cameraX = 0;

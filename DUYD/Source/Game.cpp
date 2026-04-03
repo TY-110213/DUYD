@@ -6,13 +6,16 @@
 #include "GamePlayer.h"
 #include "status.h"
 #include "StatusDrawer.h"
+#include "FavOverlay.h"
 #include <random>
 #include <cstring>
 #include <list>
+#include <cmath>
 
 
 Game::Game()
 {
+	
 	new Backs(size);
 	new StatusDrawer();
 	Create();
@@ -73,6 +76,9 @@ void Game::Update() {
 void Game::Draw() {
 	
 	//GlobalStatus::Get().Draw();
+
+
+	
 
 }
 
@@ -213,4 +219,7 @@ void Game::Create()
 
 	isSteps = false;
 
+	if (area == 1) {
+		new FovOverlay();
+	}
 }
