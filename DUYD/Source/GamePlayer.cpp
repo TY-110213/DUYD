@@ -1,4 +1,5 @@
 #include "GamePlayer.h"
+#include "Stone.h"
 #include "status.h"
 #include "Game.h"
 #include "Camera.h"
@@ -20,11 +21,20 @@ GamePlayer::GamePlayer(float x, float y, int size1)
 
 GamePlayer::~GamePlayer()
 {
+    delete mapAdapter;
+    for (int i = (int)stones.size() - 1; i >= 0; i--) {
+        delete stones[i];
+    }
+    stones.clear();
 }
 
 void GamePlayer::Update()
 {
     Game* game = FindGameObject<Game>();
+
+    if (mapAdapter == nullptr)
+        mapAdapter = new GameMapAdapter(game);
+
 
     if (invincibleTimer > 0.0f)
         invincibleTimer -= Time::DeltaTime();
@@ -183,6 +193,49 @@ void GamePlayer::Update()
         }
     }
 
+    // --- 石の更新・削除 ---
+    for (int i = (int)stones.size() - 1; i >= 0; i--) {
+        stones[i]->Update();
+        if (!stones[i]->IsActive()) {
+            delete stones[i];
+            stones.erase(stones.begin() + i);
+        }
+    }
+
+   
+
+    // --- 右クリックで石を投げる ---
+    if (throwCoolTimer > 0.0f)
+        throwCoolTimer -= Time::DeltaTime();
+
+    bool currentMouseRight = (GetMouseInput() & MOUSE_INPUT_RIGHT) != 0;
+    if (currentMouseRight && throwCoolTimer <= 0.0f) {
+        if (GlobalStatus::Get().UseStone()) {
+            // 石の発射位置（プレイヤー中心から少し前）
+            float sx = px + 22;
+            float sy = py + 22;
+            switch (dir) {
+            case UP:    sy -= 20; break;
+            case DOWN:  sy += 20; break;
+            case LEFT:  sx -= 20; break;
+            case RIGHT: sx += 20; break;
+            }
+
+            // Stone側の方向番号に変換（0:下 1:左 2:右 3:上）
+            int stoneDir = 0;
+            switch (dir) {
+            case DOWN:  stoneDir = 0; break;
+            case LEFT:  stoneDir = 1; break;
+            case RIGHT: stoneDir = 2; break;
+            case UP:    stoneDir = 3; break;
+            }
+
+            stones.push_back(new Stone(sx, sy, stoneDir, mapAdapter));
+            throwCoolTimer = THROW_COOLTIME;
+        }
+    }
+
+
     int tileX = (int)((px + 20) / game->size);
     int tileY = (int)((py + 20) / game->size);
 
@@ -220,6 +273,10 @@ void GamePlayer::Draw()
     int screenY = (int)(py - Camera::GetOffsetY());
     //DrawExtendGraph(screenX, screenY, screenX + size, screenY + size, hImage, 1);
     DrawRectExtendGraph(screenX, screenY - 5, screenX + 60, screenY + 60 - 5, count2 * 64, count3 * 64, 64, 64, hImage, 1);
+    // 石を描画
+    for (Stone* stone : stones) {
+        stone->Draw((int)Camera::GetOffsetX(), (int)Camera::GetOffsetY());
+    }
 }
 
 void GamePlayer::SetMap(Game* m)

@@ -6,6 +6,7 @@
 #include <cstdint>
 #include "Camera.h"
 
+
 enum TileType {
 	FLOOR = 0,
 	WALL_A = 1,

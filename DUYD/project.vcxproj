@@ -158,6 +158,7 @@
     <ClInclude Include="Source\Enemy.h" />
     <ClInclude Include="Source\FavOverlay.h" />
     <ClInclude Include="Source\Game.h" />
+    <ClInclude Include="Source\Gamemapadapter.h" />
     <ClInclude Include="Source\GameOver.h" />
     <ClInclude Include="Source\GameOverScene.h" />
     <ClInclude Include="Source\GamePlayer.h" />
@@ -196,6 +197,7 @@
     <ClCompile Include="Source\Enemy.cpp" />
     <ClCompile Include="Source\FavOverlay.cpp" />
     <ClCompile Include="Source\Game.cpp" />
+    <ClCompile Include="Source\Gamemapadapter.cpp" />
     <ClCompile Include="Source\GameOverScene.cpp" />
     <ClCompile Include="Source\GamePlayer.cpp" />
     <ClCompile Include="Source\GlobalStatus.cpp" />
