@@ -35,6 +35,8 @@ Game::~Game()
 		rocks->DestroyMe();
 	}
 
+	DeleteSoundMem(BGMHandle);
+
 }
 
 void Game::Update() {
