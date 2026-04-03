@@ -20,6 +20,16 @@ Game::Game()
 
 Game::~Game()
 {
+	std::list<Enemy*> enemyList = FindGameObjects<Enemy>();
+	for (Enemy* enemy : enemyList) {
+		enemy->DestroyMe();
+	}
+
+	std::list<Rocks*> rocksList = FindGameObjects<Rocks>();
+	for (Rocks* rocks : rocksList) {
+		rocks->DestroyMe();
+	}
+
 }
 
 void Game::Update() {
