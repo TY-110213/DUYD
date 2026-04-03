@@ -19,6 +19,8 @@ Game::Game()
 	new Backs(size);
 	new StatusDrawer();
 	Create();
+	
+	
 }
 
 Game::~Game()
@@ -73,6 +75,9 @@ void Game::Update() {
 		}
 
 		area += 1;
+
+		DeleteSoundMem(BGMHandle);
+
 		Create();
 
 
@@ -123,6 +128,16 @@ bool Game::CanMove(int pixelX, int pixelY)
 void Game::Create()
 {
 	DontDestroyOnSceneChange();
+
+	int BGMnum = (area - 1) / 20;
+
+	switch (BGMnum) {
+
+	case 0:
+		BGMHandle = LoadSoundMem("data/sound/“´ŒA/BGM_cave.mp3");
+		PlaySoundMem(BGMHandle, DX_PLAYTYPE_LOOP);
+		break;
+	}
 
 	int startX = 0, startY = 0;
 

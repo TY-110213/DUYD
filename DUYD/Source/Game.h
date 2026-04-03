@@ -68,4 +68,7 @@ private:
 	int count = 0;
 	
 	GamePlayer* gamePlayer = nullptr;
+
+	int BGMHandle = -1;
+
 };
