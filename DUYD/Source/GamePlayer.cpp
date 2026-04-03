@@ -194,8 +194,26 @@ void GamePlayer::Update()
     }
 
     // --- Î‚ÌXVEíœ ---
-    for (int i = (int)stones.size() - 1; i >= 0; i--) {
+    std::list<Enemy*> enemyList = FindGameObjects<Enemy>();
+    for (int i = (int)stones.size() - 1; i >= 0;i--)
+    {
         stones[i]->Update();
+
+        if (stones[i]->IsActive()) {
+            for (Enemy* enemy : enemyList) {
+                int sx = (int)stones[i]->GetX();
+                int sy = (int)stones[i]->GetY();
+                int ex = (int)enemy->GetEx();
+                int ey = (int)enemy->GetEy();
+
+                if (abs(sx - (ex + 24)) < 24 && abs(sy - (ey + 24)) < 24) {
+                    int dmg = GlobalStatus::Get().GetStrength();
+                    enemy->TakeDamage(dmg);
+                    stones[i]->Deactivate();
+                    break;
+                }
+            }
+        }
         if (!stones[i]->IsActive()) {
             delete stones[i];
             stones.erase(stones.begin() + i);

@@ -240,7 +240,7 @@ void Game::Create()
 
 				if (Random(0, 5) == 0 && !isRocks && pi != i && pj != j) {
 					if (i * size != gamePlayer->GetX() || j * size != gamePlayer->GetY()) {
-						//new Enemy(i * size, j * size, 48, this, gamePlayer);
+						new Enemy(i * size, j * size, 48, this, gamePlayer);
 						isEnemy = true;
 					}
 				}

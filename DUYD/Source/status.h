@@ -17,11 +17,16 @@ public:
 	void RecoverO2();                // é_ëfçzêŒîjâÛéûÇÃâÒïúÅiMAX/4Åj
 	
 	void TakeDamage(int amount = 30);  // HPíºê⁄É_ÉÅÅ[ÉW
-	void AddStone(int amount = 1) { stone += amount; }
+	int GetMaxStpne() const { return 5 + Sp / 2; }
+	void AddStone(int amount = 1) {
+		stone += amount;
+		int maxStone = GetMaxStone();
+		if (stone > maxStone) stone = maxStone;
+	}
 	bool UseStone() { if (stone <= 0)return false;stone--;return true; }
 	int GetStone() const { return stone; }
 	bool HasStone() const { return stone > 0; }
-
+	int GetMaxStone() const { return 5 + Sp / 2; }
 	
 	bool o2TUTDone = false;
 	bool oreTUTDone = false;
@@ -36,6 +41,8 @@ public:
 	int GetBF() const { return BF; }
 	void AddBF() { BF++; }  // BFÇ1ëùÇ‚Ç∑
 	bool IsGameOver() const { return HP <= 0; }
+	int GetSp() const { return Sp; }
+	
 private:
 	int pauseType = 0;
 	int BF = 1;

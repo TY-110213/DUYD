@@ -10,7 +10,9 @@ public:
 	void Update();
 	void Draw(int cameraX, int cameraY);
 	bool IsActive() const { return active; }
-
+	float GetX() const { return x; }
+	float GetY() const { return y; }
+	void Deactivate() { active = false; }
 private:
 	float x, y;
 	int direction;
