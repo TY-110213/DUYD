@@ -92,7 +92,7 @@ void Game::Update() {
 			rocks->DestroyMe();
 		}
 
-		area += 10;
+		area += 1;
 
 		Create();
 
