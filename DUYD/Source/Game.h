@@ -58,6 +58,8 @@ private:
 	std::array<std::array<shape_t, HEIGHT>, WIDTH> matrix{ {} };
 
 	int Random(int min, int max);
+	int SEcount = 0;
+	int SEcount2 = 0;
 	int Scount = 0;
 	int Cnum = 0;
 	int Ccount = 0;
@@ -73,5 +75,6 @@ private:
 	GamePlayer* gamePlayer = nullptr;
 
 	int BGMHandle = -1;
+	int SEHandle = -1;
 
 };
