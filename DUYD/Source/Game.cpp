@@ -15,12 +15,11 @@
 
 Game::Game()
 {
-	
 	new Backs(size);
 	new StatusDrawer();
 	Create();
-	
-	
+	SEHandle = LoadSoundMem("data/sound/SE/bubble.mp3");
+	SEcount2 = Random(6, 11);
 }
 
 Game::~Game()
@@ -36,6 +35,7 @@ Game::~Game()
 	}
 
 	DeleteSoundMem(BGMHandle);
+	DeleteSoundMem(SEHandle);
 
 }
 
@@ -45,7 +45,23 @@ void Game::Update() {
 	if (gameplayer == nullptr) return;
 	Camera::Update(gameplayer->px, gameplayer->py);
 
+	int SEnum = (area - 1) / 20;
+
+	if (SEnum >= 5) {
+		SEnum -= SEnum;
+	}
+
+	if (SEnum == 3) {
+		SEcount += 1;
+		if (SEcount == 60 * SEcount2) {
+			PlaySoundMem(SEHandle, DX_PLAYTYPE_BACK);
+			SEcount = 0;
+			SEcount2 = Random(6, 11);
+		}
+	}
+
 	
+
 	if (GlobalStatus::Get().IsGameOver())
 	{
 		SceneManager::ChangeScene("GAMEOVER");
@@ -76,7 +92,7 @@ void Game::Update() {
 			rocks->DestroyMe();
 		}
 
-		area += 1;
+		area += 10;
 
 		Create();
 
@@ -242,7 +258,7 @@ void Game::Create()
 
 				if (Random(0, 5) == 0 && !isRocks && pi != i && pj != j) {
 					if (i * size != gamePlayer->GetX() || j * size != gamePlayer->GetY()) {
-						new Enemy(i * size, j * size, 48, this, gamePlayer);
+						//new Enemy(i * size, j * size, 48, this, gamePlayer);
 						isEnemy = true;
 					}
 				}
