@@ -19,6 +19,8 @@ Game::Game()
 	new Backs(size);
 	new StatusDrawer();
 	Create();
+	
+	
 }
 
 Game::~Game()
@@ -73,6 +75,7 @@ void Game::Update() {
 		}
 
 		area += 1;
+
 		Create();
 
 
@@ -123,6 +126,41 @@ bool Game::CanMove(int pixelX, int pixelY)
 void Game::Create()
 {
 	DontDestroyOnSceneChange();
+
+	int BGMnum = (area - 1) / 20;
+
+	if (BGMnum >= 5) {
+		BGMnum -= BGMnum;
+	}
+
+	if ((area - 1) % 20 == 0) {
+
+		DeleteSoundMem(BGMHandle);
+
+		switch (BGMnum) {
+		case 0:
+			BGMHandle = LoadSoundMem("data/sound/“´ŒA/BGM_cave.mp3");
+			break;
+		case 1:
+			BGMHandle = LoadSoundMem("data/sound/”É–Î‚µ‚½“´ŒA/BGM_Overgrown cave.mp3");
+			break;
+		case 2:
+			BGMHandle = LoadSoundMem("data/sound/’n‰º…“´/BGM_underground water cave.mp3");
+			break;
+		case 3:
+			BGMHandle = LoadSoundMem("data/sound/—nŠâ“´/BGM_lava tube.mp3");
+			break;
+		case 4:
+			BGMHandle = LoadSoundMem("data/sound/ˆâÕ/BGM_ruins.mp3");
+			break;
+		default:
+			break;
+		}
+
+		PlaySoundMem(BGMHandle, DX_PLAYTYPE_LOOP);
+
+	}
+	
 
 	int startX = 0, startY = 0;
 
@@ -202,7 +240,7 @@ void Game::Create()
 
 				if (Random(0, 5) == 0 && !isRocks && pi != i && pj != j) {
 					if (i * size != gamePlayer->GetX() || j * size != gamePlayer->GetY()) {
-						new Enemy(i * size, j * size, 48, this, gamePlayer);
+						//new Enemy(i * size, j * size, 48, this, gamePlayer);
 						isEnemy = true;
 					}
 				}

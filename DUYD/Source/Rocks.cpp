@@ -28,6 +28,9 @@ Rocks::Rocks(int x, int y, int size, int area)
     x1 = x;
     size1 = size;
     area1 = (area - 1) / 20;
+    if (area1 >= 5) {
+        area1 -= area1;
+    }
     if (area <= 30) {
         Rhp = 3 * 1.5 * area;
     }

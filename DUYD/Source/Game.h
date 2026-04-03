@@ -52,6 +52,8 @@ private:
 	int cameraX = 0;
 	int cameraY = 0;
 
+	bool isBGM = false;
+
 	using shape_t = std::uint_fast8_t;
 	std::array<std::array<shape_t, HEIGHT>, WIDTH> matrix{ {} };
 
@@ -69,4 +71,7 @@ private:
 	int count = 0;
 	
 	GamePlayer* gamePlayer = nullptr;
+
+	int BGMHandle = -1;
+
 };

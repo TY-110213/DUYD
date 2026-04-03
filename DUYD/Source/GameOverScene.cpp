@@ -93,7 +93,7 @@ void GameOverScene::Draw()
     {
         // ハイスコア時：金色できらびやかに
         unsigned int goldColor = GetColor(255, 215, 0);
-        DrawStringToHandle(750, 130, "ハイスコア！", goldColor, fontTitle);
+        DrawStringToHandle(735, 130, "ハイスコア！", goldColor, fontTitle);
     }
     
     
