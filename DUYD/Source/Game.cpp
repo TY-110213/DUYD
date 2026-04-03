@@ -136,12 +136,24 @@ void Game::Create()
 		switch (BGMnum) {
 		case 0:
 			BGMHandle = LoadSoundMem("data/sound/ì¥åA/BGM_cave.mp3");
-			PlaySoundMem(BGMHandle, DX_PLAYTYPE_LOOP);
+			break;
+		case 1:
+			BGMHandle = LoadSoundMem("data/sound/î…ñŒÇµÇΩì¥åA/BGM_Overgrown cave.mp3");
+			break;
+		case 2:
+			BGMHandle = LoadSoundMem("data/sound/ínâ∫êÖì¥/BGM_underground water cave.mp3");
+			break;
+		case 3:
+			BGMHandle = LoadSoundMem("data/sound/ónä‚ì¥/BGM_lava tube.mp3");
+			break;
+		case 4:
+			BGMHandle = LoadSoundMem("data/sound/à‚ê’/BGM_ruins.mp3");
 			break;
 		default:
 			break;
 		}
 
+		PlaySoundMem(BGMHandle, DX_PLAYTYPE_LOOP);
 
 	}
 	
