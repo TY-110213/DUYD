@@ -2,6 +2,10 @@
 #include "../Library/GameObject.h"
 #include "Game.h"
 #include "GlobalStatus.h"
+#include "Gamemapadapter.h"
+#include <vector>
+
+class Stone;
 
 enum Direction {
     UP,
@@ -41,4 +45,10 @@ private:
     Direction dir = DOWN;
     bool prevHKey = false;
     bool prevLKey = false;
+
+    std::vector<Stone*> stones;
+    float throwCoolTimer = 0.0f;
+    static constexpr float THROW_COOLTIME = 0.3f;
+    GameMapAdapter* mapAdapter = nullptr;
+
 };

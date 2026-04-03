@@ -72,6 +72,7 @@
     <ClCompile Include="Source\StatusDrawer.cpp" />
     <ClCompile Include="Source\GameOverScene.cpp" />
     <ClCompile Include="Source\FavOverlay.cpp" />
+    <ClCompile Include="Source\Gamemapadapter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -169,6 +170,7 @@
     </ClInclude>
     <ClInclude Include="Source\GameOverScene.h" />
     <ClInclude Include="Source\FavOverlay.h" />
+    <ClInclude Include="Source\Gamemapadapter.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Library">
