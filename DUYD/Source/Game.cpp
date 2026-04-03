@@ -76,8 +76,6 @@ void Game::Update() {
 
 		area += 1;
 
-		DeleteSoundMem(BGMHandle);
-
 		Create();
 
 
@@ -131,13 +129,22 @@ void Game::Create()
 
 	int BGMnum = (area - 1) / 20;
 
-	switch (BGMnum) {
+	if ((area - 1) % 20 == 0) {
 
-	case 0:
-		BGMHandle = LoadSoundMem("data/sound/“´ŒA/BGM_cave.mp3");
-		PlaySoundMem(BGMHandle, DX_PLAYTYPE_LOOP);
-		break;
+		DeleteSoundMem(BGMHandle);
+
+		switch (BGMnum) {
+		case 0:
+			BGMHandle = LoadSoundMem("data/sound/“´ŒA/BGM_cave.mp3");
+			PlaySoundMem(BGMHandle, DX_PLAYTYPE_LOOP);
+			break;
+		default:
+			break;
+		}
+
+
 	}
+	
 
 	int startX = 0, startY = 0;
 
@@ -217,7 +224,7 @@ void Game::Create()
 
 				if (Random(0, 5) == 0 && !isRocks && pi != i && pj != j) {
 					if (i * size != gamePlayer->GetX() || j * size != gamePlayer->GetY()) {
-						new Enemy(i * size, j * size, 48, this, gamePlayer);
+						//new Enemy(i * size, j * size, 48, this, gamePlayer);
 						isEnemy = true;
 					}
 				}
