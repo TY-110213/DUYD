@@ -6,6 +6,11 @@
 #include <cmath>
 class FovOverlay : public GameObject
 {
+public:
+    FovOverlay() {
+        SetDrawOrder(-50);
+    }
+
     void Update() override {}
     void Draw() override {
         Game* game = FindGameObject<Game>();

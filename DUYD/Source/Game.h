@@ -44,6 +44,7 @@ public:
 	bool CanMove(int pixelX, int pixelY);
 	bool isWall(int tileX, int tileY);
 	void Create();
+	void Reset();
 	int KillCount = 0; // “|‚µ‚½“G‚Ì”
 	int fovRadius  = 500;//î
 	int fovRadius2 = 100;//‹ŠE”ÍˆÍ ‰~

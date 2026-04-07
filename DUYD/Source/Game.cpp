@@ -15,6 +15,7 @@
 
 Game::Game()
 {
+	DontDestroyOnSceneChange();
 	new Backs(size);
 	new StatusDrawer();
 	Create();
@@ -24,15 +25,7 @@ Game::Game()
 
 Game::~Game()
 {
-	std::list<Enemy*> enemyList = FindGameObjects<Enemy>();
-	for (Enemy* enemy : enemyList) {
-		enemy->DestroyMe();
-	}
 
-	std::list<Rocks*> rocksList = FindGameObjects<Rocks>();
-	for (Rocks* rocks : rocksList) {
-		rocks->DestroyMe();
-	}
 
 	DeleteSoundMem(BGMHandle);
 	DeleteSoundMem(SEHandle);
@@ -143,7 +136,9 @@ bool Game::CanMove(int pixelX, int pixelY)
 
 void Game::Create()
 {
-	DontDestroyOnSceneChange();
+	Scount = 0; 
+	Scount2 = 0;
+	
 
 	int BGMnum = (area - 1) / 20;
 
@@ -289,3 +284,29 @@ void Game::Create()
 	if (oldFov) oldFov->DestroyMe();
 	new FovOverlay();
 }
+
+void Game::Reset()
+{
+	area = 1;
+	count = 0;
+	Scount = 0;
+	Scount2 = 0;
+	BreakRocks = 0;
+	KillCount = 0;
+
+	std::list<Enemy*> enemyList = FindGameObjects<Enemy>();
+	for (Enemy* e : enemyList) e->DestroyMe();
+
+	std::list<Rocks*> rocksList = FindGameObjects<Rocks>();
+	for (Rocks* r : rocksList) r->DestroyMe();
+
+	FovOverlay* fov = FindGameObject<FovOverlay>();
+	if (fov) fov->DestroyMe();
+
+	GamePlayer* player = FindGameObject<GamePlayer>();
+	if (player) player->DestroyMe();
+	gamePlayer = nullptr; 
+
+	Create();
+}
+

@@ -6,8 +6,8 @@ class StatusDrawer : public GameObject {
 public:
 	StatusDrawer()
 	{
-		SetDrawOrder(-100);
-		DontDestroyOnSceneChange();
+		SetDrawOrder(-200);
+		
 	}
 
 	void Update() override {}
