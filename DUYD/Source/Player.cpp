@@ -27,6 +27,7 @@ Player::Player(IMap* map,float startX,float startY) : tutMap(map)
 	Break = LoadSoundMem("data/sound/SE/break.mp3");
 	
 	
+	
 	seTimer = 0.0f;
 	// ‰æ‘œ“Ç‚İ‚İ
 	for (int dir = 0; dir < 4; dir++) {

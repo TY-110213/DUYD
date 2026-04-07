@@ -5,7 +5,7 @@
 Stone::Stone(float startX, float startY, int dir, IMap* map)
 	: x(startX), y(startY), direction(dir), active(true), tutmap(map)
 {
-	hImage = -1;
+	hImage = LoadGraph("data/character/stone.png");
 }
 
 Stone::~Stone()
