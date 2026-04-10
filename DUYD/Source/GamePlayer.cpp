@@ -26,6 +26,10 @@ GamePlayer::GamePlayer(float x, float y, int size1)
     SEHandle[6] = LoadSoundMem("data/sound/SE/pickaxe.mp3");
     game = (nullptr);
     Throw = LoadSoundMem("data/sound/SE/throw.mp3");
+
+    ChangeVolumeSoundMem(150, SEHandle[2]);
+    ChangeVolumeSoundMem(150, SEHandle[3]);
+
 }
 
 GamePlayer::~GamePlayer()
