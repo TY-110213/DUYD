@@ -87,6 +87,11 @@ void status::Update()
 		return;
 	}
 	
+	
+
+
+
+
 	static constexpr float O2_INTERVAL = 10.0f;
 	static constexpr float HP_INTERVAL = 1.0f;
 	if (!showUpgradeScreen)
@@ -152,24 +157,30 @@ void status::Update()
 			{
 				Hp++;
 				ore--;
+				
 				ApplyStats();
+				
 			}
 			else if (IsButtonClicked(btnO2X, btnO2Y, BTN_W, BTN_H, mouseX, mouseY))
 			{
 				Op++;
 				ore--;
+				
 				ApplyStats();
+				
 			}
 			else if (IsButtonClicked(btnSpX, btnSpY, BTN_W, BTN_H, mouseX, mouseY))
 			{
 				Sp++;
 				ore--;
+				
 				ApplyStats();
 			}
 			else if (IsButtonClicked(btnPpX, btnPpY, BTN_W, BTN_H, mouseX, mouseY))
 			{
 				Pp++;
 				ore--;
+				
 				ApplyStats();
 			}
 		}
@@ -225,6 +236,19 @@ void status::TakeDamage(int amount)
 {
 	HP -= amount;
 	if (HP < 0) HP = 0;
+}
+
+void status::AddMiniOre(int amount)
+{
+
+	miniore += amount;
+	int threshold = GetMiniOreThreshold();
+	if (miniore >= threshold)
+	{
+		miniore -= threshold;
+		ore += 1;
+		upgradeCount++;
+	}
 }
 
 

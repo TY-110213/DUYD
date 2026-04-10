@@ -30,6 +30,10 @@ public:
 	
 	bool o2TUTDone = false;
 	bool oreTUTDone = false;
+	
+	void AddMiniOre(int amount = 1);
+	int GetMiniOre() const { return miniore; }
+	int GetMiniOreThreshold() const { return 10 + upgradeCount ; }
 	void AddOre(int amount = 1) { ore += amount; }
 	int GetOre() const { return ore; }
 
@@ -67,13 +71,13 @@ private:
 	bool showUpgradeScreen = false;
 	int HP_MAX = 999;
 	int O2_MAX = 100;
-
+	int miniore = 0;
 	int normalFont;
 	int titleFont;
 	int valueFont;
 	int labelFont;  
 	int numFont;     
-
+	int upgradeCount = 0;
 	int CalcHP(int hp_point) const;
 	int CalcO2(int o2_point) const;
 	int CalcStrength(int sp_point) const;

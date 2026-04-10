@@ -103,6 +103,9 @@ void GamePlayer::Update()
     }
     prevLKey = currentLKey;
 
+    
+
+
     // --- XŽ²‚ÌˆÚ“®‚Æ“–‚½‚è”»’è ---
     px += dx;
 
@@ -159,6 +162,9 @@ void GamePlayer::Update()
 
                         if (rocks->kind == 0) {
                             GlobalStatus::Get().RecoverO2();
+                        }
+                        if (rocks->kind == 1) {
+                            GlobalStatus::Get().AddMiniOre(1);
                         }
                         rocks->DestroyMe();
                         game->BreakRocks += 1;
