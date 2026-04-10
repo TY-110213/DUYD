@@ -53,7 +53,7 @@ private:
     float o2DamageTimer = 0.0f;
     float O2_DMAGE_INTERVAL = 1.0f;
     int Throw;
-    int SEHandle[6];
+    int SEHandle[7];
     int stepcount = 0;
 
 };

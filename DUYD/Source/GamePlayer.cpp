@@ -23,6 +23,7 @@ GamePlayer::GamePlayer(float x, float y, int size1)
     SEHandle[3] = LoadSoundMem("data/sound/SE/footsteps_grass.mp3");
     SEHandle[4] = LoadSoundMem("data/sound/SE/Obtain_ore.mp3");
     SEHandle[5] = LoadSoundMem("data/sound/SE/Obtaining_oxygen.mp3");
+    SEHandle[6] = LoadSoundMem("data/sound/SE/pickaxe.mp3");
     game = (nullptr);
     Throw = LoadSoundMem("data/sound/SE/throw.mp3");
 }
@@ -182,38 +183,41 @@ void GamePlayer::Update()
             case RIGHT: tileX += 1; break;
             }
 
-            if (tileX >= 0 && tileX < game->WIDTH &&
-                tileY >= 0 && tileY < game->HEIGHT &&
-                game->tilegame[tileX][tileY] == 6) {
+            if (tileX >= 0 && tileX < game->WIDTH && tileY >= 0 && tileY < game->HEIGHT){
 
-                game->tilegame[tileX][tileY] = 2;
+                if (game->tilegame[tileX][tileY] == 6) {
+                    game->tilegame[tileX][tileY] = 2;
 
-                // 全ての岩から該当座標のものを探して削除
-                std::list<Rocks*> rocksList = FindGameObjects<Rocks>();
-                for (Rocks* rocks : rocksList) {
-                    if (rocks->GetX() == tileX * game->size &&
-                        rocks->GetY() == tileY * game->size) {
+                    // 全ての岩から該当座標のものを探して削除
+                    std::list<Rocks*> rocksList = FindGameObjects<Rocks>();
+                    for (Rocks* rocks : rocksList) {
+                        if (rocks->GetX() == tileX * game->size &&
+                            rocks->GetY() == tileY * game->size) {
 
-                        GlobalStatus::Get().ReduceO2();
-                        GlobalStatus::Get().AddStone();
+                            GlobalStatus::Get().ReduceO2();
+                            GlobalStatus::Get().AddStone();
 
-                        if (rocks->kind == 0) {
-                            GlobalStatus::Get().RecoverO2();
-                            PlaySoundMem(SEHandle[5], DX_PLAYTYPE_BACK);
+                            if (rocks->kind == 0) {
+                                GlobalStatus::Get().RecoverO2();
+                                PlaySoundMem(SEHandle[5], DX_PLAYTYPE_BACK);
+                            }
+
+                            if (rocks->kind == 1) {
+                                GlobalStatus::Get().AddMiniOre(1);
+                                PlaySoundMem(SEHandle[4], DX_PLAYTYPE_BACK);
+                            }
+                            if (rocks->kind != 0 && rocks->kind != 1) {
+                                PlaySoundMem(SEHandle[0], DX_PLAYTYPE_BACK);
+                            }
+                            rocks->DestroyMe();
+                            game->BreakRocks += 1;
+                            break;
+                            GlobalStatus::Get().ReduceO2(1);
                         }
-
-                        if (rocks->kind == 1) {
-                            GlobalStatus::Get().AddMiniOre(1);
-                            PlaySoundMem(SEHandle[4], DX_PLAYTYPE_BACK);
-                        }
-                        if (rocks->kind != 0 && rocks->kind != 1) {
-                            PlaySoundMem(SEHandle[0], DX_PLAYTYPE_BACK);
-                        }
-                        rocks->DestroyMe();
-                        game->BreakRocks += 1;
-                        break;
-                        GlobalStatus::Get().ReduceO2(1);
                     }
+                }
+                else {
+                    PlaySoundMem(SEHandle[6], DX_PLAYTYPE_BACK);
                 }
             }
             //  つるはしで敵にダメージ（筋力の1/4）
