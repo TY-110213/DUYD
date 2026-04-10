@@ -39,6 +39,15 @@ GamePlayer::~GamePlayer()
         delete stones[i];
     }
     stones.clear();
+
+    DeleteGraph(hImage);
+
+    DeleteSoundMem(Throw);
+
+    for (int i = 0; i < 7; i += 1) {
+        DeleteSoundMem(SEHandle[i]);
+    }
+
 }
 
 void GamePlayer::Update()
