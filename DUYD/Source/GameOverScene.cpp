@@ -83,10 +83,7 @@ void GameOverScene::Draw()
         DrawExtendGraph(0, 0, 1980, 1080, bgImage, FALSE);
     else
         DrawBox(0, 0, 1280, 720, GetColor(10, 5, 5), TRUE);
-    // ↓デバッグ用：マウス座標をリアルタイム表示（座標が決まったら削除）
-    int mx, my;
-    GetMousePoint(&mx, &my);
-    DrawFormatString(0, 0, GetColor(255, 0, 0), "X:%d Y:%d", mx, my);
+   
 
 
     if (isHighScore && blinkVisible)

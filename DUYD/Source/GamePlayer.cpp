@@ -91,6 +91,10 @@ void GamePlayer::Update()
         count3 = 2;
     }
 
+   
+
+
+
     if (move == true) {
 
         Backs* backs = FindGameObject<Backs>();
@@ -170,6 +174,39 @@ void GamePlayer::Update()
     if (dy < 0 && (game->isWall(left, top) || game->isWall(right, top)))
         py = (float)((top + 1) * game->size);
 
+
+    std::list<Enemy*> enemyList = FindGameObjects<Enemy>();
+    for (Enemy* enemy : enemyList)
+    {
+        float ecx = enemy->GetEx() + 24;
+        float ecy = enemy->GetEy() + 24;
+        float pcx = px + 22;
+        float pcy = py + 22;
+
+        float dx = pcx - ecx;
+        float dy = pcy - ecy;
+        float d = std::sqrt(dx * dx + dy * dy);
+        float minDist = 22.0f + 24.0f;
+
+        if (d < minDist && d > 0.0f)
+        {
+            float overlap = minDist - d;
+            float nx = dx / d;
+            float ny = dy / d;
+
+            float newPx = px + nx * overlap;
+            float newPy = py + ny * overlap;
+
+            if (game->CanMove((int)newPx, (int)py)) px = newPx;
+            if (game->CanMove((int)px, (int)newPy)) py = newPy;
+        }
+    }
+
+
+
+
+
+
     // 左クリックで向いている方向の岩を壊す
     if (!isBreak) {
         if (GetMouseInput() & MOUSE_INPUT_LEFT) {
@@ -248,7 +285,7 @@ void GamePlayer::Update()
     }
 
     // --- 石の更新・削除 ---
-    std::list<Enemy*> enemyList = FindGameObjects<Enemy>();
+ 
     for (int i = (int)stones.size() - 1; i >= 0;i--)
     {
         stones[i]->Update();
