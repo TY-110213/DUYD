@@ -51,6 +51,7 @@ private:
     static constexpr float THROW_COOLTIME = 0.3f;
     GameMapAdapter* mapAdapter = nullptr;
 
-    int SEHandle[2];
+    int SEHandle[3];
+    int stepcount = 0;
 
 };
