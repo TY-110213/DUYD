@@ -3,6 +3,8 @@
 status::status()
 {// フォントハンドルの作成（サイズ24、太さ6、アンチエイリアス有効）
 	normalFont = CreateFontToHandle(NULL, 44, 8, DX_FONTTYPE_ANTIALIASING);
+	if(normalFont == -1){
+	}
 	titleFont = CreateFontToHandle(NULL,48,8, DX_FONTTYPE_ANTIALIASING);
 	valueFont = CreateFontToHandle(NULL, 28, 6, DX_FONTTYPE_ANTIALIASING);
 
@@ -21,11 +23,6 @@ status::status()
 
 status::~status()
 {
-	DeleteFontToHandle(normalFont);
-	DeleteFontToHandle(titleFont);
-	DeleteFontToHandle(valueFont);
-	DeleteFontToHandle(labelFont);  
-	DeleteFontToHandle(numFont);
 }
 
 
