@@ -19,7 +19,7 @@ Game::Game()
 	new Backs(size);
 	new StatusDrawer();
 	Create();
-	SEHandle = LoadSoundMem("data/sound/SE/bubble.mp3");
+	SEHandle[0] = LoadSoundMem("data/sound/SE/bubble.mp3");
 	SEcount2 = Random(6, 11);
 }
 
@@ -28,7 +28,7 @@ Game::~Game()
 
 
 	DeleteSoundMem(BGMHandle);
-	DeleteSoundMem(SEHandle);
+	DeleteSoundMem(SEHandle[0]);
 
 }
 
@@ -47,7 +47,7 @@ void Game::Update() {
 	if (SEnum == 3) {
 		SEcount += 1;
 		if (SEcount == 60 * SEcount2) {
-			PlaySoundMem(SEHandle, DX_PLAYTYPE_BACK);
+			PlaySoundMem(SEHandle[0], DX_PLAYTYPE_BACK);
 			SEcount = 0;
 			SEcount2 = Random(6, 11);
 		}
