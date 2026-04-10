@@ -18,6 +18,7 @@ GamePlayer::GamePlayer(float x, float y, int size1)
     hImage = LoadGraph("data/character/player.png");
     SEHandle[0] = LoadSoundMem("data/sound/SE/break.mp3");
     SEHandle[1] = LoadSoundMem("data/sound/SE/damage_enemy.mp3");
+    SEHandle[2] = LoadSoundMem("data/sound/SE/footsteps.mp3");
     game = (nullptr);
 }
 
@@ -85,10 +86,18 @@ void GamePlayer::Update()
     }
 
     if (move == true) {
+
+        
+        stepcount += 1;
         count += 1;
+        if (stepcount >= 30) {
+            PlaySoundMem(SEHandle[2], DX_PLAYTYPE_BACK);
+            stepcount = 0;
+        }
         if (count == 15) {
             count2 += 1;
             count = 0;
+            
         }
         if (count2 == 3) {
             count2 = 0;
