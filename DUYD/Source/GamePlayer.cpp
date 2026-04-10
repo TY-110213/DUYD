@@ -22,6 +22,7 @@ GamePlayer::GamePlayer(float x, float y, int size1)
     SEHandle[2] = LoadSoundMem("data/sound/SE/footsteps.mp3");
     SEHandle[3] = LoadSoundMem("data/sound/SE/footsteps_grass.mp3");
     game = (nullptr);
+    Throw = LoadSoundMem("data/sound/SE/throw.mp3");
 }
 
 GamePlayer::~GamePlayer()
@@ -270,6 +271,7 @@ void GamePlayer::Update()
     // --- 右クリックで石を投げる ---
     if (throwCoolTimer > 0.0f)
         throwCoolTimer -= Time::DeltaTime();
+        
 
     bool currentMouseRight = (GetMouseInput() & MOUSE_INPUT_RIGHT) != 0;
     if (currentMouseRight && throwCoolTimer <= 0.0f) {
@@ -296,6 +298,7 @@ void GamePlayer::Update()
             stones.push_back(new Stone(sx, sy, stoneDir, mapAdapter));
             throwCoolTimer = THROW_COOLTIME;
         }
+        PlaySoundMem(Throw, DX_PLAYTYPE_BACK);
     }
 
 
