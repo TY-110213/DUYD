@@ -29,6 +29,9 @@ public:
 			DestroyMe();
 		}
 	}
+
+	float GetCenterX() const { return Ex + Esize / 2; }
+	float GetCenterY() const { return Ey + Esize / 2; }
 private:
 
 	int SEHandle[1];

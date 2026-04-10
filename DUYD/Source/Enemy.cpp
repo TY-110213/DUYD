@@ -307,6 +307,27 @@ void Enemy::Update() {
 		attackTimer = ATTACK_COOLDOWN;
 	}
 	
+	auto pushBack = [&](float otherCX, float otherCY, float otherRadius) {
+		float ecx = Ex + Esize / 2;
+		float ecy = Ey + Esize / 2;
+		float dx = ecx - otherCX;
+		float dy = ecy - otherCY;
+		float d = std::sqrt(dx * dx + dy * dy);
+		float minDist = Esize / 2.0f + otherRadius;
+		if (d < minDist && d > 0.0f) {
+			float overlap = minDist - d;
+			float nx = dx / d, ny = dy / d;
+			if (gameRef->CanMove((int)(Ex + nx * overlap), (int)Ey)) Ex += nx * overlap;
+			if (gameRef->CanMove((int)Ex, (int)(Ey + ny * overlap))) Ey += ny * overlap;
+		}
+		};
+
+	for (Enemy* other : FindGameObjects<Enemy>()) {
+		if (other != this)
+			pushBack(other->Ex + other->Esize / 2, other->Ey + other->Esize / 2, other->Esize / 2.0f);
+	}
+
+
 	// アニメーション更新
 	animTimer += Time::DeltaTime();
 	if (animTimer >= ANIM_INTERVAL)
