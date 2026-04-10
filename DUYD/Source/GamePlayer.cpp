@@ -274,7 +274,7 @@ void GamePlayer::Update()
    
 
     // --- 右クリックで石を投げる ---
-    if (throwCoolTimer > 0.0f)
+    if (throwCoolTimer > 0.4f)
         throwCoolTimer -= Time::DeltaTime();
         
 
@@ -303,7 +303,7 @@ void GamePlayer::Update()
             stones.push_back(new Stone(sx, sy, stoneDir, mapAdapter));
             throwCoolTimer = THROW_COOLTIME;
         }
-        PlaySoundMem(Throw, DX_PLAYTYPE_BACK);
+        //PlaySoundMem(Throw, DX_PLAYTYPE_BACK);
     }
 
 
