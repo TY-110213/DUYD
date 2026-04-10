@@ -385,7 +385,7 @@ void status::DrawNormalStatus()
 
 	//  êŒ 
 	DrawStringToHandle(col4X, labelY, "êŒ", labelCol, labelFont);
-	DrawFormatStringToHandle(col4X, valueY, stoneCol, numFont, "%d/99", stone);
+	DrawFormatStringToHandle(col4X, valueY, stoneCol, numFont, "%d/%d", stone, GetMaxStone());
 
 	//  çzêŒ 
 	DrawStringToHandle(col5X, labelY, "çzêŒ", labelCol, labelFont);

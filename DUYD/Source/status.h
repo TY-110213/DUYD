@@ -26,7 +26,7 @@ public:
 	bool UseStone() { if (stone <= 0)return false;stone--;return true; }
 	int GetStone() const { return stone; }
 	bool HasStone() const { return stone > 0; }
-	int GetMaxStone() const { return 5 + Sp / 2; }
+	int GetMaxStone() const { return 10 + Sp / 2; }
 	
 	bool o2TUTDone = false;
 	bool oreTUTDone = false;
