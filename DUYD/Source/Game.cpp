@@ -20,6 +20,7 @@ Game::Game()
 	new StatusDrawer();
 	Create();
 	SEHandle[0] = LoadSoundMem("data/sound/SE/bubble.mp3");
+	SEHandle[1] = LoadSoundMem("data/sound/SE/stairs.mp3");
 	SEcount2 = Random(6, 11);
 }
 
@@ -86,6 +87,8 @@ void Game::Update() {
 		}
 
 		area += 1;
+
+		PlaySoundMem(SEHandle[1], DX_PLAYTYPE_BACK);
 
 		Create();
 
