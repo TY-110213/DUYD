@@ -199,11 +199,12 @@ void GamePlayer::Update()
 
                         if (rocks->kind == 0) {
                             GlobalStatus::Get().RecoverO2();
-                            PlaySoundMem(SEHandle[4], DX_PLAYTYPE_BACK);
+                            
                         }
 
                         if (rocks->kind == 1) {
                             GlobalStatus::Get().AddMiniOre(1);
+                            PlaySoundMem(SEHandle[4], DX_PLAYTYPE_BACK);
                         }
                         if (rocks->kind != 0 && rocks->kind != 1) {
                             PlaySoundMem(SEHandle[0], DX_PLAYTYPE_BACK);
