@@ -26,6 +26,10 @@ GamePlayer::GamePlayer(float x, float y, int size1)
     SEHandle[6] = LoadSoundMem("data/sound/SE/pickaxe.mp3");
     game = (nullptr);
     Throw = LoadSoundMem("data/sound/SE/throw.mp3");
+
+    ChangeVolumeSoundMem(150, SEHandle[2]);
+    ChangeVolumeSoundMem(150, SEHandle[3]);
+
 }
 
 GamePlayer::~GamePlayer()
@@ -35,6 +39,15 @@ GamePlayer::~GamePlayer()
         delete stones[i];
     }
     stones.clear();
+
+    DeleteGraph(hImage);
+
+    DeleteSoundMem(Throw);
+
+    for (int i = 0; i < 7; i += 1) {
+        DeleteSoundMem(SEHandle[i]);
+    }
+
 }
 
 void GamePlayer::Update()
