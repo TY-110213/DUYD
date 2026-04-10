@@ -17,6 +17,7 @@ GamePlayer::GamePlayer(float x, float y, int size1)
     height = size;
     hImage = LoadGraph("data/character/player.png");
     SEHandle[0] = LoadSoundMem("data/sound/SE/break.mp3");
+    SEHandle[1] = LoadSoundMem("data/sound/SE/damage_enemy.mp3");
     game = (nullptr);
 }
 
@@ -190,6 +191,7 @@ void GamePlayer::Update()
                     int dmg = GlobalStatus::Get().GetStrength() / 4;
                     if (dmg < 1) dmg = 1;
                     enemy->TakeDamage(dmg);
+                    PlaySoundMem(SEHandle[1], DX_PLAYTYPE_BACK);
                 }
             }
         
