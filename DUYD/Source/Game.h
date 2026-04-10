@@ -76,6 +76,6 @@ private:
 	GamePlayer* gamePlayer = nullptr;
 
 	int BGMHandle = -1;
-	int SEHandle = -1;
+	int SEHandle[2];
 
 };

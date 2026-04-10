@@ -16,6 +16,7 @@ GamePlayer::GamePlayer(float x, float y, int size1)
     width = size;
     height = size;
     hImage = LoadGraph("data/character/player.png");
+    SEHandle[0] = LoadSoundMem("data/sound/SE/break.mp3");
     game = (nullptr);
 }
 
@@ -166,8 +167,12 @@ void GamePlayer::Update()
                         if (rocks->kind == 0) {
                             GlobalStatus::Get().RecoverO2();
                         }
+
                         if (rocks->kind == 1) {
                             GlobalStatus::Get().AddMiniOre(1);
+                        }
+                        if (rocks->kind != 0 && rocks->kind != 1) {
+                            PlaySoundMem(SEHandle[0], DX_PLAYTYPE_BACK);
                         }
                         rocks->DestroyMe();
                         game->BreakRocks += 1;
