@@ -54,7 +54,7 @@ private:
     float O2_DMAGE_INTERVAL = 1.0f;
     int SEHandle[2];
 
-    int SEHandle[3];
+    int SEHandle[4];
     int stepcount = 0;
 
 };

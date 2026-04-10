@@ -7,8 +7,9 @@ public:
     ~Backs();
     void Update() override;
     void Draw() override;
+    int area1 = 0;
 private:
     int hImage[12];
     int size1 = 0;
-    int area1 = 0;
+    
 };

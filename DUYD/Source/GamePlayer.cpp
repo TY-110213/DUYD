@@ -7,6 +7,7 @@
 #include "GlobalStatus.h"
 #include "Enemy.h"
 #include <list>
+#include "Backs.h"
 
 GamePlayer::GamePlayer(float x, float y, int size1)
 {
@@ -19,6 +20,7 @@ GamePlayer::GamePlayer(float x, float y, int size1)
     SEHandle[0] = LoadSoundMem("data/sound/SE/break.mp3");
     SEHandle[1] = LoadSoundMem("data/sound/SE/damage_enemy.mp3");
     SEHandle[2] = LoadSoundMem("data/sound/SE/footsteps.mp3");
+    SEHandle[3] = LoadSoundMem("data/sound/SE/footsteps_grass.mp3");
     game = (nullptr);
 }
 
@@ -87,11 +89,18 @@ void GamePlayer::Update()
 
     if (move == true) {
 
+        Backs* backs = FindGameObject<Backs>();
         
         stepcount += 1;
         count += 1;
         if (stepcount >= 30) {
-            PlaySoundMem(SEHandle[2], DX_PLAYTYPE_BACK);
+            if (backs->area1 != 1) {
+                PlaySoundMem(SEHandle[2], DX_PLAYTYPE_BACK);
+            }
+            else {
+                PlaySoundMem(SEHandle[3], DX_PLAYTYPE_BACK);
+            }
+           
             stepcount = 0;
         }
         if (count == 15) {
