@@ -255,6 +255,7 @@ void GamePlayer::Update()
                 if (abs(sx - (ex + 24)) < 24 && abs(sy - (ey + 24)) < 24) {
                     int dmg = GlobalStatus::Get().GetStrength();
                     enemy->TakeDamage(dmg);
+                    PlaySoundMem(SEHandle[1], DX_PLAYTYPE_BACK);
                     stones[i]->Deactivate();
                     break;
                 }
