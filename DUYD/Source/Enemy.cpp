@@ -11,6 +11,8 @@ Enemy::Enemy(float x, float y, int size, Game* game, GamePlayer* player)
 	: gameRef(game), playerRef(player)
 {
 	
+	SEHandle[0] = LoadSoundMem("data/sound/SE/damage_player.mp3");
+
 	Ex = x;
 	Ey = y;
 	Esize = size;
@@ -292,6 +294,9 @@ void Enemy::Update() {
 	{
 		GlobalStatus::Get().TakeDamage((int)STG);
 		GlobalStatus::Get().ReduceO2(3); // 敵の攻撃でO2も3減少
+
+		PlaySoundMem(SEHandle[0], DX_PLAYTYPE_BACK);
+
 		playerRef->invincibleTimer = GamePlayer::INVINCIBLE_TIME; // 1秒無敵
 		// 敵自身をプレイヤーと逆方向にノックバック
 		knockbackX = -(diffX / dist);

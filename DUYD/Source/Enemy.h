@@ -30,6 +30,9 @@ public:
 		}
 	}
 private:
+
+	int SEHandle[1];
+
 	float Ex;
 	float Ey;
 	int hImage;
