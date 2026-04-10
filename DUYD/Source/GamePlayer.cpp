@@ -22,7 +22,8 @@ GamePlayer::GamePlayer(float x, float y, int size1)
     SEHandle[2] = LoadSoundMem("data/sound/SE/footsteps.mp3");
     SEHandle[3] = LoadSoundMem("data/sound/SE/footsteps_grass.mp3");
     SEHandle[4] = LoadSoundMem("data/sound/SE/Obtain_ore.mp3");
-    //SEHandle[5] = LoadSoundMem("data/sound/SE/footsteps_grass.mp3");
+    SEHandle[5] = LoadSoundMem("data/sound/SE/Obtaining_oxygen.mp3");
+    SEHandle[6] = LoadSoundMem("data/sound/SE/pickaxe.mp3");
     game = (nullptr);
     Throw = LoadSoundMem("data/sound/SE/throw.mp3");
 }
@@ -182,37 +183,41 @@ void GamePlayer::Update()
             case RIGHT: tileX += 1; break;
             }
 
-            if (tileX >= 0 && tileX < game->WIDTH &&
-                tileY >= 0 && tileY < game->HEIGHT &&
-                game->tilegame[tileX][tileY] == 6) {
+            if (tileX >= 0 && tileX < game->WIDTH && tileY >= 0 && tileY < game->HEIGHT){
 
-                game->tilegame[tileX][tileY] = 2;
+                if (game->tilegame[tileX][tileY] == 6) {
+                    game->tilegame[tileX][tileY] = 2;
 
-                // 全ての岩から該当座標のものを探して削除
-                std::list<Rocks*> rocksList = FindGameObjects<Rocks>();
-                for (Rocks* rocks : rocksList) {
-                    if (rocks->GetX() == tileX * game->size &&
-                        rocks->GetY() == tileY * game->size) {
+                    // 全ての岩から該当座標のものを探して削除
+                    std::list<Rocks*> rocksList = FindGameObjects<Rocks>();
+                    for (Rocks* rocks : rocksList) {
+                        if (rocks->GetX() == tileX * game->size &&
+                            rocks->GetY() == tileY * game->size) {
 
-                        GlobalStatus::Get().ReduceO2();
-                        GlobalStatus::Get().AddStone();
+                            GlobalStatus::Get().ReduceO2();
+                            GlobalStatus::Get().AddStone();
 
-                        if (rocks->kind == 0) {
-                            GlobalStatus::Get().RecoverO2();
-                            PlaySoundMem(SEHandle[4], DX_PLAYTYPE_BACK);
+                            if (rocks->kind == 0) {
+                                GlobalStatus::Get().RecoverO2();
+                                PlaySoundMem(SEHandle[5], DX_PLAYTYPE_BACK);
+                            }
+
+                            if (rocks->kind == 1) {
+                                GlobalStatus::Get().AddMiniOre(1);
+                                PlaySoundMem(SEHandle[4], DX_PLAYTYPE_BACK);
+                            }
+                            if (rocks->kind != 0 && rocks->kind != 1) {
+                                PlaySoundMem(SEHandle[0], DX_PLAYTYPE_BACK);
+                            }
+                            rocks->DestroyMe();
+                            game->BreakRocks += 1;
+                            break;
+                            GlobalStatus::Get().ReduceO2(1);
                         }
-
-                        if (rocks->kind == 1) {
-                            GlobalStatus::Get().AddMiniOre(1);
-                        }
-                        if (rocks->kind != 0 && rocks->kind != 1) {
-                            PlaySoundMem(SEHandle[0], DX_PLAYTYPE_BACK);
-                        }
-                        rocks->DestroyMe();
-                        game->BreakRocks += 1;
-                        break;
-                        GlobalStatus::Get().ReduceO2(1);
                     }
+                }
+                else {
+                    PlaySoundMem(SEHandle[6], DX_PLAYTYPE_BACK);
                 }
             }
             //  つるはしで敵にダメージ（筋力の1/4）
@@ -275,35 +280,45 @@ void GamePlayer::Update()
     // --- 右クリックで石を投げる ---
     if (throwCoolTimer > 0.0f)
         throwCoolTimer -= Time::DeltaTime();
-        
 
     bool currentMouseRight = (GetMouseInput() & MOUSE_INPUT_RIGHT) != 0;
-    if (currentMouseRight && throwCoolTimer <= 0.0f) {
-        if (GlobalStatus::Get().UseStone()) {
-            // 石の発射位置（プレイヤー中心から少し前）
-            float sx = px + 22;
-            float sy = py + 22;
-            switch (dir) {
-            case UP:    sy -= 20; break;
-            case DOWN:  sy += 20; break;
-            case LEFT:  sx -= 20; break;
-            case RIGHT: sx += 20; break;
-            }
 
-            // Stone側の方向番号に変換（0:下 1:左 2:右 3:上）
-            int stoneDir = 0;
-            switch (dir) {
-            case DOWN:  stoneDir = 0; break;
-            case LEFT:  stoneDir = 1; break;
-            case RIGHT: stoneDir = 2; break;
-            case UP:    stoneDir = 3; break;
-            }
-
-            stones.push_back(new Stone(sx, sy, stoneDir, mapAdapter));
-            throwCoolTimer = THROW_COOLTIME;
-        }
-        PlaySoundMem(Throw, DX_PLAYTYPE_BACK);
+    // 右クリック押し始め：時刻を記録
+    if (currentMouseRight && !prevRightDown) {
+        rightPressStartTime = GetNowCount();
     }
+
+    // 右クリック離したとき：短押し（200ms未満）なら投げる
+    if (!currentMouseRight && prevRightDown) {
+        int pressDuration = GetNowCount() - rightPressStartTime;
+        if (pressDuration < 200 && throwCoolTimer <= 0.0f) {
+            if (GlobalStatus::Get().UseStone()) {
+                float sx = px + 22;
+                float sy = py + 22;
+                switch (dir) {
+                case UP:    sy -= 20; break;
+                case DOWN:  sy += 20; break;
+                case LEFT:  sx -= 20; break;
+                case RIGHT: sx += 20; break;
+                }
+
+                PlaySoundMem(Throw, DX_PLAYTYPE_BACK); 
+
+                int stoneDir = 0;
+                switch (dir) {
+                case DOWN:  stoneDir = 0; break;
+                case LEFT:  stoneDir = 1; break;
+                case RIGHT: stoneDir = 2; break;
+                case UP:    stoneDir = 3; break;
+                }
+
+                stones.push_back(new Stone(sx, sy, stoneDir, mapAdapter));
+                throwCoolTimer = THROW_COOLTIME;
+            }
+        }
+    }
+
+    prevRightDown = currentMouseRight; // ← 毎フレーム末尾で状態を保存
 
 
     int tileX = (int)((px + 20) / game->size);

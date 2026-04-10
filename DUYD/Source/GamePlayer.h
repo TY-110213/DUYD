@@ -49,11 +49,15 @@ private:
     std::vector<Stone*> stones;
     float throwCoolTimer = 0.0f;
     static constexpr float THROW_COOLTIME = 0.3f;
+    //右クリック長押し防止
+    bool  prevRightDown = false;   // 前フレームの右クリック状態
+    int   rightPressStartTime = 0; // 右クリック押し始めの時刻(ms)
     GameMapAdapter* mapAdapter = nullptr;
     float o2DamageTimer = 0.0f;
     float O2_DMAGE_INTERVAL = 1.0f;
     int Throw;
-    int SEHandle[6];
+    int SEHandle[7];
     int stepcount = 0;
+
 
 };
