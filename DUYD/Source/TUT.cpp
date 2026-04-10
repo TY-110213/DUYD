@@ -28,8 +28,9 @@ void TUT::DigTile(int pixelX, int pixelY)
             if (!caveTelopShown) {
                 caveTelopShown = true;
                 activeTelopHandle = imageHandle_5;
-                PlaySoundMem(Open_Book,DX_PLAYTYPE_BACK);
                 PlaySoundMem(air, DX_PLAYTYPE_BACK);
+                PlaySoundMem(Open_Book,DX_PLAYTYPE_BACK);
+                
             }
         }
         else if (mapData[tileY][tileX] == 3)
@@ -47,6 +48,7 @@ void TUT::DigTile(int pixelX, int pixelY)
             if (!kyoukaTelopShown) {
                 kyoukaTelopShown = true;
                 activeTelopHandle = imageHandle_6;
+                PlaySoundMem(crystal, DX_PLAYTYPE_BACK);
                 PlaySoundMem(Open_Book, DX_PLAYTYPE_BACK);
             }
         }
@@ -97,6 +99,7 @@ TUT::TUT()
     Clause_Book = LoadSoundMem("data/sound/SE/clause_book.mp3");
 	Stairs = LoadSoundMem("data/sound/SE/stairs.mp3");
     air = LoadSoundMem("data/sound/SE/Obtaining_oxygen.mp3");
+    crystal= LoadSoundMem("data/sound/SE/Obtain_ore.mp3");
 
     // マップデータを初期化（全て壁にしておく）
     for (int y = 0; y < MAP_HEIGHT; y++) {
