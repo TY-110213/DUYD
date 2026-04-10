@@ -36,7 +36,7 @@ public:
 	int GetMiniOreThreshold() const { return 10 + upgradeCount ; }
 	void AddOre(int amount = 1) { ore += amount; }
 	int GetOre() const { return ore; }
-
+	
 	int GetHP() const { return HP; }
 	int GetO2() const { return O2; }
 	int GetO2Max() const { return O2_MAX; }

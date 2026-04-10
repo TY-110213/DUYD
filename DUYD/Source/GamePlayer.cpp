@@ -103,7 +103,10 @@ void GamePlayer::Update()
     }
     prevLKey = currentLKey;
 
-    
+    if (GlobalStatus::Get().GetO2() == 0)
+    {
+        GlobalStatus::Get().TakeDamage(15) ;
+    }
 
 
     // --- XŽ²‚ÌˆÚ“®‚Æ“–‚½‚è”»’è ---
