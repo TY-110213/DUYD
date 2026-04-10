@@ -21,6 +21,8 @@ GamePlayer::GamePlayer(float x, float y, int size1)
     SEHandle[1] = LoadSoundMem("data/sound/SE/damage_enemy.mp3");
     SEHandle[2] = LoadSoundMem("data/sound/SE/footsteps.mp3");
     SEHandle[3] = LoadSoundMem("data/sound/SE/footsteps_grass.mp3");
+    SEHandle[4] = LoadSoundMem("data/sound/SE/Obtain_ore.mp3");
+    //SEHandle[5] = LoadSoundMem("data/sound/SE/footsteps_grass.mp3");
     game = (nullptr);
     Throw = LoadSoundMem("data/sound/SE/throw.mp3");
 }
@@ -197,6 +199,7 @@ void GamePlayer::Update()
 
                         if (rocks->kind == 0) {
                             GlobalStatus::Get().RecoverO2();
+                            PlaySoundMem(SEHandle[4], DX_PLAYTYPE_BACK);
                         }
 
                         if (rocks->kind == 1) {
