@@ -19,7 +19,7 @@ Game::Game()
 	new Backs(size);
 	new StatusDrawer();
 	Create();
-	SEHandle[0] = LoadSoundMem("data/sound/SE/bubble.mp3");
+	SEHandle[0] = LoadSoundMem("data/sound/—nŠâ“´/bubble.mp3");
 	SEHandle[1] = LoadSoundMem("data/sound/SE/stairs.mp3");
 	SEcount2 = Random(6, 11);
 }
@@ -39,15 +39,11 @@ void Game::Update() {
 	if (gameplayer == nullptr) return;
 	Camera::Update(gameplayer->px, gameplayer->py);
 
-	int SEnum = (area - 1) / 20;
+	Backs* backs = FindGameObject<Backs>();
 
-	if (SEnum >= 5) {
-		SEnum -= SEnum;
-	}
-
-	if (SEnum == 3) {
+	if (backs->area1 == 3) {
 		SEcount += 1;
-		if (SEcount == 60 * SEcount2) {
+		if (SEcount >= 60 * SEcount2) {
 			PlaySoundMem(SEHandle[0], DX_PLAYTYPE_BACK);
 			SEcount = 0;
 			SEcount2 = Random(6, 11);
