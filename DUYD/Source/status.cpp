@@ -106,16 +106,7 @@ void status::Update()
 		{
 			O2--;
 		}
-		else
-		{
-			hpTimer += Time::DeltaTime();
-			if (hpTimer >= HP_INTERVAL)
-			{
-				hpTimer = 0.0f;
-				HP -= 30;
-				if (HP < 0) HP = 0;
-			}
-		}
+		
 	}
 	if (O2 > 0)
 	{

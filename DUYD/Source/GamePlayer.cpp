@@ -105,10 +105,21 @@ void GamePlayer::Update()
     }
     prevLKey = currentLKey;
 
-    if (GlobalStatus::Get().GetO2() == 0)
+
+    if (GlobalStatus::Get().GetO2() <= 0)
     {
-        GlobalStatus::Get().TakeDamage(15) ;
+        o2DamageTimer += Time::DeltaTime();
+        if (o2DamageTimer >= O2_DMAGE_INTERVAL)
+        {
+            o2DamageTimer = 0.0f;
+            GlobalStatus::Get().TakeDamage(15);
+        }
     }
+    else
+    {
+        o2DamageTimer = 0.0f; 
+    }
+    
 
 
     // --- XŽ²‚ÌˆÚ“®‚Æ“–‚½‚è”»’è ---

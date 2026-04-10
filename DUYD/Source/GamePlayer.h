@@ -50,7 +50,8 @@ private:
     float throwCoolTimer = 0.0f;
     static constexpr float THROW_COOLTIME = 0.3f;
     GameMapAdapter* mapAdapter = nullptr;
-
+    float o2DamageTimer = 0.0f;
+    float O2_DMAGE_INTERVAL = 1.0f;
     int SEHandle[2];
 
 };
