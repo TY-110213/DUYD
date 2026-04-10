@@ -27,7 +27,7 @@ public:
 	int GetStone() const { return stone; }
 	bool HasStone() const { return stone > 0; }
 	int GetMaxStone() const { return 10 + Sp / 2; }
-	
+	//int GetBFHP() const { return }
 	bool o2TUTDone = false;
 	bool oreTUTDone = false;
 	

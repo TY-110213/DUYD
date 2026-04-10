@@ -34,7 +34,7 @@ public:
 	int BreakRocks = 0;
 
 	bool gameover = false;
-
+	int stairTimer;
 	int Scount2 = 0;
 	int Snum = 0;
 	int Snum2 = 0;

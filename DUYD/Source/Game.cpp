@@ -15,6 +15,7 @@
 
 Game::Game()
 {
+	SetDrawOrder(-60);
 	DontDestroyOnSceneChange();
 	new Backs(size);
 	new StatusDrawer();
@@ -70,7 +71,7 @@ void Game::Update() {
 
 		// BFを1増やす
 		GlobalStatus::Get().AddBF();
-
+		
 		std::list<Enemy*> enemyList = FindGameObjects<Enemy>();
 		for (Enemy* enemy : enemyList) {
 			enemy->DestroyMe();
@@ -97,10 +98,18 @@ void Game::Update() {
 }
 
 void Game::Draw() {
+	if (gamePlayer == nullptr) return;
+
 	
-	//GlobalStatus::Get().Draw();
+	if (gamePlayer->isStairs && count > 0) {
+		int percent = (count * 100) / 180;
+		// プログレスバー背景
+		DrawBox(860, 1020, 1060, 1050, GetColor(50, 50, 50), TRUE);
+		// プログレスバー本体
+		DrawBox(860, 1020, 860 + percent * 2, 1050, GetColor(255, 220, 0), TRUE);
+		DrawFormatString(870, 990, GetColor(255, 255, 255), "次のエリアへ... %d%%", percent);
 
-
+	}
 	
 
 }
