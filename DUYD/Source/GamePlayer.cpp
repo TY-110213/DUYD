@@ -278,37 +278,47 @@ void GamePlayer::Update()
    
 
     // --- 右クリックで石を投げる ---
-    if (throwCoolTimer > 0.4f)
+    if (throwCoolTimer > 0.0f)
         throwCoolTimer -= Time::DeltaTime();
-        
 
     bool currentMouseRight = (GetMouseInput() & MOUSE_INPUT_RIGHT) != 0;
-    if (currentMouseRight && throwCoolTimer <= 0.0f) {
-        if (GlobalStatus::Get().UseStone()) {
-            // 石の発射位置（プレイヤー中心から少し前）
-            float sx = px + 22;
-            float sy = py + 22;
-            switch (dir) {
-            case UP:    sy -= 20; break;
-            case DOWN:  sy += 20; break;
-            case LEFT:  sx -= 20; break;
-            case RIGHT: sx += 20; break;
-            }
 
-            // Stone側の方向番号に変換（0:下 1:左 2:右 3:上）
-            int stoneDir = 0;
-            switch (dir) {
-            case DOWN:  stoneDir = 0; break;
-            case LEFT:  stoneDir = 1; break;
-            case RIGHT: stoneDir = 2; break;
-            case UP:    stoneDir = 3; break;
-            }
-
-            stones.push_back(new Stone(sx, sy, stoneDir, mapAdapter));
-            throwCoolTimer = THROW_COOLTIME;
-        }
-        //PlaySoundMem(Throw, DX_PLAYTYPE_BACK);
+    // 右クリック押し始め：時刻を記録
+    if (currentMouseRight && !prevRightDown) {
+        rightPressStartTime = GetNowCount();
     }
+
+    // 右クリック離したとき：短押し（200ms未満）なら投げる
+    if (!currentMouseRight && prevRightDown) {
+        int pressDuration = GetNowCount() - rightPressStartTime;
+        if (pressDuration < 200 && throwCoolTimer <= 0.0f) {
+            if (GlobalStatus::Get().UseStone()) {
+                float sx = px + 22;
+                float sy = py + 22;
+                switch (dir) {
+                case UP:    sy -= 20; break;
+                case DOWN:  sy += 20; break;
+                case LEFT:  sx -= 20; break;
+                case RIGHT: sx += 20; break;
+                }
+
+                PlaySoundMem(Throw, DX_PLAYTYPE_BACK); 
+
+                int stoneDir = 0;
+                switch (dir) {
+                case DOWN:  stoneDir = 0; break;
+                case LEFT:  stoneDir = 1; break;
+                case RIGHT: stoneDir = 2; break;
+                case UP:    stoneDir = 3; break;
+                }
+
+                stones.push_back(new Stone(sx, sy, stoneDir, mapAdapter));
+                throwCoolTimer = THROW_COOLTIME;
+            }
+        }
+    }
+
+    prevRightDown = currentMouseRight; // ← 毎フレーム末尾で状態を保存
 
 
     int tileX = (int)((px + 20) / game->size);
