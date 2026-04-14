@@ -103,13 +103,25 @@ void GameOverScene::Draw()
     unsigned int black = GetColor(0, 0, 0);
 
     
-   
-    DrawFormatStringToHandle(670, 690, black, fontResult, "%d ", reachedBF);//kaisou 
+    if (isHighScore) {
+        DrawFormatStringToHandle(670, 690, black, fontResult, "%d ", reachedBF);//kaisou 
 
-   
-    DrawFormatStringToHandle(1300, 550, black, fontResult, "%d ", killCount);//tai
 
+        DrawFormatStringToHandle(1300, 550, black, fontResult, "%d ", killCount);//tai
+
+
+        DrawFormatStringToHandle(1300, 735, black, fontResult, "%d ", breakRocks);//ko
+    }
+    else {
+        DrawFormatStringToHandle(620, 710, black, fontResult, "%d ", reachedBF);//kaisou 
+
+
+        DrawFormatStringToHandle(1298, 568, black, fontResult, "%d ", killCount);//tai
+
+
+        DrawFormatStringToHandle(1298, 753, black, fontResult, "%d ", breakRocks);//ko
+    }
    
-    DrawFormatStringToHandle(1300, 735, black, fontResult, "%d ", breakRocks);//ko
+   
 
 }
