@@ -6,6 +6,7 @@ class GameMapAdapter : public IMap
 {
 public:
 	GameMapAdapter(Game* g) : game(g) {}
+    Game* GetGame() const { return game; }
 
     bool CanMove(int pixelX, int pixelY) override {
         return game->CanMove(pixelX, pixelY);
