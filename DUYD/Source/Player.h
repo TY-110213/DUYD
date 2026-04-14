@@ -68,5 +68,6 @@ private:
 	//ƒTƒEƒ“ƒh
 	int Throw;
 	int Break;
+	int Swing;
 	
 };

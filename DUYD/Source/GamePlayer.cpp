@@ -29,6 +29,7 @@ GamePlayer::GamePlayer(float x, float y, int size1)
 
     ChangeVolumeSoundMem(150, SEHandle[2]);
     ChangeVolumeSoundMem(150, SEHandle[3]);
+    ChangeVolumeSoundMem(130, SEHandle[5]);
 
 }
 
