@@ -51,7 +51,7 @@ public:
 private:
 	int pauseType = 0;
 	int BF = 1;
-	int HP = 3;
+	int HP = 10;
 	int O2 = 30;
 	int stone = 0;
 	int ore = 0;
@@ -63,7 +63,7 @@ private:
 
 	float o2Timer = 0.0f;       // 1秒カウント用
 	float hpTimer = 0.0f;       // O2=0時のHPダメージ用カウント
-	int Hp = 3;
+	int Hp = 10;
 	int Op = 29;
 	int Sp = 1;
 	int Pp = 1;
