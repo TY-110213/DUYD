@@ -121,6 +121,9 @@ void GameOverScene::Draw()
         {
             DrawFormatStringToHandle(550, 735, black, fontResult, "%d ", breakRocks);//ko
         }
+        else {
+            DrawFormatStringToHandle(550, 735, black, fontResult, "%d ", breakRocks);//ko
+        }
        
     }
     else {
@@ -139,6 +142,9 @@ void GameOverScene::Draw()
         }
         else if (breakRocks < 999 && breakRocks >99)
         {
+            DrawFormatStringToHandle(550, 735, black, fontResult, "%d ", breakRocks);//ko
+        }
+        else {
             DrawFormatStringToHandle(550, 735, black, fontResult, "%d ", breakRocks);//ko
         }
        

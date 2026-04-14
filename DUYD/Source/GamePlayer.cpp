@@ -54,7 +54,7 @@ GamePlayer::~GamePlayer()
 void GamePlayer::Update()
 {
     Game* game = FindGameObject<Game>();
-
+    if (game == nullptr) return;
     if (mapAdapter == nullptr || mapAdapter->GetGame() != game)
     {
         delete mapAdapter;
