@@ -71,7 +71,8 @@ void Game::Update() {
 
 		// BF‚ğ1‘‚â‚·
 		GlobalStatus::Get().AddBF();
-		
+		GlobalStatus::Get().HealHP(GlobalStatus::Get().GetHPMax() / 4);
+
 		std::list<Enemy*> enemyList = FindGameObjects<Enemy>();
 		for (Enemy* enemy : enemyList) {
 			enemy->DestroyMe();

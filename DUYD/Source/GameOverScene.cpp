@@ -83,7 +83,7 @@ void GameOverScene::Draw()
         DrawExtendGraph(0, 0, 1920, 1080, bgImage, FALSE);
     else
         DrawBox(0, 0, 1280, 720, GetColor(10, 5, 5), TRUE);
-   
+
 
 
     if (isHighScore && blinkVisible)
@@ -92,19 +92,38 @@ void GameOverScene::Draw()
         unsigned int goldColor = GetColor(255, 215, 0);
         DrawStringToHandle(735, 130, "ハイスコア！", goldColor, fontTitle);
     }
-    
-    
 
-    
+
+
+
 
     // 今回の記録
     unsigned int white = GetColor(255, 255, 255);
     unsigned int yellow = GetColor(255, 230, 80);
     unsigned int black = GetColor(0, 0, 0);
 
-    
+
     if (isHighScore) {
-        DrawFormatStringToHandle(670, 690, black, fontResult, "%d ", reachedBF);//kaisou 
+        if (reachedBF < 9)
+        {
+            DrawFormatStringToHandle(670, 690, black, fontResult, "%d ", reachedBF);//kaisou 
+        }
+        else if (reachedBF < 99 && reachedBF >9)
+        {
+            DrawFormatStringToHandle(630, 690, black, fontResult, "%d ", reachedBF);//ko
+        }
+        else if (reachedBF < 999 && reachedBF >99)
+        {
+            DrawFormatStringToHandle(590, 690, black, fontResult, "%d ", reachedBF);//ko
+        }
+        else if (reachedBF < 9999 && reachedBF >999)
+        {
+            DrawFormatStringToHandle(550, 690, black, fontResult, "%d ", reachedBF);//ko
+        }
+        else {
+            DrawFormatStringToHandle(510, 690, black, fontResult, "%d ", reachedBF);//ko
+        }
+
 
         if (killCount < 9)
         {
@@ -125,7 +144,7 @@ void GameOverScene::Draw()
         else {
             DrawFormatStringToHandle(1130, 550, black, fontResult, "%d ", killCount);//ko
         }
-        
+
 
         if (breakRocks < 9)
         {
@@ -139,63 +158,81 @@ void GameOverScene::Draw()
         {
             DrawFormatStringToHandle(1220, 735, black, fontResult, "%d ", breakRocks);//ko
         }
-        else if(breakRocks < 9999 && breakRocks >999)
+        else if (breakRocks < 9999 && breakRocks >999)
         {
             DrawFormatStringToHandle(1170, 735, black, fontResult, "%d ", breakRocks);//ko
         }
         else {
             DrawFormatStringToHandle(1130, 735, black, fontResult, "%d ", breakRocks);//ko
         }
-       
+
     }
     else {
-        DrawFormatStringToHandle(620, 710, black, fontResult, "%d ", reachedBF);//kaisou 
-
-
-
-        if (killCount < 9)
+        if (reachedBF < 9)
         {
-            DrawFormatStringToHandle(1300, 550, black, fontResult, "%d ", killCount);//tai
+            DrawFormatStringToHandle(670, 690, black, fontResult, "%d ", reachedBF);//kaisou 
         }
-        else if (killCount < 99 && killCount >9)
+        else if (reachedBF < 99 && reachedBF >9)
         {
-            DrawFormatStringToHandle(1260, 550, black, fontResult, "%d ", killCount);//ko
+            DrawFormatStringToHandle(630, 690, black, fontResult, "%d ", reachedBF);//ko
         }
-        else if (killCount < 999 && killCount >99)
+        else if (reachedBF < 999 && reachedBF >99)
         {
-            DrawFormatStringToHandle(1220, 550, black, fontResult, "%d ", killCount);//ko
+            DrawFormatStringToHandle(590, 690, black, fontResult, "%d ", reachedBF);//ko
         }
-        else if (killCount < 9999 && killCount >999)
+        else if (reachedBF < 9999 && reachedBF >999)
         {
-            DrawFormatStringToHandle(1170, 550, black, fontResult, "%d ", killCount);//ko
+            DrawFormatStringToHandle(550, 690, black, fontResult, "%d ", reachedBF);//ko
         }
         else {
-            DrawFormatStringToHandle(1130, 550, black, fontResult, "%d ", killCount);//ko
+            DrawFormatStringToHandle(510, 690, black, fontResult, "%d ", reachedBF);//ko
+
+
+
+            if (killCount < 9)
+            {
+                DrawFormatStringToHandle(1300, 550, black, fontResult, "%d ", killCount);//tai
+            }
+            else if (killCount < 99 && killCount >9)
+            {
+                DrawFormatStringToHandle(1260, 550, black, fontResult, "%d ", killCount);//ko
+            }
+            else if (killCount < 999 && killCount >99)
+            {
+                DrawFormatStringToHandle(1220, 550, black, fontResult, "%d ", killCount);//ko
+            }
+            else if (killCount < 9999 && killCount >999)
+            {
+                DrawFormatStringToHandle(1170, 550, black, fontResult, "%d ", killCount);//ko
+            }
+            else {
+                DrawFormatStringToHandle(1130, 550, black, fontResult, "%d ", killCount);//ko
+            }
+
+            if (breakRocks < 9)
+            {
+                DrawFormatStringToHandle(1300, 735, black, fontResult, "%d ", breakRocks);//ko
+            }
+            else if (breakRocks < 99 && breakRocks >9)
+            {
+                DrawFormatStringToHandle(1260, 735, black, fontResult, "%d ", breakRocks);//ko
+            }
+            else if (breakRocks < 999 && breakRocks >99)
+            {
+                DrawFormatStringToHandle(1220, 735, black, fontResult, "%d ", breakRocks);//ko
+            }
+            else if ((breakRocks < 9999 && breakRocks >999))
+            {
+                DrawFormatStringToHandle(1170, 735, black, fontResult, "%d ", breakRocks);//ko
+            }
+            else {
+                DrawFormatStringToHandle(1130, 735, black, fontResult, "%d ", breakRocks);//ko
+            }
+
         }
 
-        if (breakRocks < 9)
-        {
-            DrawFormatStringToHandle(1300, 735, black, fontResult, "%d ", breakRocks);//ko
-        }
-        else if (breakRocks < 99 && breakRocks >9)
-        {
-            DrawFormatStringToHandle(1260, 735, black, fontResult, "%d ", breakRocks);//ko
-        }
-        else if (breakRocks < 999 && breakRocks >99)
-        {
-            DrawFormatStringToHandle(1220, 735, black, fontResult, "%d ", breakRocks);//ko
-        }
-        else if ((breakRocks < 9999 && breakRocks >999))
-        {
-            DrawFormatStringToHandle(1170, 735, black, fontResult, "%d ", breakRocks);//ko
-        }
-        else {
-            DrawFormatStringToHandle(1130, 735, black, fontResult, "%d ", breakRocks);//ko
-        }
-       
+
+
+
     }
-   
-    
-    
-
 }

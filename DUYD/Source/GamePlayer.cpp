@@ -142,7 +142,7 @@ void GamePlayer::Update()
         count2 = 1;
     }
     //ƒeƒXƒg
-    bool currentLKey = CheckHitKey(KEY_INPUT_L) != 0;
+    /*bool currentLKey = CheckHitKey(KEY_INPUT_L) != 0;
     if (currentLKey && !prevLKey)
     {
         GlobalStatus::Get().AddOre(1);
@@ -154,8 +154,18 @@ void GamePlayer::Update()
         if (game != nullptr)
             game->BreakRocks += 10;
     }
-    
-
+    if (CheckHitKey(KEY_INPUT_K))
+    {
+        Game* game = FindGameObject<Game>();
+        if (game != nullptr)
+            game->KillCount += 10;
+    }
+    if (CheckHitKey(KEY_INPUT_M))
+    {
+       
+        GlobalStatus::Get().AddBF();
+    }
+   */
 
 
     if (GlobalStatus::Get().GetO2() <= 0)
