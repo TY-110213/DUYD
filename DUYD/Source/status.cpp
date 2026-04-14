@@ -9,8 +9,8 @@ status::status()
 	valueFont = CreateFontToHandle(NULL, 28, 6, DX_FONTTYPE_ANTIALIASING);
 
 	// 通常表示パネル用のフォント
-	labelFont = CreateFontToHandle(NULL, 18, 4, DX_FONTTYPE_ANTIALIASING); // ラベル（HP, O2...）
-	numFont = CreateFontToHandle(NULL, 22, 5, DX_FONTTYPE_ANTIALIASING); // 数値（999/999）
+	labelFont = CreateFontToHandle(NULL, 30, 4, DX_FONTTYPE_ANTIALIASING); // ラベル（HP, O2...）
+	numFont = CreateFontToHandle(NULL, 35, 5, DX_FONTTYPE_ANTIALIASING); // 数値（999/999）
 
 	ApplyStats();
 }
@@ -338,7 +338,7 @@ void status::DrawUpgradeScreen()
 void status::DrawNormalStatus()
 {
 	int panW = 780;   // パネルの幅
-	int panH = 70;    // パネルの高さ（細長く）
+	int panH = 100;    // パネルの高さ（細長く）
 	int panX = 20;    // 左端からの距離
 	int panY = 15;    // 上端からの距離
 	int radius = 12;  // 角の丸み
@@ -355,11 +355,11 @@ void status::DrawNormalStatus()
 
 	
 	// 列のX座標
-	int col1X = panX + 20;   // BF
-	int col2X = panX + 140;  // HP
-	int col3X = panX + 300;  // O2
-	int col4X = panX + 460;  // 石
-	int col5X = panX + 620;  // 鉱石
+	int col1X = panX + 30;   // BF
+	int col2X = panX + 150;  // HP
+	int col3X = panX + 310;  // O2
+	int col4X = panX + 470;  // 石
+	int col5X = panX + 630;  // 鉱石
 
 	int labelY = panY + 8;   // ラベルのY（上段）
 	int valueY = panY + 34;  // 数値のY（下段）
