@@ -106,8 +106,26 @@ void GameOverScene::Draw()
     if (isHighScore) {
         DrawFormatStringToHandle(670, 690, black, fontResult, "%d ", reachedBF);//kaisou 
 
-
-        DrawFormatStringToHandle(1300, 550, black, fontResult, "%d ", killCount);//tai
+        if (killCount < 9)
+        {
+            DrawFormatStringToHandle(1300, 550, black, fontResult, "%d ", killCount);//tai
+        }
+        else if (killCount < 99 && killCount >9)
+        {
+            DrawFormatStringToHandle(1260, 550, black, fontResult, "%d ", killCount);//ko
+        }
+        else if (killCount < 999 && killCount >99)
+        {
+            DrawFormatStringToHandle(1220, 550, black, fontResult, "%d ", killCount);//ko
+        }
+        else if (killCount < 9999 && killCount >999)
+        {
+            DrawFormatStringToHandle(1170, 550, black, fontResult, "%d ", killCount);//ko
+        }
+        else {
+            DrawFormatStringToHandle(1130, 550, black, fontResult, "%d ", killCount);//ko
+        }
+        
 
         if (breakRocks < 9)
         {
@@ -121,8 +139,12 @@ void GameOverScene::Draw()
         {
             DrawFormatStringToHandle(1220, 735, black, fontResult, "%d ", breakRocks);//ko
         }
-        else {
+        else if(breakRocks < 9999 && breakRocks >999)
+        {
             DrawFormatStringToHandle(1170, 735, black, fontResult, "%d ", breakRocks);//ko
+        }
+        else {
+            DrawFormatStringToHandle(1130, 735, black, fontResult, "%d ", breakRocks);//ko
         }
        
     }
@@ -130,7 +152,26 @@ void GameOverScene::Draw()
         DrawFormatStringToHandle(620, 710, black, fontResult, "%d ", reachedBF);//kaisou 
 
 
-        DrawFormatStringToHandle(1298, 568, black, fontResult, "%d ", killCount);//tai
+
+        if (killCount < 9)
+        {
+            DrawFormatStringToHandle(1300, 550, black, fontResult, "%d ", killCount);//tai
+        }
+        else if (killCount < 99 && killCount >9)
+        {
+            DrawFormatStringToHandle(1260, 550, black, fontResult, "%d ", killCount);//ko
+        }
+        else if (killCount < 999 && killCount >99)
+        {
+            DrawFormatStringToHandle(1220, 550, black, fontResult, "%d ", killCount);//ko
+        }
+        else if (killCount < 9999 && killCount >999)
+        {
+            DrawFormatStringToHandle(1170, 550, black, fontResult, "%d ", killCount);//ko
+        }
+        else {
+            DrawFormatStringToHandle(1130, 550, black, fontResult, "%d ", killCount);//ko
+        }
 
         if (breakRocks < 9)
         {
@@ -144,8 +185,12 @@ void GameOverScene::Draw()
         {
             DrawFormatStringToHandle(1220, 735, black, fontResult, "%d ", breakRocks);//ko
         }
-        else {
+        else if ((breakRocks < 9999 && breakRocks >999))
+        {
             DrawFormatStringToHandle(1170, 735, black, fontResult, "%d ", breakRocks);//ko
+        }
+        else {
+            DrawFormatStringToHandle(1130, 735, black, fontResult, "%d ", breakRocks);//ko
         }
        
     }
