@@ -100,6 +100,7 @@ TUT::TUT()
 	Stairs = LoadSoundMem("data/sound/SE/stairs.mp3");
     air = LoadSoundMem("data/sound/SE/Obtaining_oxygen.mp3");
     crystal= LoadSoundMem("data/sound/SE/Obtain_ore.mp3");
+    ChangeVolumeSoundMem(130, crystal);
 
     // マップデータを初期化（全て壁にしておく）
     for (int y = 0; y < MAP_HEIGHT; y++) {

@@ -25,6 +25,7 @@ Player::Player(IMap* map,float startX,float startY) : tutMap(map)
 	walkSE = LoadSoundMem("data/sound/SE/footsteps.mp3");
 	Throw = LoadSoundMem("data/sound/SE/throw.mp3");
 	Break = LoadSoundMem("data/sound/SE/break.mp3");
+	Swing= LoadSoundMem("data/sound/SE/pickaxe.mp3");
 	
 	
 	
@@ -201,6 +202,9 @@ if (throwCoolTimer > 0.0f) throwCoolTimer -= Time::DeltaTime();
 			PlaySoundMem(Break, DX_PLAYTYPE_BACK);
 
 		}
+		else 
+			PlaySoundMem(Swing, DX_PLAYTYPE_BACK);
+
 		digCoolTimer = DIG_COOLTIME;
 	} // 左クリック処理の終了
 
