@@ -69,5 +69,6 @@ private:
     int Clause_Book;
     int Stairs;
     int air;
+    int crystal;
     
 };
