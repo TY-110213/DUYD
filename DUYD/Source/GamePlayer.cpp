@@ -53,6 +53,7 @@ GamePlayer::~GamePlayer()
 
 void GamePlayer::Update()
 {
+
     Game* game = FindGameObject<Game>();
     if (game == nullptr) return;
     if (mapAdapter == nullptr || mapAdapter->GetGame() != game)
@@ -147,6 +148,14 @@ void GamePlayer::Update()
         GlobalStatus::Get().AddOre(1);
     }
     prevLKey = currentLKey;
+    if (CheckHitKey(KEY_INPUT_O))
+    {
+        Game* game = FindGameObject<Game>();
+        if (game != nullptr)
+            game->BreakRocks += 10;
+    }
+    
+
 
 
     if (GlobalStatus::Get().GetO2() <= 0)

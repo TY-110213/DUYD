@@ -115,14 +115,14 @@ void GameOverScene::Draw()
         }
         else if (breakRocks < 99 && breakRocks >9)
         {
-            DrawFormatStringToHandle(1280, 735, black, fontResult, "%d ", breakRocks);//ko
+            DrawFormatStringToHandle(1260, 735, black, fontResult, "%d ", breakRocks);//ko
         }
         else if (breakRocks < 999 && breakRocks >99)
         {
-            DrawFormatStringToHandle(550, 735, black, fontResult, "%d ", breakRocks);//ko
+            DrawFormatStringToHandle(1220, 735, black, fontResult, "%d ", breakRocks);//ko
         }
         else {
-            DrawFormatStringToHandle(550, 735, black, fontResult, "%d ", breakRocks);//ko
+            DrawFormatStringToHandle(1170, 735, black, fontResult, "%d ", breakRocks);//ko
         }
        
     }
@@ -138,14 +138,14 @@ void GameOverScene::Draw()
         }
         else if (breakRocks < 99 && breakRocks >9)
         {
-            DrawFormatStringToHandle(620, 735, black, fontResult, "%d ", breakRocks);//ko
+            DrawFormatStringToHandle(1260, 735, black, fontResult, "%d ", breakRocks);//ko
         }
         else if (breakRocks < 999 && breakRocks >99)
         {
-            DrawFormatStringToHandle(550, 735, black, fontResult, "%d ", breakRocks);//ko
+            DrawFormatStringToHandle(1220, 735, black, fontResult, "%d ", breakRocks);//ko
         }
         else {
-            DrawFormatStringToHandle(550, 735, black, fontResult, "%d ", breakRocks);//ko
+            DrawFormatStringToHandle(1170, 735, black, fontResult, "%d ", breakRocks);//ko
         }
        
     }
