@@ -60,7 +60,6 @@
       <Filter>PlayScene</Filter>
     </ClCompile>
     <ClCompile Include="Source\Backs.cpp" />
-    <ClCompile Include="Source\Game.cpp" />
     <ClCompile Include="Source\Enemy.cpp" />
     <ClCompile Include="Source\SceneFactory.cpp">
       <Filter>PlayScene</Filter>
@@ -73,6 +72,9 @@
     <ClCompile Include="Source\GameOverScene.cpp" />
     <ClCompile Include="Source\FavOverlay.cpp" />
     <ClCompile Include="Source\Gamemapadapter.cpp" />
+    <ClCompile Include="Source\Game.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
