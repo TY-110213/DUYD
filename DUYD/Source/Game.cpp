@@ -102,6 +102,7 @@ void Game::Draw() {
 	if (gamePlayer == nullptr) return;
 
 	
+
 	if (gamePlayer->isStairs && count > 0) {
 		int percent = (count * 100) / 180;
 		// プログレスバー背景
