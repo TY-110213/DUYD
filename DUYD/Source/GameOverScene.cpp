@@ -80,7 +80,7 @@ void GameOverScene::Draw()
 {
     // ”wŒi‰æ‘œ‚ð‘S‰æ–Ê•\Ž¦
     if (bgImage != -1)
-        DrawExtendGraph(0, 0, 1980, 1080, bgImage, FALSE);
+        DrawExtendGraph(0, 0, 1920, 1080, bgImage, FALSE);
     else
         DrawBox(0, 0, 1280, 720, GetColor(10, 5, 5), TRUE);
    
@@ -109,8 +109,19 @@ void GameOverScene::Draw()
 
         DrawFormatStringToHandle(1300, 550, black, fontResult, "%d ", killCount);//tai
 
-
-        DrawFormatStringToHandle(1300, 735, black, fontResult, "%d ", breakRocks);//ko
+        if (breakRocks < 9)
+        {
+            DrawFormatStringToHandle(1300, 735, black, fontResult, "%d ", breakRocks);//ko
+        }
+        else if (breakRocks < 99 && breakRocks >9)
+        {
+            DrawFormatStringToHandle(1280, 735, black, fontResult, "%d ", breakRocks);//ko
+        }
+        else if (breakRocks < 999 && breakRocks >99)
+        {
+            DrawFormatStringToHandle(550, 735, black, fontResult, "%d ", breakRocks);//ko
+        }
+       
     }
     else {
         DrawFormatStringToHandle(620, 710, black, fontResult, "%d ", reachedBF);//kaisou 
@@ -118,10 +129,22 @@ void GameOverScene::Draw()
 
         DrawFormatStringToHandle(1298, 568, black, fontResult, "%d ", killCount);//tai
 
-
-        DrawFormatStringToHandle(1298, 753, black, fontResult, "%d ", breakRocks);//ko
+        if (breakRocks < 9)
+        {
+            DrawFormatStringToHandle(1300, 735, black, fontResult, "%d ", breakRocks);//ko
+        }
+        else if (breakRocks < 99 && breakRocks >9)
+        {
+            DrawFormatStringToHandle(620, 735, black, fontResult, "%d ", breakRocks);//ko
+        }
+        else if (breakRocks < 999 && breakRocks >99)
+        {
+            DrawFormatStringToHandle(550, 735, black, fontResult, "%d ", breakRocks);//ko
+        }
+       
     }
    
-   
+    
+    
 
 }
