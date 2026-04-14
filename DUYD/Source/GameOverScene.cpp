@@ -62,7 +62,7 @@ void GameOverScene::Update()
     // クリックでタイトルへ
     if (currentMouseLeft && !prevMouseLeft)
     {
-        GlobalStatus::Reset();
+       
         SceneManager::ChangeScene("TITLE");
     }
     prevMouseLeft = currentMouseLeft;

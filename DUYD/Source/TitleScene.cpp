@@ -1,7 +1,7 @@
 #include "TitleScene.h"
 #include <DxLib.h>
 #include "Screen.h"
-
+#include "GlobalStatus.h"
 int image;
 const int CHR_SIZE = 64;
 int coinImage;
@@ -27,6 +27,7 @@ void TitleScene::Update()
 	
 	if (CheckHitKey(KEY_INPUT_P)) 
 	{
+		GlobalStatus::Reset();
 		SceneManager::ChangeScene("tut");
 		PlaySoundMem(buttonSE, DX_PLAYTYPE_BACK);
 	}
@@ -44,6 +45,7 @@ void TitleScene::Update()
 
 	if (CheckHitKey(KEY_INPUT_A)) 
 	{
+		GlobalStatus::Reset();
 		SceneManager::ChangeScene("PLAY");
 		PlaySoundMem(buttonSE, DX_PLAYTYPE_BACK);
 	}
