@@ -102,132 +102,141 @@ void GameOverScene::Draw()
     unsigned int white = GetColor(255, 255, 255);
     unsigned int yellow = GetColor(255, 230, 80);
     unsigned int black = GetColor(0, 0, 0);
-
+    int x = (int)(670 * Screen::WIDTH / 1920.0f);
+    int y = (int)(690 * Screen::HEIGHT / 1080.0f);
+    int x1 = (int)(1300 * Screen::WIDTH / 1920.0f);
+    int y1 = (int)( 550* Screen::HEIGHT / 1080.0f);
 
     if (isHighScore) {
         if (reachedBF < 9)
         {
-            DrawFormatStringToHandle(670, 690, black, fontResult, "%d ", reachedBF);//kaisou 
+            DrawFormatStringToHandle(x, y, black, fontResult, "%d ", reachedBF);//kaisou 
         }
         else if (reachedBF < 99 && reachedBF >9)
         {
-            DrawFormatStringToHandle(630, 690, black, fontResult, "%d ", reachedBF);//ko
+            DrawFormatStringToHandle(x-40, y, black, fontResult, "%d ", reachedBF);//ko
         }
         else if (reachedBF < 999 && reachedBF >99)
         {
-            DrawFormatStringToHandle(590, 690, black, fontResult, "%d ", reachedBF);//ko
+            DrawFormatStringToHandle(x-80, y, black, fontResult, "%d ", reachedBF);//ko
         }
         else if (reachedBF < 9999 && reachedBF >999)
         {
-            DrawFormatStringToHandle(550, 690, black, fontResult, "%d ", reachedBF);//ko
+            DrawFormatStringToHandle(x-120, y, black, fontResult, "%d ", reachedBF);//ko
         }
         else {
-            DrawFormatStringToHandle(510, 690, black, fontResult, "%d ", reachedBF);//ko
+            DrawFormatStringToHandle(x-160, y, black, fontResult, "%d ", reachedBF);//ko
         }
 
 
         if (killCount < 9)
         {
-            DrawFormatStringToHandle(1300, 550, black, fontResult, "%d ", killCount);//tai
+            DrawFormatStringToHandle(x1, y1, black, fontResult, "%d ", killCount);//tai
         }
         else if (killCount < 99 && killCount >9)
         {
-            DrawFormatStringToHandle(1260, 550, black, fontResult, "%d ", killCount);//ko
+            DrawFormatStringToHandle(x1-40, y1, black, fontResult, "%d ", killCount);//ko
         }
         else if (killCount < 999 && killCount >99)
         {
-            DrawFormatStringToHandle(1220, 550, black, fontResult, "%d ", killCount);//ko
+            DrawFormatStringToHandle(x1-80, y1, black, fontResult, "%d ", killCount);//ko
         }
         else if (killCount < 9999 && killCount >999)
         {
-            DrawFormatStringToHandle(1170, 550, black, fontResult, "%d ", killCount);//ko
+            DrawFormatStringToHandle(x1-120, y1, black, fontResult, "%d ", killCount);//ko
         }
         else {
-            DrawFormatStringToHandle(1130, 550, black, fontResult, "%d ", killCount);//ko
+            DrawFormatStringToHandle(x1-160, y1, black, fontResult, "%d ", killCount);//ko
         }
-
+        
+    int y2 = (int)( 735* Screen::HEIGHT / 1080.0f);
 
         if (breakRocks < 9)
         {
-            DrawFormatStringToHandle(1300, 735, black, fontResult, "%d ", breakRocks);//ko
+            DrawFormatStringToHandle(x1, y2, black, fontResult, "%d ", breakRocks);//ko
         }
         else if (breakRocks < 99 && breakRocks >9)
         {
-            DrawFormatStringToHandle(1260, 735, black, fontResult, "%d ", breakRocks);//ko
+            DrawFormatStringToHandle(x1-40, y2, black, fontResult, "%d ", breakRocks);//ko
         }
         else if (breakRocks < 999 && breakRocks >99)
         {
-            DrawFormatStringToHandle(1220, 735, black, fontResult, "%d ", breakRocks);//ko
+            DrawFormatStringToHandle(x1-80, y2, black, fontResult, "%d ", breakRocks);//ko
         }
         else if (breakRocks < 9999 && breakRocks >999)
         {
-            DrawFormatStringToHandle(1170, 735, black, fontResult, "%d ", breakRocks);//ko
+            DrawFormatStringToHandle(x1-120, y2, black, fontResult, "%d ", breakRocks);//ko
         }
         else {
-            DrawFormatStringToHandle(1130, 735, black, fontResult, "%d ", breakRocks);//ko
+            DrawFormatStringToHandle(x1-160, y2, black, fontResult, "%d ", breakRocks);//ko
         }
 
     }
     else {
+        int x3 = (int)(670 * Screen::WIDTH / 1920.0f);
+        int y3 = (int)(690 * Screen::HEIGHT / 1080.0f);
+
         if (reachedBF < 9)
         {
-            DrawFormatStringToHandle(670, 690, black, fontResult, "%d ", reachedBF);//kaisou 
+            DrawFormatStringToHandle(x3, y3, black, fontResult, "%d ", reachedBF);//kaisou 
         }
         else if (reachedBF < 99 && reachedBF >9)
         {
-            DrawFormatStringToHandle(630, 690, black, fontResult, "%d ", reachedBF);//ko
+            DrawFormatStringToHandle(x3-40, y3, black, fontResult, "%d ", reachedBF);//ko
         }
         else if (reachedBF < 999 && reachedBF >99)
         {
-            DrawFormatStringToHandle(590, 690, black, fontResult, "%d ", reachedBF);//ko
+            DrawFormatStringToHandle(x3-80, y3, black, fontResult, "%d ", reachedBF);//ko
         }
         else if (reachedBF < 9999 && reachedBF >999)
         {
-            DrawFormatStringToHandle(550, 690, black, fontResult, "%d ", reachedBF);//ko
+            DrawFormatStringToHandle(x3-120, y3, black, fontResult, "%d ", reachedBF);//ko
         }
         else {
-            DrawFormatStringToHandle(510, 690, black, fontResult, "%d ", reachedBF);//ko
+            DrawFormatStringToHandle(x3-160, y3, black, fontResult, "%d ", reachedBF);//ko
 
 
 
             if (killCount < 9)
             {
-                DrawFormatStringToHandle(1300, 550, black, fontResult, "%d ", killCount);//tai
+                DrawFormatStringToHandle(x1, y1, black, fontResult, "%d ", killCount);//tai
             }
             else if (killCount < 99 && killCount >9)
             {
-                DrawFormatStringToHandle(1260, 550, black, fontResult, "%d ", killCount);//ko
+                DrawFormatStringToHandle(x1 - 40, y1, black, fontResult, "%d ", killCount);//ko
             }
             else if (killCount < 999 && killCount >99)
             {
-                DrawFormatStringToHandle(1220, 550, black, fontResult, "%d ", killCount);//ko
+                DrawFormatStringToHandle(x1 - 80, y1, black, fontResult, "%d ", killCount);//ko
             }
             else if (killCount < 9999 && killCount >999)
             {
-                DrawFormatStringToHandle(1170, 550, black, fontResult, "%d ", killCount);//ko
+                DrawFormatStringToHandle(x1 - 120, y1, black, fontResult, "%d ", killCount);//ko
             }
             else {
-                DrawFormatStringToHandle(1130, 550, black, fontResult, "%d ", killCount);//ko
+                DrawFormatStringToHandle(x1 - 160, y1, black, fontResult, "%d ", killCount);//ko
             }
+
+            int y2 = (int)(735 * Screen::HEIGHT / 1080.0f);
 
             if (breakRocks < 9)
             {
-                DrawFormatStringToHandle(1300, 735, black, fontResult, "%d ", breakRocks);//ko
+                DrawFormatStringToHandle(x1, y2, black, fontResult, "%d ", breakRocks);//ko
             }
             else if (breakRocks < 99 && breakRocks >9)
             {
-                DrawFormatStringToHandle(1260, 735, black, fontResult, "%d ", breakRocks);//ko
+                DrawFormatStringToHandle(x1 - 40, y2, black, fontResult, "%d ", breakRocks);//ko
             }
             else if (breakRocks < 999 && breakRocks >99)
             {
-                DrawFormatStringToHandle(1220, 735, black, fontResult, "%d ", breakRocks);//ko
+                DrawFormatStringToHandle(x1 - 80, y2, black, fontResult, "%d ", breakRocks);//ko
             }
-            else if ((breakRocks < 9999 && breakRocks >999))
+            else if (breakRocks < 9999 && breakRocks >999)
             {
-                DrawFormatStringToHandle(1170, 735, black, fontResult, "%d ", breakRocks);//ko
+                DrawFormatStringToHandle(x1 - 120, y2, black, fontResult, "%d ", breakRocks);//ko
             }
             else {
-                DrawFormatStringToHandle(1130, 735, black, fontResult, "%d ", breakRocks);//ko
+                DrawFormatStringToHandle(x1 - 160, y2, black, fontResult, "%d ", breakRocks);//ko
             }
 
         }

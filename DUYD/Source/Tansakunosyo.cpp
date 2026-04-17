@@ -79,69 +79,72 @@ void Tansakunosyo::Draw()
 	unsigned int white = GetColor(255, 255, 255);
 	unsigned int yellow = GetColor(255, 230, 80);
 	unsigned int black = GetColor(0, 0, 0);
-
-
+	int x = (int)(670 * Screen::WIDTH / 1920.0f);
+	int y = (int)(690 * Screen::HEIGHT / 1080.0f);
+	int x1 = (int)(1300 * Screen::WIDTH / 1920.0f);
+	int y1 = (int)(550 * Screen::HEIGHT / 1080.0f);
+	int y2 = (int)(735 * Screen::HEIGHT / 1080.0f);
 
 	if (highScoreBF < 9)
 	{
-		DrawFormatStringToHandle(670, 690, black, fontResult, "%d ", highScoreBF);//kaisou 
+		DrawFormatStringToHandle(x, y, black, fontResult, "%d ", highScoreBF);//kaisou 
 	}
 	else if (highScoreBF < 99 && highScoreBF >9)
 	{
-		DrawFormatStringToHandle(630, 690, black, fontResult, "%d ", highScoreBF);//ko
+		DrawFormatStringToHandle(x-40, y, black, fontResult, "%d ", highScoreBF);//ko
 	}
 	else if (highScoreBF < 999 && highScoreBF >99)
 	{
-		DrawFormatStringToHandle(590, 690, black, fontResult, "%d ", highScoreBF);//ko
+		DrawFormatStringToHandle(x-80, y, black, fontResult, "%d ", highScoreBF);//ko
 	}
 	else if (highScoreBF < 9999 && highScoreBF >999)
 	{
-		DrawFormatStringToHandle(550, 690, black, fontResult, "%d ", highScoreBF);//ko
+		DrawFormatStringToHandle(x-120, y, black, fontResult, "%d ", highScoreBF);//ko
 	}
 	else {
-		DrawFormatStringToHandle(510, 690, black, fontResult, "%d ", highScoreBF);//ko
+		DrawFormatStringToHandle(x-160, y, black, fontResult, "%d ", highScoreBF);//ko
 	}
 
 	
 	if (highScoreKill < 9)
 	{
-		DrawFormatStringToHandle(1300, 550, black, fontResult, "%d ", highScoreKill);//tai
+		DrawFormatStringToHandle(x1, y1, black, fontResult, "%d ", highScoreKill);//tai
 	}
 	else if (highScoreKill < 99 && highScoreKill >9)
 	{
-		DrawFormatStringToHandle(1260, 550, black, fontResult, "%d ", highScoreKill);//ko
+		DrawFormatStringToHandle(x1-40, y1, black, fontResult, "%d ", highScoreKill);//ko
 	}
 	else if (highScoreKill < 999 && highScoreKill >99)
 	{
-		DrawFormatStringToHandle(1220, 550, black, fontResult, "%d ", highScoreKill);//ko
+		DrawFormatStringToHandle(x1-80, y1, black, fontResult, "%d ", highScoreKill);//ko
 	}
 	else if (highScoreKill < 9999 && highScoreKill >999)
 	{
-		DrawFormatStringToHandle(1170, 550, black, fontResult, "%d ", highScoreKill);//ko
+		DrawFormatStringToHandle(x1-120, y1, black, fontResult, "%d ", highScoreKill);//ko
 	}
 	else {
-		DrawFormatStringToHandle(1130, 550, black, fontResult, "%d ", highScoreKill);//ko
+		DrawFormatStringToHandle(x1-160, y1, black, fontResult, "%d ", highScoreKill);//ko
 	}
 
 	
 	if (highScoreBreak < 9)
 	{
-		DrawFormatStringToHandle(1300, 735, black, fontResult, "%d ", highScoreBreak);//ko
+		DrawFormatStringToHandle(x1, y2, black, fontResult, "%d ", highScoreBreak);//ko
 	}
 	else if (highScoreBreak < 99 && highScoreBreak >9)
 	{
-		DrawFormatStringToHandle(1260, 735, black, fontResult, "%d ", highScoreBreak);//ko
+		DrawFormatStringToHandle(x1-40, y2, black, fontResult, "%d ", highScoreBreak);//ko
 	}
 	else if (highScoreBreak < 999 && highScoreBreak >99)
 	{
-		DrawFormatStringToHandle(1220, 735, black, fontResult, "%d ", highScoreBreak);//ko
+		DrawFormatStringToHandle(x1-80, y2, black, fontResult, "%d ", highScoreBreak);//ko
 	}
 	else if (highScoreBreak < 9999 && highScoreBreak >999)
 	{
-		DrawFormatStringToHandle(1170, 735, black, fontResult, "%d ", highScoreBreak);//ko
+		DrawFormatStringToHandle(x1-120, y2, black, fontResult, "%d ", highScoreBreak);//ko
 	}
 	else {
-		DrawFormatStringToHandle(1130, 735, black, fontResult, "%d ", highScoreBreak);//ko
+		DrawFormatStringToHandle(x1-160, y2, black, fontResult, "%d ", highScoreBreak);//ko
 	}
 
 
