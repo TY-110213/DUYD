@@ -224,23 +224,10 @@ void TUT::Update()
         PlaySoundMem(Clause_Book, DX_PLAYTYPE_BACK);
     }
 
-    if (GlobalStatus::Get().IsUpgradeScreenOpen() && !mflag) {
-        mouseX = 1920 / 2;
-        mouseY = 980 / 2;
-        mflag = true;
+    if (GlobalStatus::Get().IsUpgradeScreenOpen()) {
+        GetMousePoint(&mouseX, &mouseY);
     }
-    else if (mflag = true) {
-        mouseX -= numX;
-        mouseY -= numY;
-        numX = 0;
-        numY = 0;
-        GetMousePoint(&numX, &numY);
-        mouseX += numX;
-        mouseY += numY;
-    }
-    if (GlobalStatus::Get().IsUpgradeScreenOpen() == false) {
-        mflag = false;
-    }
+    
 
 }
 
