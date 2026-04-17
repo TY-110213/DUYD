@@ -33,9 +33,11 @@ void Backs::Update() {
 void Backs::Draw() {
     Game* game = FindGameObject<Game>();
     area1 = (game->area - 1) / 20;
-    if (area1 >= 5) {
-        area1 -= area1;
+    
+    for (int i = 0; area1 >= 5; area1 -= 5) {
+
     }
+
     for (int i = 0; i < game->WIDTH; i += 1) {
         for (int j = 0; j < game->HEIGHT; j += 1) {
 

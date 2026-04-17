@@ -51,8 +51,6 @@ void Game::Update() {
 		}
 	}
 
-	
-
 	if (GlobalStatus::Get().IsGameOver())
 	{
 		SceneManager::ChangeScene("GAMEOVER");
@@ -71,6 +69,7 @@ void Game::Update() {
 
 		// BFÇ1ëùÇ‚Ç∑
 		GlobalStatus::Get().AddBF();
+		
 		GlobalStatus::Get().HealHP(GlobalStatus::Get().GetHPMax() / 4);
 
 		std::list<Enemy*> enemyList = FindGameObjects<Enemy>();
@@ -152,8 +151,8 @@ void Game::Create()
 
 	int BGMnum = (area - 1) / 20;
 
-	if (BGMnum >= 5) {
-		BGMnum -= BGMnum;
+	for (int i = 0; BGMnum >= 5; BGMnum -= 5) {
+
 	}
 
 	if ((area - 1) % 20 == 0) {
