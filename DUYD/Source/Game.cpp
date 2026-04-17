@@ -60,10 +60,10 @@ void Game::Update() {
 	}
 
 
-	if (gamePlayer->isStairs) {
+	if (gamePlayer->isStairs && !GlobalStatus::Get().IsUpgradeScreenOpen()) {
 		count += 1;
 	}
-	else {
+	else  if (!gamePlayer->isStairs) {
 		count = 0;
 	}
 	if (gamePlayer->isStairs && count == 60 * 3) {
