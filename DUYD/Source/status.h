@@ -1,6 +1,6 @@
 #pragma once
 
-#include <DxLib.h> 
+#include "DxLib.h"
 
 class status 
 
@@ -91,5 +91,7 @@ private:
 	void DrawUpgradeScreen();
 	void DrawNormalStatus();
 	bool prevMouseLeft = false;
+
+	int no_air;
 };
 
