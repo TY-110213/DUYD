@@ -85,19 +85,19 @@ void Tansakunosyo::Draw()
 	int y1 = (int)(550 * Screen::HEIGHT / 1080.0f);
 	int y2 = (int)(735 * Screen::HEIGHT / 1080.0f);
 
-	if (highScoreBF < 9)
+	if (highScoreBF < 10)
 	{
 		DrawFormatStringToHandle(x, y, black, fontResult, "%d ", highScoreBF);//kaisou 
 	}
-	else if (highScoreBF < 99 && highScoreBF >9)
+	else if (highScoreBF < 100)
 	{
 		DrawFormatStringToHandle(x-40, y, black, fontResult, "%d ", highScoreBF);//ko
 	}
-	else if (highScoreBF < 999 && highScoreBF >99)
+	else if (highScoreBF < 1000)
 	{
 		DrawFormatStringToHandle(x-80, y, black, fontResult, "%d ", highScoreBF);//ko
 	}
-	else if (highScoreBF < 9999 && highScoreBF >999)
+	else if (highScoreBF < 10000)
 	{
 		DrawFormatStringToHandle(x-120, y, black, fontResult, "%d ", highScoreBF);//ko
 	}
@@ -106,19 +106,19 @@ void Tansakunosyo::Draw()
 	}
 
 	
-	if (highScoreKill < 9)
+	if (highScoreKill < 10)
 	{
 		DrawFormatStringToHandle(x1, y1, black, fontResult, "%d ", highScoreKill);//tai
 	}
-	else if (highScoreKill < 99 && highScoreKill >9)
+	else if (highScoreKill < 100)
 	{
 		DrawFormatStringToHandle(x1-40, y1, black, fontResult, "%d ", highScoreKill);//ko
 	}
-	else if (highScoreKill < 999 && highScoreKill >99)
+	else if (highScoreKill < 1000)
 	{
 		DrawFormatStringToHandle(x1-80, y1, black, fontResult, "%d ", highScoreKill);//ko
 	}
-	else if (highScoreKill < 9999 && highScoreKill >999)
+	else if (highScoreKill < 10000)
 	{
 		DrawFormatStringToHandle(x1-120, y1, black, fontResult, "%d ", highScoreKill);//ko
 	}
@@ -127,19 +127,19 @@ void Tansakunosyo::Draw()
 	}
 
 	
-	if (highScoreBreak < 9)
+	if (highScoreBreak < 10)
 	{
 		DrawFormatStringToHandle(x1, y2, black, fontResult, "%d ", highScoreBreak);//ko
 	}
-	else if (highScoreBreak < 99 && highScoreBreak >9)
+	else if (highScoreBreak < 100)
 	{
 		DrawFormatStringToHandle(x1-40, y2, black, fontResult, "%d ", highScoreBreak);//ko
 	}
-	else if (highScoreBreak < 999 && highScoreBreak >99)
+	else if (highScoreBreak < 1000)
 	{
 		DrawFormatStringToHandle(x1-80, y2, black, fontResult, "%d ", highScoreBreak);//ko
 	}
-	else if (highScoreBreak < 9999 && highScoreBreak >999)
+	else if (highScoreBreak < 10000)
 	{
 		DrawFormatStringToHandle(x1-120, y2, black, fontResult, "%d ", highScoreBreak);//ko
 	}
