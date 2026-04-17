@@ -12,6 +12,8 @@
 #include "status.h"
 #include "Enemy.h"
 #include "FavOverlay.h"
+#include "GlobalStatus.h"
+#include "Screen.h"
 
 PlayScene::PlayScene()
 {
@@ -38,6 +40,8 @@ PlayScene::PlayScene()
         existingGame->DestroyMe();
     }
 
+    hImage = LoadGraph("data/mouse_tsuruhashi.png");
+
     new Game();
 }
 
@@ -51,10 +55,31 @@ void PlayScene::Update()
 		SceneManager::Exit();
 	}
 	
-	
+    if (GlobalStatus::Get().IsUpgradeScreenOpen() && !mflag) {
+        mouseX = 1920 / 2;
+        mouseY = 980 / 2;
+        mflag = true;
+    }
+    else if (mflag = true) {
+        mouseX -= numX;
+        mouseY -= numY;
+        numX = 0;
+        numY = 0;
+        GetMousePoint(&numX, &numY);
+        mouseX += numX;
+        mouseY += numY;
+    }
+    if (GlobalStatus::Get().IsUpgradeScreenOpen() == false) {
+        mflag = false;
+    }
+    
+    //GetMousePoint(&mouseX, &mouseY);
 }
 
 void PlayScene::Draw()
 {
-	
+    if (GlobalStatus::Get().IsUpgradeScreenOpen()){
+        DrawExtendGraph(mouseX, mouseY, mouseX + 30, mouseY + 30, hImage, true);
+    }
+    
 }

@@ -16,5 +16,4 @@ public:
 public:
 	int TitleBGM;
 	int buttonSE;
-	
 };

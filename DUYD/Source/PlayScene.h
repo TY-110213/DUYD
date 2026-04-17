@@ -5,6 +5,10 @@
 #include <DxLib.h>
 #include <cstdint>
 #include "Game.h"
+
+//int mouseX, mouseY;
+//GetMousePoint(&mouseX, &mouseY);
+
 class PlayScene : public SceneBase
 {
 public:
@@ -14,5 +18,10 @@ public:
 	void Draw() override;
 
 private:
-
+	int mouseX = 0;
+	int mouseY = 0;
+	int numX = 0;
+	int numY = 0;
+	int hImage = 0;
+	bool mflag = 0;
 };
