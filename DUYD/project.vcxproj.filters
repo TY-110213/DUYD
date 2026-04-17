@@ -52,27 +52,53 @@
     <ClCompile Include="Source\Player.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Tansakunosyo.cpp" />
     <ClCompile Include="Source\TUT.cpp" />
-    <ClCompile Include="Source\status.cpp" />
-    <ClCompile Include="Source\Stone.cpp" />
     <ClCompile Include="Source\Rocks.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Backs.cpp" />
-    <ClCompile Include="Source\Enemy.cpp" />
     <ClCompile Include="Source\SceneFactory.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GlobalStatus.cpp" />
-    <ClCompile Include="IMap.cpp" />
-    <ClCompile Include="Source\GamePlayer.cpp" />
-    <ClCompile Include="Source\Camera.cpp" />
-    <ClCompile Include="Source\StatusDrawer.cpp" />
-    <ClCompile Include="Source\GameOverScene.cpp" />
-    <ClCompile Include="Source\FavOverlay.cpp" />
-    <ClCompile Include="Source\Gamemapadapter.cpp" />
     <ClCompile Include="Source\Game.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Backs.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Camera.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Enemy.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FavOverlay.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GamePlayer.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GlobalStatus.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="IMap.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameOverScene.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\status.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StatusDrawer.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Gamemapadapter.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Stone.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Tansakunosyo.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
   </ItemGroup>
@@ -139,10 +165,7 @@
     <ClInclude Include="Source\Player.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Tansakunosyo.h" />
     <ClInclude Include="Source\TUT.h" />
-    <ClInclude Include="Source\status.h" />
-    <ClInclude Include="Source\Stone.h" />
     <ClInclude Include="Source\Rocks.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
@@ -155,24 +178,45 @@
     <ClInclude Include="Source\Enemy.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GlobalStatus.h" />
-    <ClInclude Include="Source\IMap.h" />
     <ClInclude Include="Source\GamePlayer.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
     <ClInclude Include="Source\Camera.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
-    <ClInclude Include="Source\StatusDrawer.h" />
     <ClInclude Include="Source\GameOver.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
     <ClInclude Include="ScoreManager.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GameOverScene.h" />
-    <ClInclude Include="Source\FavOverlay.h" />
-    <ClInclude Include="Source\Gamemapadapter.h" />
+    <ClInclude Include="Source\FavOverlay.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GlobalStatus.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\IMap.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameOverScene.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\status.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StatusDrawer.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Gamemapadapter.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Stone.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tansakunosyo.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Library">
