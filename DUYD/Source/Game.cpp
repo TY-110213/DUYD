@@ -13,6 +13,7 @@
 #include <cmath>
 
 
+
 Game::Game()
 {
 	SetDrawOrder(-60);
@@ -22,6 +23,7 @@ Game::Game()
 	Create();
 	SEHandle[0] = LoadSoundMem("data/sound/溶岩洞/bubble.mp3");
 	SEHandle[1] = LoadSoundMem("data/sound/SE/stairs.mp3");
+	SEHandle[2]= LoadSoundMem("data/sound/SE/no_air.mp3");
 	SEcount2 = Random(6, 11);
 }
 
@@ -31,7 +33,7 @@ Game::~Game()
 
 	DeleteSoundMem(BGMHandle);
 	DeleteSoundMem(SEHandle[0]);
-
+	DeleteSoundMem(SEHandle[2]);
 }
 
 void Game::Update() {
@@ -92,6 +94,15 @@ void Game::Update() {
 
 	}
 
+	if (GlobalStatus::Get().GetO2() < 8)
+	{
+		// サウンドが再生中かチェック
+		if (CheckSoundMem(SEHandle[2]) == 0)
+		{
+			// 鳴り終わっていたら再生
+			PlaySoundMem(SEHandle[2], DX_PLAYTYPE_BACK);
+		}
+	}
 
 
 

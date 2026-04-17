@@ -92,6 +92,5 @@ private:
 	void DrawNormalStatus();
 	bool prevMouseLeft = false;
 
-	int no_air;
 };
 

@@ -13,7 +13,7 @@ status::status()
 	numFont = CreateFontToHandle(NULL, 35, 5, DX_FONTTYPE_ANTIALIASING); // 数値（999/999）
 
 	ApplyStats();
-	no_air= LoadSoundMem("data/sound/SE/no_air.mp3");
+	
 }
 
 
@@ -24,7 +24,6 @@ status::status()
 
 status::~status()
 {
-	DeleteSoundMem(no_air);
 }
 
 
@@ -116,15 +115,7 @@ void status::Update()
 	}
 
 	}
-	if (O2 < 8)
-	{
-		// サウンドが再生中かチェック
-		if (CheckSoundMem(no_air) == 0)
-		{
-			// 鳴り終わっていたら再生
-			PlaySoundMem(no_air, DX_PLAYTYPE_BACK);
-		}
-	}
+	
 		
 
 
