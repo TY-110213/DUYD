@@ -71,4 +71,10 @@ private:
     int air;
     int crystal;
     
+    int mouseImage = 0;
+    int mouseX = 0;
+    int mouseY = 0;
+    int numX = 0;
+    int numY = 0;
+    bool mflag = 0;
 };
