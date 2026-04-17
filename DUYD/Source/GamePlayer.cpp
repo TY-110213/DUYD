@@ -409,7 +409,7 @@ void GamePlayer::Update()
         isStairs = false;
     }
     // デバッグ用：Pキーで階段にワープ
-    if (CheckHitKey(KEY_INPUT_P)) {
+    /*if (CheckHitKey(KEY_INPUT_P)) {
         for (int i = 0; i < game->WIDTH; i++) {
             for (int j = 0; j < game->HEIGHT; j++) {
                 if (game->num[i][j] == 5) {
@@ -420,7 +420,7 @@ void GamePlayer::Update()
             }
         }
     WARP_END:;
-    }
+    }*/
 }
 
 void GamePlayer::Draw()

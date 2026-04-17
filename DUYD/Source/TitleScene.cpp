@@ -43,12 +43,12 @@ void TitleScene::Update()
 	}
 	
 
-	if (CheckHitKey(KEY_INPUT_A)) 
+	/*Xif (CheckHitKey(KEY_INPUT_A))
 	{
 		GlobalStatus::Reset();
 		SceneManager::ChangeScene("PLAY");
 		PlaySoundMem(buttonSE, DX_PLAYTYPE_BACK);
-	}
+	}*/
 
 	if (CheckHitKey(KEY_INPUT_G))
 	{
