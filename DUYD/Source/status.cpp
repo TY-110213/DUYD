@@ -24,6 +24,7 @@ status::status()
 
 status::~status()
 {
+	DeleteSoundMem(no_air);
 }
 
 
