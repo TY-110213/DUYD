@@ -121,7 +121,8 @@ TUT::TUT()
     ChangeVolumeSoundMem(170, bgmHandle);
     PlaySoundMem(bgmHandle, DX_PLAYTYPE_LOOP);
 
-    
+    mouseImage = LoadGraph("data/mouse_tsuruhashi.png");
+
 }
 
 TUT::~TUT()
@@ -222,6 +223,12 @@ void TUT::Update()
         activeTelopHandle = -1;
         PlaySoundMem(Clause_Book, DX_PLAYTYPE_BACK);
     }
+
+    if (GlobalStatus::Get().IsUpgradeScreenOpen()) {
+        GetMousePoint(&mouseX, &mouseY);
+    }
+    
+
 }
 
 void TUT::Draw()
@@ -313,6 +320,11 @@ void TUT::Draw()
         DrawGraph((1920 - w) / 2, (1080 - h) / 2, activeTelopHandle, TRUE);
         
     }
+
+    if (GlobalStatus::Get().IsUpgradeScreenOpen()) {
+        DrawExtendGraph(mouseX, mouseY, mouseX + 30, mouseY + 30, mouseImage, true);
+    }
+
 }
 
 // タイル座標が壁かどうかをチェック

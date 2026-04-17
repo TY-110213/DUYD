@@ -43,12 +43,12 @@ void TitleScene::Update()
 	}
 	
 
-	if (CheckHitKey(KEY_INPUT_A)) 
+	/*Xif (CheckHitKey(KEY_INPUT_A))
 	{
 		GlobalStatus::Reset();
 		SceneManager::ChangeScene("PLAY");
 		PlaySoundMem(buttonSE, DX_PLAYTYPE_BACK);
-	}
+	}*/
 
 	if (CheckHitKey(KEY_INPUT_G))
 	{
@@ -66,6 +66,6 @@ void TitleScene::Draw()
 	DrawString(200, 400, "Push [P]Key To Play", GetColor(255, 255, 255));
 	DrawString(1000, 400, "Push [T]Key To Tansaku", GetColor(255, 255, 255));
 	DrawExtendGraph(0, 0, Screen::WIDTH, Screen::HEIGHT, TitleImage, TRUE);//¶ã(0,0)‚©‚ç‰E‰º(1920,1080)‚Ì”ÍˆÍ‚É‰æ‘œ‚ğˆø‚«L‚Î‚µ‚Ä•\¦‚·‚é@•¶š‚¢‚ç‚ê‚ñ	
-	
+
 
 }
