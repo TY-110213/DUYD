@@ -2,6 +2,7 @@
 #include "GlobalStatus.h"
 #include "Game.h"
 #include "../Library/SceneManager.h"
+#include "Screen.h"
 #include <DxLib.h>
 GameOverScene::GameOverScene()
 {
@@ -80,7 +81,7 @@ void GameOverScene::Draw()
 {
     // ”wŒi‰æ‘œ‚ð‘S‰æ–Ê•\Ž¦
     if (bgImage != -1)
-        DrawExtendGraph(0, 0, 1920, 1080, bgImage, FALSE);
+        DrawExtendGraph(0, 0, Screen::WIDTH, Screen::HEIGHT, bgImage, FALSE);
     else
         DrawBox(0, 0, 1280, 720, GetColor(10, 5, 5), TRUE);
 

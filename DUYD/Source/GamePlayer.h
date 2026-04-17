@@ -58,6 +58,7 @@ private:
     int Throw;
     int SEHandle[7];
     int stepcount = 0;
-
+    bool isSprinting = false;
+    float SPRINT_MULTIPLIER = 1.8f;
 
 };

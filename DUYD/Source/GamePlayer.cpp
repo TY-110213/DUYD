@@ -83,7 +83,12 @@ void GamePlayer::Update()
     //移動速度に筋力を加算
     float speed = 1.0f + GlobalStatus::Get().GetStrength() * 0.5f;
     static constexpr float SPEED_MAX = 0.2f * 10;
+    //デバックようダッシュ
     if (speed > SPEED_MAX) speed = SPEED_MAX;
+    isSprinting = (CheckHitKey(KEY_INPUT_LSHIFT) || CheckHitKey(KEY_INPUT_RSHIFT)) != 0;
+
+
+    if (isSprinting) speed *= SPRINT_MULTIPLIER;
     if (CheckHitKey(KEY_INPUT_W)) { 
         dy -= speed;
         dir = UP; 

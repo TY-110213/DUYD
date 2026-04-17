@@ -27,12 +27,12 @@ const char* Version() {
 // ÉvÉçÉOÉâÉÄÇÕ WinMain Ç©ÇÁénÇ‹ÇËÇ‹Ç∑
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-	SetGraphMode(1920, 1080, 32);
+	SetGraphMode(Screen::WIDTH, Screen::HEIGHT, 32);
 	SetOutApplicationLogValidFlag(FALSE);
 
 	SetMainWindowText(Screen::WINDOW_NAME);
 	SetWindowSizeExtendRate(Screen::WINDOW_EXTEND);
-	ChangeWindowMode(TRUE);
+	ChangeWindowMode(Screen::WINDOW_MODE);
 
 	if (DxLib_Init() == -1)
 	{

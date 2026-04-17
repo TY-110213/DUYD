@@ -65,7 +65,7 @@ void TitleScene::Draw()
 	DrawString(0, 0, "TITLE SCENE", GetColor(255, 255, 255), 0);
 	DrawString(200, 400, "Push [P]Key To Play", GetColor(255, 255, 255));
 	DrawString(1000, 400, "Push [T]Key To Tansaku", GetColor(255, 255, 255));
-	DrawExtendGraph(0, 0, 1920, 1080, TitleImage, TRUE);//左上(0,0)から右下(1920,1080)の範囲に画像を引き伸ばして表示する　文字いられん	
+	DrawExtendGraph(0, 0, Screen::WIDTH, Screen::HEIGHT, TitleImage, TRUE);//左上(0,0)から右下(1920,1080)の範囲に画像を引き伸ばして表示する　文字いられん	
 	
 
 }

@@ -5,6 +5,7 @@
 #include "TUT.h"
 #include "Game.h"
 #include "GlobalStatus.h"
+#include "Screen.h"
 
 int TansakuImage;
 
@@ -71,7 +72,7 @@ void Tansakunosyo::Update()
 
 void Tansakunosyo::Draw()
 {
-	DrawExtendGraph(0, 0, 1920, 1080, TansakuImage, TRUE);//左上(0,0)から右下(1920,1080)の範囲に画像を引き伸ばして表示する　文字いられん
+	DrawExtendGraph(0, 0, Screen::WIDTH, Screen::HEIGHT, TansakuImage, TRUE);//左上(0,0)から右下(1920,1080)の範囲に画像を引き伸ばして表示する　文字いられん
 	// 第3・4引数が X倍率, Y倍率（1.0 = 等倍）
 	DrawExtendString(1500, 1020, 3.0, 3.0, "[F]タイトルへ", GetColor(255, 255, 255));
 
@@ -81,11 +82,67 @@ void Tansakunosyo::Draw()
 
 
 
-	DrawFormatStringToHandle(670, 690, black, fontResult, "%d ", highScoreBF);//kaisou 
+	if (highScoreBF < 9)
+	{
+		DrawFormatStringToHandle(670, 690, black, fontResult, "%d ", highScoreBF);//kaisou 
+	}
+	else if (highScoreBF < 99 && highScoreBF >9)
+	{
+		DrawFormatStringToHandle(630, 690, black, fontResult, "%d ", highScoreBF);//ko
+	}
+	else if (highScoreBF < 999 && highScoreBF >99)
+	{
+		DrawFormatStringToHandle(590, 690, black, fontResult, "%d ", highScoreBF);//ko
+	}
+	else if (highScoreBF < 9999 && highScoreBF >999)
+	{
+		DrawFormatStringToHandle(550, 690, black, fontResult, "%d ", highScoreBF);//ko
+	}
+	else {
+		DrawFormatStringToHandle(510, 690, black, fontResult, "%d ", highScoreBF);//ko
+	}
+
+	
+	if (highScoreKill < 9)
+	{
+		DrawFormatStringToHandle(1300, 550, black, fontResult, "%d ", highScoreKill);//tai
+	}
+	else if (highScoreKill < 99 && highScoreKill >9)
+	{
+		DrawFormatStringToHandle(1260, 550, black, fontResult, "%d ", highScoreKill);//ko
+	}
+	else if (highScoreKill < 999 && highScoreKill >99)
+	{
+		DrawFormatStringToHandle(1220, 550, black, fontResult, "%d ", highScoreKill);//ko
+	}
+	else if (highScoreKill < 9999 && highScoreKill >999)
+	{
+		DrawFormatStringToHandle(1170, 550, black, fontResult, "%d ", highScoreKill);//ko
+	}
+	else {
+		DrawFormatStringToHandle(1130, 550, black, fontResult, "%d ", highScoreKill);//ko
+	}
+
+	
+	if (highScoreBreak < 9)
+	{
+		DrawFormatStringToHandle(1300, 735, black, fontResult, "%d ", highScoreBreak);//ko
+	}
+	else if (highScoreBreak < 99 && highScoreBreak >9)
+	{
+		DrawFormatStringToHandle(1260, 735, black, fontResult, "%d ", highScoreBreak);//ko
+	}
+	else if (highScoreBreak < 999 && highScoreBreak >99)
+	{
+		DrawFormatStringToHandle(1220, 735, black, fontResult, "%d ", highScoreBreak);//ko
+	}
+	else if (highScoreBreak < 9999 && highScoreBreak >999)
+	{
+		DrawFormatStringToHandle(1170, 735, black, fontResult, "%d ", highScoreBreak);//ko
+	}
+	else {
+		DrawFormatStringToHandle(1130, 735, black, fontResult, "%d ", highScoreBreak);//ko
+	}
 
 
-	DrawFormatStringToHandle(1300, 550, black, fontResult, "%d ", highScoreKill);//tai
-
-
-	DrawFormatStringToHandle(1300, 735, black, fontResult, "%d ", highScoreBreak);//ko
 }
